@@ -4,7 +4,6 @@ struct LoginView: View {
     private let clientID = "Ov23liKBw7Yddbu1ty8g"
     private let redirectURI = "gitty://oauth-callback"
 
-    @EnvironmentObject var appRouter: AppRouter
 
     var body: some View {
         VStack {

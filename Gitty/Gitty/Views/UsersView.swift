@@ -1,26 +1,26 @@
 import SwiftUI
+import Combine
 
-struct UserSearchView: View {
+struct UsersView: View {
     let api: GitHubAPI
     let history: UserHistory
 
-    @EnvironmentObject private var appRouter: AppRouter
+    init(api: GitHubAPI, history: UserHistory) {
+        self.api = api
+        self.history = history
+    }
+
     @State private var query = ""
     @State private var users: [GitHubUser] = []
     @State private var isLoading = false
     @State private var errorMessage: String?
+    @State private var searchCancellable: AnyCancellable?
 
-    var body: some View {
+    private var searchSubject = PassthroughSubject<String, Never>()
+
+    public var body: some View {
         NavigationView {
             VStack {
-                TextField("Search users", text: $query, onCommit: {
-                    Task {
-                        await searchUsers(query: query)
-                    }
-                })
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
                 if isLoading {
                     ProgressView("Loading...")
                         .padding()
@@ -34,9 +34,7 @@ struct UserSearchView: View {
                         .padding()
                 } else {
                     List(users) { user in
-                        Button {
-                            appRouter.navigateTo(.userRepositories(user))
-                        } label: {
+                        NavigationLink(destination: UserRepositoriesView(api: api, user: user)) {
                             VStack(alignment: .leading) {
                                 Text(user.login)
                                     .font(.headline)
@@ -51,15 +49,29 @@ struct UserSearchView: View {
                     }
                 }
             }
-            .navigationTitle("Search Users")
+            .navigationTitle("Users")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: UserHistoryView(history: history)) {
-                        Image(systemName: "clock.arrow.circlepath")
+                    NavigationLink(destination: UserHistoryView(api: api, history: history)) {
+                        Image(systemName: "clock")
                     }
                 }
             }
             .padding()
+            .onAppear {
+                searchCancellable = searchSubject
+                    .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+                    .removeDuplicates()
+                    .sink { query in
+                        Task {
+                            await searchUsers(query: query)
+                        }
+                    }
+            }
+            .onDisappear {
+                searchCancellable?.cancel()
+            }
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         }
     }
 

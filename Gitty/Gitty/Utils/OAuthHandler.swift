@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 struct OAuthHandler {
-    static func handleOAuthCallback(url: URL, api: GitHubAPI, appStater: AppStater) {
+    static func handleOAuthCallback(url: URL, api: GitHubAPI, appStateManager: AppStateManager) {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let queryItems = components.queryItems,
               let code = queryItems.first(where: { $0.name == "code" })?.value else {
@@ -16,7 +16,7 @@ struct OAuthHandler {
                 let userProfile = try await api.fetchGitHubUserProfile()
 
                 // Handle successful OAuth login
-                appStater.state = .home
+                appStateManager.state = .home
 
                 // Store user profile and access token as needed
                 print("Access token: \(accessToken)")

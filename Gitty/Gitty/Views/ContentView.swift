@@ -5,14 +5,13 @@ struct ContentView: View {
     let repositoryHistory: RepositoryHistory
     let userHistory: UserHistory
 
-    @EnvironmentObject private var appRouter: AppRouter
-    @EnvironmentObject private var appStater: AppStater
+    @EnvironmentObject private var appStateManager: AppStateManager
 
     var body: some View {
         NavigationView {
-            switch appStater.state {
+            switch appStateManager.state {
             case .home:
-                HomeView(api: api, repositoryHistory: repositoryHistory, userHistory: userHistory)
+                TabBarView(api: api, repositoryHistory: repositoryHistory, userHistory: userHistory)
             case .login:
                 LoginView()
             case .loading:

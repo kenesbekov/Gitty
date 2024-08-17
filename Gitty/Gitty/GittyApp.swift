@@ -6,16 +6,14 @@ struct GittyApp: App {
     private let repositoryHistory = RepositoryHistoryImpl()
     private let userHistory = UserHistoryImpl()
 
-    @StateObject private var appRouter = AppRouter()
-    @StateObject private var appStater = AppStater()
+    @StateObject private var appStateManager = AppStateManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView(api: api, repositoryHistory: repositoryHistory, userHistory: userHistory)
-                .environmentObject(appRouter)
-                .environmentObject(appStater)
+                .environmentObject(appStateManager)
                 .onOpenURL { url in
-                    OAuthHandler.handleOAuthCallback(url: url, api: api, appStater: appStater)
+                    OAuthHandler.handleOAuthCallback(url: url, api: api, appStateManager: appStateManager)
                 }
         }
     }

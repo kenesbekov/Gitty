@@ -8,23 +8,21 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct TabBarView: View {
     let api: GitHubAPI
     let repositoryHistory: RepositoryHistory
     let userHistory: UserHistory
 
-    @EnvironmentObject private var appRouter: AppRouter
-
     var body: some View {
         TabView {
-            RepositorySearchView(api: api, history: repositoryHistory)
+            RepositoriesView(api: api, history: repositoryHistory)
                 .tabItem {
-                    Label("Repositories", systemImage: "archivebox")
+                    Label("Repositories", systemImage: "square.stack")
                 }
 
-            UserSearchView(api: api, history: userHistory)
+            UsersView(api: api, history: userHistory)
                 .tabItem {
-                    Label("Users", systemImage: "person.3")
+                    Label("Users", systemImage: "person.circle")
                 }
         }
     }

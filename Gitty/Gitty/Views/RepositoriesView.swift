@@ -1,26 +1,26 @@
 import SwiftUI
+import Combine
 
-struct RepositorySearchView: View {
+struct RepositoriesView: View {
     let api: GitHubAPI
     let history: RepositoryHistory
 
-    @EnvironmentObject private var appRouter: AppRouter
+    init(api: GitHubAPI, history: RepositoryHistory) {
+        self.api = api
+        self.history = history
+    }
+
     @State private var query = ""
     @State private var repositories: [GitHubRepository] = []
     @State private var isLoading = false
     @State private var errorMessage: String?
+    @State private var searchCancellable: AnyCancellable?
+
+    private var searchSubject = PassthroughSubject<String, Never>()
 
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Search repositories", text: $query, onCommit: {
-                    Task {
-                        await searchRepositories(query: query)
-                    }
-                })
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
                 if isLoading {
                     ProgressView("Loading...")
                         .padding()
@@ -36,7 +36,6 @@ struct RepositorySearchView: View {
                     List(repositories) { repository in
                         Button {
                             addToHistory(repository)
-                            appRouter.navigateTo(.repositoryDetail(repository))
                         } label: {
                             VStack(alignment: .leading) {
                                 Text(repository.fullName)
@@ -57,11 +56,28 @@ struct RepositorySearchView: View {
                     }
                 }
             }
-            .navigationTitle("Search Repositories")
+            .onChange(of: query) { newValue in
+                searchSubject.send(newValue)
+            }
+            .onAppear {
+                searchCancellable = searchSubject
+                    .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+                    .removeDuplicates()
+                    .sink { query in
+                        Task {
+                            await searchRepositories(query: query)
+                        }
+                    }
+            }
+            .onDisappear {
+                searchCancellable?.cancel()
+            }
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .navigationTitle("Repositories")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: RepositoryHistoryView(history: history)) {
-                        Image(systemName: "clock.arrow.circlepath")
+                        Image(systemName: "clock")
                     }
                 }
             }

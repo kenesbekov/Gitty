@@ -1,7 +1,7 @@
 import Foundation
 import Security
 
-final class AppStater: ObservableObject {
+final class AppStateManager: ObservableObject {
     @Published var state: AppState
     
     init() {
