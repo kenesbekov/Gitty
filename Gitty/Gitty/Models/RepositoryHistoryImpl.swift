@@ -3,8 +3,12 @@ import Foundation
 final class RepositoryHistoryImpl: RepositoryHistory {
     private let maxHistoryCount = 20
     private let historyKey = "ViewedRepositories"
-    
-    func addRepository(_ repository: GitHubRepository) {
+
+    var repositories: [GitHubRepository] {
+        loadHistory()
+    }
+
+    func add(_ repository: GitHubRepository) {
         var history = loadHistory()
         history.insert(repository, at: 0)
         if history.count > maxHistoryCount {
@@ -13,7 +17,7 @@ final class RepositoryHistoryImpl: RepositoryHistory {
         saveHistory(history)
     }
     
-    func loadHistory() -> [GitHubRepository] {
+    private func loadHistory() -> [GitHubRepository] {
         if let data = UserDefaults.standard.data(forKey: historyKey),
            let history = try? JSONDecoder().decode([GitHubRepository].self, from: data) {
             return history

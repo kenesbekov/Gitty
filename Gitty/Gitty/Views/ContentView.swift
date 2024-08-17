@@ -2,13 +2,13 @@ import SwiftUI
 
 struct ContentView: View {
     let api: GitHubAPI
-    @EnvironmentObject private var appRouter: AppRouter
+    let history: RepositoryHistory
 
     var body: some View {
         NavigationView {
             switch appRouter.currentDestination {
             case .home:
-                RepositorySearchView(api: api)
+                RepositorySearchView(api: api, history: history)
             case .repositoryDetail(let repository):
                 RepositoryDetailView(repository: repository)
             case .none:

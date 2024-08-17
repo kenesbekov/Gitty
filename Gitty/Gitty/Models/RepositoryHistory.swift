@@ -1,6 +1,7 @@
 import Foundation
 
 protocol RepositoryHistory {
-    func addRepository(_ repository: GitHubRepository)
-    func loadHistory() -> [GitHubRepository]
+    var repositories: [GitHubRepository] { get }
+
+    func add(_ repository: GitHubRepository)
 }
