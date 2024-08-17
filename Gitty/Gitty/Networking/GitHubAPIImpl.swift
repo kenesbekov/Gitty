@@ -33,6 +33,39 @@ final class GitHubAPIImpl: GitHubAPI {
         return try await networkClient.fetch(endpoint, method: "GET", body: nil, headers: nil, isOAuthRequest: false)
     }
 
+    func searchRepositories(query: String, sort: SortOption, order: OrderOption, page: Int, perPage: Int) async throws -> [GitHubRepository] {
+        let sortValue: String
+        let orderValue: String
+
+        switch sort {
+        case .stars:
+            sortValue = "stars"
+        case .forks:
+            sortValue = "forks"
+        case .updated:
+            sortValue = "updated"
+        }
+
+        switch order {
+        case .ascending:
+            orderValue = "asc"
+        case .descending:
+            orderValue = "desc"
+        }
+
+        let endpoint = "/search/repositories?q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&sort=\(sortValue)&order=\(orderValue)&page=\(page)&per_page=\(perPage)"
+
+        let response: GitHubRepositorySearchResponse = try await networkClient.fetch(
+            endpoint,
+            method: "GET",
+            body: nil,
+            headers: nil,
+            isOAuthRequest: false
+        )
+
+        return response.items
+    }
+
     func searchRepositories(query: String, page: Int, perPage: Int) async throws -> [GitHubRepository] {
         let endpoint = "/search/repositories?q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&page=\(page)&per_page=\(perPage)"
         let response: GitHubRepositorySearchResponse = try await networkClient.fetch(
@@ -101,4 +134,15 @@ final class GitHubAPIImpl: GitHubAPI {
         )
         return userProfile
     }
+}
+
+enum SortOption {
+    case stars
+    case forks
+    case updated
+}
+
+enum OrderOption {
+    case ascending
+    case descending
 }

@@ -18,6 +18,13 @@ struct RepositoriesView: View {
 
     private var searchSubject = PassthroughSubject<String, Never>()
 
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
     var body: some View {
         NavigationView {
             VStack {
@@ -51,6 +58,10 @@ struct RepositoriesView: View {
                                 }
                                 .font(.footnote)
                                 .foregroundColor(.secondary)
+
+                                Text("Updated: \(dateFormatter.string(from: repository.updatedAt))")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
                             }
                         }
                     }
@@ -92,7 +103,9 @@ struct RepositoriesView: View {
 
         do {
             isLoading = true
-            repositories = try await api.searchRepositories(query: query, page: 1, perPage: 30)
+            let sortOption: SortOption = .updated // You can make this dynamic if needed
+            let orderOption: OrderOption = .descending // You can make this dynamic if needed
+            repositories = try await api.searchRepositories(query: query, sort: sortOption, order: orderOption, page: 1, perPage: 30)
             errorMessage = nil
         } catch {
             errorMessage = error.localizedDescription
