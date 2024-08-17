@@ -21,9 +21,7 @@ struct RepositoryDetailView: View {
             .padding()
 
             Button("Open on GitHub") {
-                if let url = URL(string: repository.htmlURL) {
-                    UIApplication.shared.open(url)
-                }
+                UIApplication.shared.open(repository.htmlURL)
             }
             .padding()
         }
