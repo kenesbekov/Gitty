@@ -2,6 +2,7 @@ import SwiftUI
 
 struct UserSearchView: View {
     let api: GitHubAPI
+    let history: UserHistory
 
     @EnvironmentObject private var appRouter: AppRouter
     @State private var query = ""
@@ -51,6 +52,13 @@ struct UserSearchView: View {
                 }
             }
             .navigationTitle("Search Users")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: UserHistoryView(history: history)) {
+                        Image(systemName: "clock.arrow.circlepath")
+                    }
+                }
+            }
             .padding()
         }
     }

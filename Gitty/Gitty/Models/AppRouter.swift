@@ -8,7 +8,7 @@ enum Destination: Hashable {
 }
 
 final class AppRouter: ObservableObject {
-    @Published var currentDestination: Destination?
+    @Published var currentDestination: Destination = .home
 
     func navigateTo(_ destination: Destination) {
         self.currentDestination = destination

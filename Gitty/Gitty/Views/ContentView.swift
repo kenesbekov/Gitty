@@ -6,20 +6,17 @@ struct ContentView: View {
     let userHistory: UserHistory
 
     @EnvironmentObject private var appRouter: AppRouter
+    @EnvironmentObject private var appStater: AppStater
 
     var body: some View {
         NavigationView {
-            switch appRouter.currentDestination {
+            switch appStater.state {
             case .home:
-                HomeView(api: api, history: repositoryHistory)
-            case .repositoryDetail(let repository):
-                RepositoryDetailView(repository: repository)
-            case .userRepositories(let userProfile):
-                UserRepositoriesView(api: api, user: userProfile)
-            case .userHistory:
-                UserHistoryView(userHistory: userHistory)
-            case .none:
+                HomeView(api: api, repositoryHistory: repositoryHistory, userHistory: userHistory)
+            case .login:
                 LoginView()
+            case .loading:
+                LoadingView()
             }
         }
     }

@@ -74,6 +74,7 @@ final class GitHubAPIImpl: GitHubAPI {
                 isOAuthRequest: true
             )
 
+            try KeychainService.shared.saveToken(response.accessToken)
             return response.accessToken
 
         } catch {
@@ -82,9 +83,15 @@ final class GitHubAPIImpl: GitHubAPI {
         }
     }
 
-    func fetchGitHubUserProfile(accessToken: String) async throws -> GitHubUserProfile {
+    func fetchGitHubUserProfile() async throws -> GitHubUserProfile {
+        let accessToken = try KeychainService.shared.retrieveToken()
+
+        guard let token = accessToken else {
+            throw URLError(.userAuthenticationRequired)
+        }
+
         let endpoint = "/user"
-        let headers = ["Authorization": "token \(accessToken)"]
+        let headers = ["Authorization": "token \(token)"]
         let userProfile: GitHubUserProfile = try await networkClient.fetch(
             endpoint,
             method: "GET",

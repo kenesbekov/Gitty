@@ -10,18 +10,19 @@ import SwiftUI
 
 struct HomeView: View {
     let api: GitHubAPI
-    let history: RepositoryHistory
+    let repositoryHistory: RepositoryHistory
+    let userHistory: UserHistory
 
     @EnvironmentObject private var appRouter: AppRouter
 
     var body: some View {
         TabView {
-            RepositorySearchView(api: api, history: history)
+            RepositorySearchView(api: api, history: repositoryHistory)
                 .tabItem {
                     Label("Repositories", systemImage: "archivebox")
                 }
 
-            UserSearchView(api: api)
+            UserSearchView(api: api, history: userHistory)
                 .tabItem {
                     Label("Users", systemImage: "person.3")
                 }

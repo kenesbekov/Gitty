@@ -1,7 +1,7 @@
 import Foundation
 
 protocol GitHubAPI: AnyObject {
-    func fetchGitHubUserProfile(accessToken: String) async throws -> GitHubUserProfile
+    func fetchGitHubUserProfile() async throws -> GitHubUserProfile
     func fetchAccessToken(authorizationCode: String) async throws -> String
 
     func searchUsers(query: String, page: Int, perPage: Int) async throws -> GitHubUserSearchResponse

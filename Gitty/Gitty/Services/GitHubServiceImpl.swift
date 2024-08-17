@@ -7,7 +7,7 @@ final class GitHubServiceImpl: GitHubService {
         self.api = api
     }
 
-    func fetchUserProfile(accessToken: String) async throws -> GitHubUserProfile {
-        try await api.fetchGitHubUserProfile(accessToken: accessToken)
+    func fetchUserProfile() async throws -> GitHubUserProfile {
+        try await api.fetchGitHubUserProfile()
     }
 }

@@ -1,19 +1,19 @@
 import SwiftUI
 
 struct UserHistoryView: View {
-    let userHistory: UserHistory
+    let history: UserHistory
 
     @EnvironmentObject var appRouter: AppRouter
 
     var body: some View {
         NavigationView {
             ZStack {
-                if userHistory.viewedUsers.isEmpty {
+                if history.viewedUsers.isEmpty {
                     Text("No viewed users")
                         .foregroundColor(.gray)
                         .padding()
                 } else {
-                    List(userHistory.viewedUsers) { user in
+                    List(history.viewedUsers) { user in
                         Button {
                             appRouter.navigateTo(.userRepositories(user))
                         } label: {
