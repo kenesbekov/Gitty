@@ -23,7 +23,6 @@
 		66EA786C2C6FA23E007DCFCA /* RepositorySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA786B2C6FA23E007DCFCA /* RepositorySearchView.swift */; };
 		66EA786F2C6FA259007DCFCA /* RepositoryRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA786E2C6FA259007DCFCA /* RepositoryRepositoryImpl.swift */; };
 		66EA78712C6FA280007DCFCA /* RepositoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78702C6FA280007DCFCA /* RepositoryRepository.swift */; };
-		66EA78732C6FA29E007DCFCA /* RepositorySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78722C6FA29E007DCFCA /* RepositorySearchViewModel.swift */; };
 		66EA787B2C6FA3D0007DCFCA /* GitHubAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787A2C6FA3D0007DCFCA /* GitHubAPITests.swift */; };
 		66EA787D2C6FA3F0007DCFCA /* OAuthFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787C2C6FA3F0007DCFCA /* OAuthFlowTests.swift */; };
 		66EA78802C6FA4CB007DCFCA /* OAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787F2C6FA4CB007DCFCA /* OAuthHandler.swift */; };
@@ -35,6 +34,14 @@
 		66EA788C2C6FAE8A007DCFCA /* RepositoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA788B2C6FAE8A007DCFCA /* RepositoryDetailView.swift */; };
 		66EA788E2C6FAF6B007DCFCA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA788D2C6FAF6B007DCFCA /* LoginView.swift */; };
 		66EA78902C6FB42C007DCFCA /* OAuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */; };
+		66EA78942C708C88007DCFCA /* RepositoryHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */; };
+		66EA78962C708F4F007DCFCA /* UserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78952C708F4F007DCFCA /* UserHistory.swift */; };
+		66EA789A2C708FCC007DCFCA /* UserHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78992C708FCC007DCFCA /* UserHistoryView.swift */; };
+		66EA789E2C70A53D007DCFCA /* UserRepositoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA789D2C70A53D007DCFCA /* UserRepositoriesView.swift */; };
+		66EA78A02C70A65E007DCFCA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA789F2C70A65E007DCFCA /* HomeView.swift */; };
+		66EA78A22C70A66D007DCFCA /* UserSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78A12C70A66D007DCFCA /* UserSearchView.swift */; };
+		66EA78A42C70AF33007DCFCA /* GitHubUserSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78A32C70AF33007DCFCA /* GitHubUserSearchResponse.swift */; };
+		66EA78A62C70AFA3007DCFCA /* GitHubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78A52C70AFA3007DCFCA /* GitHubUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +83,6 @@
 		66EA786B2C6FA23E007DCFCA /* RepositorySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySearchView.swift; sourceTree = "<group>"; };
 		66EA786E2C6FA259007DCFCA /* RepositoryRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRepositoryImpl.swift; sourceTree = "<group>"; };
 		66EA78702C6FA280007DCFCA /* RepositoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRepository.swift; sourceTree = "<group>"; };
-		66EA78722C6FA29E007DCFCA /* RepositorySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySearchViewModel.swift; sourceTree = "<group>"; };
 		66EA787A2C6FA3D0007DCFCA /* GitHubAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPITests.swift; sourceTree = "<group>"; };
 		66EA787C2C6FA3F0007DCFCA /* OAuthFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFlowTests.swift; sourceTree = "<group>"; };
 		66EA787F2C6FA4CB007DCFCA /* OAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandler.swift; sourceTree = "<group>"; };
@@ -88,6 +94,14 @@
 		66EA788B2C6FAE8A007DCFCA /* RepositoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailView.swift; sourceTree = "<group>"; };
 		66EA788D2C6FAF6B007DCFCA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthTokenResponse.swift; sourceTree = "<group>"; };
+		66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryView.swift; sourceTree = "<group>"; };
+		66EA78952C708F4F007DCFCA /* UserHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistory.swift; sourceTree = "<group>"; };
+		66EA78992C708FCC007DCFCA /* UserHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistoryView.swift; sourceTree = "<group>"; };
+		66EA789D2C70A53D007DCFCA /* UserRepositoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoriesView.swift; sourceTree = "<group>"; };
+		66EA789F2C70A65E007DCFCA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		66EA78A12C70A66D007DCFCA /* UserSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchView.swift; sourceTree = "<group>"; };
+		66EA78A32C70AF33007DCFCA /* GitHubUserSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserSearchResponse.swift; sourceTree = "<group>"; };
+		66EA78A52C70AFA3007DCFCA /* GitHubUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,11 +198,15 @@
 		66EA785A2C6FA03C007DCFCA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				66EA782C2C6F9326007DCFCA /* ContentView.swift */,
+				66EA789F2C70A65E007DCFCA /* HomeView.swift */,
 				66EA788D2C6FAF6B007DCFCA /* LoginView.swift */,
 				66EA788B2C6FAE8A007DCFCA /* RepositoryDetailView.swift */,
-				66EA78722C6FA29E007DCFCA /* RepositorySearchViewModel.swift */,
+				66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */,
 				66EA786B2C6FA23E007DCFCA /* RepositorySearchView.swift */,
-				66EA782C2C6F9326007DCFCA /* ContentView.swift */,
+				66EA78992C708FCC007DCFCA /* UserHistoryView.swift */,
+				66EA789D2C70A53D007DCFCA /* UserRepositoriesView.swift */,
+				66EA78A12C70A66D007DCFCA /* UserSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +214,9 @@
 		66EA785B2C6FA04A007DCFCA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				66EA78A52C70AFA3007DCFCA /* GitHubUser.swift */,
+				66EA78A32C70AF33007DCFCA /* GitHubUserSearchResponse.swift */,
+				66EA78952C708F4F007DCFCA /* UserHistory.swift */,
 				66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */,
 				66EA78832C6FA59D007DCFCA /* GitHubRepositorySearchResponse.swift */,
 				66EA78812C6FA51B007DCFCA /* GitHubRepository.swift */,
@@ -380,27 +401,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66EA78732C6FA29E007DCFCA /* RepositorySearchViewModel.swift in Sources */,
 				66EA78902C6FB42C007DCFCA /* OAuthTokenResponse.swift in Sources */,
 				66EA785D2C6FA052007DCFCA /* AppRouter.swift in Sources */,
 				66EA78842C6FA59D007DCFCA /* GitHubRepositorySearchResponse.swift in Sources */,
+				66EA78A02C70A65E007DCFCA /* HomeView.swift in Sources */,
 				66EA78822C6FA51B007DCFCA /* GitHubRepository.swift in Sources */,
 				66EA786F2C6FA259007DCFCA /* RepositoryRepositoryImpl.swift in Sources */,
 				66EA78622C6FA0D0007DCFCA /* GitHubUserProfile.swift in Sources */,
 				66EA78642C6FA185007DCFCA /* RepositoryHistoryImpl.swift in Sources */,
+				66EA78A42C70AF33007DCFCA /* GitHubUserSearchResponse.swift in Sources */,
+				66EA789A2C708FCC007DCFCA /* UserHistoryView.swift in Sources */,
+				66EA78942C708C88007DCFCA /* RepositoryHistoryView.swift in Sources */,
 				66EA782D2C6F9326007DCFCA /* ContentView.swift in Sources */,
 				66EA78882C6FAAE7007DCFCA /* GitHubService.swift in Sources */,
 				66EA78662C6FA1CE007DCFCA /* GitHubAPI.swift in Sources */,
 				66EA788C2C6FAE8A007DCFCA /* RepositoryDetailView.swift in Sources */,
 				66EA788A2C6FAAEB007DCFCA /* GitHubServiceImpl.swift in Sources */,
+				66EA78962C708F4F007DCFCA /* UserHistory.swift in Sources */,
 				66EA786C2C6FA23E007DCFCA /* RepositorySearchView.swift in Sources */,
 				66EA782B2C6F9326007DCFCA /* GittyApp.swift in Sources */,
 				66EA78712C6FA280007DCFCA /* RepositoryRepository.swift in Sources */,
 				66EA78682C6FA1F6007DCFCA /* RepositoryHistory.swift in Sources */,
+				66EA78A62C70AFA3007DCFCA /* GitHubUser.swift in Sources */,
 				66EA78602C6FA088007DCFCA /* GitHubAPIImpl.swift in Sources */,
 				66EA78802C6FA4CB007DCFCA /* OAuthHandler.swift in Sources */,
 				66EA788E2C6FAF6B007DCFCA /* LoginView.swift in Sources */,
 				66EA78862C6FA856007DCFCA /* NetworkClientProtocol.swift in Sources */,
+				66EA789E2C70A53D007DCFCA /* UserRepositoriesView.swift in Sources */,
+				66EA78A22C70A66D007DCFCA /* UserSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,7 +605,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -585,10 +613,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kenesbekov.adam.Gitty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -617,7 +646,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -625,10 +654,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kenesbekov.adam.Gitty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;

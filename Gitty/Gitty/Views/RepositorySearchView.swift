@@ -44,6 +44,8 @@ struct RepositorySearchView: View {
                                 Text(repository.description ?? "No description")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
+
+                                Text("Owner: \(repository.owner.login)")
                                 HStack {
                                     Text("Stars: \(repository.stargazersCount)")
                                     Text("Forks: \(repository.forksCount)")
@@ -56,6 +58,13 @@ struct RepositorySearchView: View {
                 }
             }
             .navigationTitle("Search Repositories")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: RepositoryHistoryView(history: history)) {
+                        Image(systemName: "clock.arrow.circlepath")
+                    }
+                }
+            }
             .padding()
         }
     }

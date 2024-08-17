@@ -41,13 +41,30 @@ final class NetworkClientImpl: NetworkClient {
             request.addValue(value, forHTTPHeaderField: key)
         }
 
-        let (data, response) = try await session.data(for: request)
-
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw URLError(.badServerResponse)
+        // Add OAuth token if needed
+        if isOAuthRequest {
+            // Add OAuth token handling if needed
         }
 
-        let decodedData = try JSONDecoder().decode(T.self, from: data)
-        return decodedData
+        do {
+            let (data, response) = try await session.data(for: request)
+
+            // Log raw response data
+            print("Raw Response Data: \(String(data: data, encoding: .utf8) ?? "No data")")
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                let errorMessage = "HTTP Error: \(response)"
+                print(errorMessage)
+                throw URLError(.badServerResponse)
+            }
+
+            let decodedData = try JSONDecoder().decode(T.self, from: data)
+            return decodedData
+        } catch {
+            // Log detailed network error
+            print("Network Error: \(error.localizedDescription)")
+            throw error
+        }
     }
+
 }

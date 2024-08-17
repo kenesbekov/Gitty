@@ -11,6 +11,28 @@ final class GitHubAPIImpl: GitHubAPI {
         self.networkClient = networkClient
     }
 
+    func searchUsers(query: String, page: Int, perPage: Int) async throws -> GitHubUserSearchResponse {
+        let endpoint = "/search/users?q=\(query)&page=\(page)&per_page=\(perPage)"
+        return try await networkClient.fetch(endpoint, method: "GET", body: nil, headers: nil, isOAuthRequest: false)
+    }
+
+    func fetchUserProfile(for user: GitHubUser) async throws -> GitHubUserProfile {
+        let endpoint = "/users/\(user.login)"
+        let userProfile: GitHubUserProfile = try await networkClient.fetch(
+            endpoint,
+            method: "GET",
+            body: nil,
+            headers: nil,
+            isOAuthRequest: false
+        )
+        return userProfile
+    }
+
+    func fetchUserRepositories(user: GitHubUserProfile) async throws -> [GitHubRepository] {
+        let endpoint = "/users/\(user.login)/repos"
+        return try await networkClient.fetch(endpoint, method: "GET", body: nil, headers: nil, isOAuthRequest: false)
+    }
+
     func searchRepositories(query: String, page: Int, perPage: Int) async throws -> [GitHubRepository] {
         let endpoint = "/search/repositories?q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&page=\(page)&per_page=\(perPage)"
         let response: GitHubRepositorySearchResponse = try await networkClient.fetch(
