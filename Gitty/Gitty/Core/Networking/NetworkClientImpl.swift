@@ -1,15 +1,5 @@
 import Foundation
 
-protocol NetworkClient {
-    func fetch<T: Decodable>(
-        _ endpoint: String,
-        method: String,
-        body: Data?,
-        headers: [String: String]?,
-        isOAuthRequest: Bool
-    ) async throws -> T
-}
-
 final class NetworkClientImpl: NetworkClient {
     private let apiBaseURL: String
     private let oauthBaseURL: String

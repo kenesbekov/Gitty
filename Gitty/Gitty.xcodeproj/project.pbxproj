@@ -20,10 +20,10 @@
 		66EA786C2C6FA23E007DCFCA /* RepositoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA786B2C6FA23E007DCFCA /* RepositoriesView.swift */; };
 		66EA787B2C6FA3D0007DCFCA /* GitHubAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787A2C6FA3D0007DCFCA /* GitHubAPITests.swift */; };
 		66EA787D2C6FA3F0007DCFCA /* OAuthFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787C2C6FA3F0007DCFCA /* OAuthFlowTests.swift */; };
-		66EA78802C6FA4CB007DCFCA /* OAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787F2C6FA4CB007DCFCA /* OAuthHandler.swift */; };
+		66EA78802C6FA4CB007DCFCA /* OAuthHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */; };
 		66EA78822C6FA51B007DCFCA /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78812C6FA51B007DCFCA /* Repository.swift */; };
 		66EA78842C6FA59D007DCFCA /* GetRepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78832C6FA59D007DCFCA /* GetRepositoriesResponse.swift */; };
-		66EA78862C6FA856007DCFCA /* NetworkClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78852C6FA856007DCFCA /* NetworkClientProtocol.swift */; };
+		66EA78862C6FA856007DCFCA /* NetworkClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */; };
 		66EA788E2C6FAF6B007DCFCA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA788D2C6FAF6B007DCFCA /* LoginView.swift */; };
 		66EA78902C6FB42C007DCFCA /* OAuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */; };
 		66EA78942C708C88007DCFCA /* RepositoryHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */; };
@@ -59,6 +59,13 @@
 		66EA78D42C721BB3007DCFCA /* UserRepositoriesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */; };
 		66EA78D62C721BB6007DCFCA /* RepositoriesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78D52C721BB6007DCFCA /* RepositoriesProvider.swift */; };
 		66EA78D82C72211A007DCFCA /* UserHistoryProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78D72C72211A007DCFCA /* UserHistoryProviderImpl.swift */; };
+		66EA78DF2C722275007DCFCA /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78DE2C722275007DCFCA /* KeychainService.swift */; };
+		66EA78E12C7222AB007DCFCA /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78E02C7222AB007DCFCA /* NetworkClient.swift */; };
+		66EA78E82C72250A007DCFCA /* OAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78E72C72250A007DCFCA /* OAuthHandler.swift */; };
+		66EA78ED2C722757007DCFCA /* User+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78EC2C722754007DCFCA /* User+Injection.swift */; };
+		66EA78EF2C722803007DCFCA /* Repository+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78EE2C7227FE007DCFCA /* Repository+Injection.swift */; };
+		66EA78F12C722817007DCFCA /* Authentication+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78F02C722814007DCFCA /* Authentication+Injection.swift */; };
+		66EA78F42C7228FA007DCFCA /* History+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78F32C7228F4007DCFCA /* History+Injection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,17 +97,17 @@
 		66EA78422C6F9327007DCFCA /* GittyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GittyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EA78462C6F9327007DCFCA /* GittyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GittyUITests.swift; sourceTree = "<group>"; };
 		66EA78482C6F9327007DCFCA /* GittyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GittyUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		66EA78552C6F9CE5007DCFCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		66EA78552C6F9CE5007DCFCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66EA78612C6FA0D0007DCFCA /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		66EA78632C6FA185007DCFCA /* RepositoryHistoryProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryProviderImpl.swift; sourceTree = "<group>"; };
 		66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryProvider.swift; sourceTree = "<group>"; };
 		66EA786B2C6FA23E007DCFCA /* RepositoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesView.swift; sourceTree = "<group>"; };
 		66EA787A2C6FA3D0007DCFCA /* GitHubAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPITests.swift; sourceTree = "<group>"; };
 		66EA787C2C6FA3F0007DCFCA /* OAuthFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFlowTests.swift; sourceTree = "<group>"; };
-		66EA787F2C6FA4CB007DCFCA /* OAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandler.swift; sourceTree = "<group>"; };
+		66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandlerImpl.swift; sourceTree = "<group>"; };
 		66EA78812C6FA51B007DCFCA /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		66EA78832C6FA59D007DCFCA /* GetRepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRepositoriesResponse.swift; sourceTree = "<group>"; };
-		66EA78852C6FA856007DCFCA /* NetworkClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientProtocol.swift; sourceTree = "<group>"; };
+		66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientImpl.swift; sourceTree = "<group>"; };
 		66EA788D2C6FAF6B007DCFCA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthTokenResponse.swift; sourceTree = "<group>"; };
 		66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryView.swift; sourceTree = "<group>"; };
@@ -136,6 +143,13 @@
 		66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoriesProvider.swift; sourceTree = "<group>"; };
 		66EA78D52C721BB6007DCFCA /* RepositoriesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesProvider.swift; sourceTree = "<group>"; };
 		66EA78D72C72211A007DCFCA /* UserHistoryProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistoryProviderImpl.swift; sourceTree = "<group>"; };
+		66EA78DE2C722275007DCFCA /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		66EA78E02C7222AB007DCFCA /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		66EA78E72C72250A007DCFCA /* OAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandler.swift; sourceTree = "<group>"; };
+		66EA78EC2C722754007DCFCA /* User+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Injection.swift"; sourceTree = "<group>"; };
+		66EA78EE2C7227FE007DCFCA /* Repository+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repository+Injection.swift"; sourceTree = "<group>"; };
+		66EA78F02C722814007DCFCA /* Authentication+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Authentication+Injection.swift"; sourceTree = "<group>"; };
+		66EA78F32C7228F4007DCFCA /* History+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+Injection.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,16 +200,12 @@
 		66EA78292C6F9326007DCFCA /* Gitty */ = {
 			isa = PBXGroup;
 			children = (
-				66EA78302C6F9327007DCFCA /* Gitty.entitlements */,
-				66EA78552C6F9CE5007DCFCA /* Info.plist */,
-				66EA782A2C6F9326007DCFCA /* GittyApp.swift */,
-				66EA782E2C6F9327007DCFCA /* Assets.xcassets */,
-				66EA78742C6FA2C6007DCFCA /* Coordinators */,
+				66EA78DA2C72220F007DCFCA /* App */,
+				66EA78DB2C72223C007DCFCA /* Core */,
 				66EA785B2C6FA04A007DCFCA /* Models */,
-				66EA785E2C6FA07D007DCFCA /* Networking */,
-				66EA78312C6F9327007DCFCA /* Preview Content */,
-				66EA787E2C6FA4C5007DCFCA /* Utils */,
-				66EA785A2C6FA03C007DCFCA /* Views */,
+				66EA78E32C722357007DCFCA /* Resources */,
+				66EA78D92C7221C4007DCFCA /* Services */,
+				66EA785A2C6FA03C007DCFCA /* Modules */,
 			);
 			path = Gitty;
 			sourceTree = "<group>";
@@ -227,41 +237,26 @@
 			path = GittyUITests;
 			sourceTree = "<group>";
 		};
-		66EA785A2C6FA03C007DCFCA /* Views */ = {
+		66EA785A2C6FA03C007DCFCA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				66EA782C2C6F9326007DCFCA /* ContentView.swift */,
-				66EA78A92C70CD38007DCFCA /* LoadingView.swift */,
-				66EA788D2C6FAF6B007DCFCA /* LoginView.swift */,
-				66EA786B2C6FA23E007DCFCA /* RepositoriesView.swift */,
-				66EA78AF2C7203F9007DCFCA /* RepositoriesViewModel.swift */,
-				66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */,
-				66EA78B12C72041C007DCFCA /* RepositoryRowView.swift */,
-				66EA789F2C70A65E007DCFCA /* TabBarView.swift */,
-				66EA78992C708FCC007DCFCA /* UserHistoryView.swift */,
-				66EA789D2C70A53D007DCFCA /* UserRepositoriesView.swift */,
-				66EA78B92C720ED7007DCFCA /* UserRepositoriesViewModel.swift */,
-				66EA78A12C70A66D007DCFCA /* UsersView.swift */,
-				66EA78B72C720C0D007DCFCA /* UsersViewModel.swift */,
+				66EA79032C722D15007DCFCA /* Authentication */,
+				66EA78F72C72297F007DCFCA /* Main */,
+				66EA79002C722C05007DCFCA /* Repositories */,
+				66EA79012C722C1C007DCFCA /* RepositoryHistory */,
+				66EA78FF2C722BFE007DCFCA /* UserHistory */,
+				66EA78FE2C722BCF007DCFCA /* UserRepositories */,
+				66EA78F92C722992007DCFCA /* Users */,
 			);
-			path = Views;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		66EA785B2C6FA04A007DCFCA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				66EA78AD2C70CDCA007DCFCA /* AppState.swift */,
-				66EA78AB2C70CDC0007DCFCA /* AppStateManager.swift */,
-				66EA78832C6FA59D007DCFCA /* GetRepositoriesResponse.swift */,
-				66EA78A32C70AF33007DCFCA /* GetUsersResponse.swift */,
-				66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */,
-				66EA78812C6FA51B007DCFCA /* Repository.swift */,
-				66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */,
-				66EA78632C6FA185007DCFCA /* RepositoryHistoryProviderImpl.swift */,
-				66EA78A52C70AFA3007DCFCA /* User.swift */,
-				66EA78952C708F4F007DCFCA /* UserHistoryProvider.swift */,
-				66EA78D72C72211A007DCFCA /* UserHistoryProviderImpl.swift */,
-				66EA78612C6FA0D0007DCFCA /* UserProfile.swift */,
+				66EA78F62C72295E007DCFCA /* Repositories */,
+				66EA78FC2C722B48007DCFCA /* Responses */,
+				66EA78F52C722954007DCFCA /* Users */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -269,15 +264,68 @@
 		66EA785E2C6FA07D007DCFCA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */,
-				66EA78BD2C721AAE007DCFCA /* AccessTokenProviderImpl.swift */,
-				66EA78852C6FA856007DCFCA /* NetworkClientProtocol.swift */,
-				66EA78C92C721B9C007DCFCA /* OrderOption.swift */,
-				66EA78D52C721BB6007DCFCA /* RepositoriesProvider.swift */,
-				66EA78C52C721AC7007DCFCA /* RepositoriesProviderImpl.swift */,
-				66EA78C72C721B98007DCFCA /* SortOption.swift */,
-				66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */,
-				66EA78BB2C721AA9007DCFCA /* TokenValidatorImpl.swift */,
+				66EA78E02C7222AB007DCFCA /* NetworkClient.swift */,
+				66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		66EA78D92C7221C4007DCFCA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78EB2C72273D007DCFCA /* Authentication */,
+				66EA78F22C7228D3007DCFCA /* History */,
+				66EA78FB2C722A25007DCFCA /* OAuth */,
+				66EA78EA2C722728007DCFCA /* Repository */,
+				66EA78E92C7226E2007DCFCA /* User */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		66EA78DA2C72220F007DCFCA /* App */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78AD2C70CDCA007DCFCA /* AppState.swift */,
+				66EA78AB2C70CDC0007DCFCA /* AppStateManager.swift */,
+				66EA782A2C6F9326007DCFCA /* GittyApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		66EA78DB2C72223C007DCFCA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78FA2C7229EB007DCFCA /* Dependency */,
+				66EA78DC2C722252007DCFCA /* Persistence */,
+				66EA785E2C6FA07D007DCFCA /* Networking */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		66EA78DC2C722252007DCFCA /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78A72C70CC33007DCFCA /* KeychainError.swift */,
+				66EA78DE2C722275007DCFCA /* KeychainService.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		66EA78E32C722357007DCFCA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78302C6F9327007DCFCA /* Gitty.entitlements */,
+				66EA78552C6F9CE5007DCFCA /* Info.plist */,
+				66EA782E2C6F9327007DCFCA /* Assets.xcassets */,
+				66EA78312C6F9327007DCFCA /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		66EA78E92C7226E2007DCFCA /* User */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78EC2C722754007DCFCA /* User+Injection.swift */,
 				66EA78CF2C721BAD007DCFCA /* UserProfileProvider.swift */,
 				66EA78BF2C721AB6007DCFCA /* UserProfileProviderImpl.swift */,
 				66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */,
@@ -285,25 +333,150 @@
 				66EA78D12C721BB0007DCFCA /* UsersProvider.swift */,
 				66EA78C12C721ABA007DCFCA /* UsersProviderImpl.swift */,
 			);
-			path = Networking;
+			path = User;
 			sourceTree = "<group>";
 		};
-		66EA78742C6FA2C6007DCFCA /* Coordinators */ = {
+		66EA78EA2C722728007DCFCA /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				66EA78EE2C7227FE007DCFCA /* Repository+Injection.swift */,
+				66EA78D52C721BB6007DCFCA /* RepositoriesProvider.swift */,
+				66EA78C52C721AC7007DCFCA /* RepositoriesProviderImpl.swift */,
 			);
-			path = Coordinators;
+			path = Repository;
 			sourceTree = "<group>";
 		};
-		66EA787E2C6FA4C5007DCFCA /* Utils */ = {
+		66EA78EB2C72273D007DCFCA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78F02C722814007DCFCA /* Authentication+Injection.swift */,
+				66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */,
+				66EA78BD2C721AAE007DCFCA /* AccessTokenProviderImpl.swift */,
+				66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */,
+				66EA78BB2C721AA9007DCFCA /* TokenValidatorImpl.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		66EA78F22C7228D3007DCFCA /* History */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78F32C7228F4007DCFCA /* History+Injection.swift */,
+				66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */,
+				66EA78632C6FA185007DCFCA /* RepositoryHistoryProviderImpl.swift */,
+				66EA78952C708F4F007DCFCA /* UserHistoryProvider.swift */,
+				66EA78D72C72211A007DCFCA /* UserHistoryProviderImpl.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		66EA78F52C722954007DCFCA /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78A52C70AFA3007DCFCA /* User.swift */,
+				66EA78612C6FA0D0007DCFCA /* UserProfile.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		66EA78F62C72295E007DCFCA /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78C92C721B9C007DCFCA /* OrderOption.swift */,
+				66EA78812C6FA51B007DCFCA /* Repository.swift */,
+				66EA78C72C721B98007DCFCA /* SortOption.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		66EA78F72C72297F007DCFCA /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				66EA782C2C6F9326007DCFCA /* ContentView.swift */,
+				66EA789F2C70A65E007DCFCA /* TabBarView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		66EA78F92C722992007DCFCA /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78A12C70A66D007DCFCA /* UsersView.swift */,
+				66EA78B72C720C0D007DCFCA /* UsersViewModel.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		66EA78FA2C7229EB007DCFCA /* Dependency */ = {
 			isa = PBXGroup;
 			children = (
 				66EA78B52C7206ED007DCFCA /* DependencyContainer.swift */,
 				66EA78B32C7206E2007DCFCA /* Injected.swift */,
-				66EA78A72C70CC33007DCFCA /* KeychainError.swift */,
-				66EA787F2C6FA4CB007DCFCA /* OAuthHandler.swift */,
 			);
-			path = Utils;
+			path = Dependency;
+			sourceTree = "<group>";
+		};
+		66EA78FB2C722A25007DCFCA /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78E72C72250A007DCFCA /* OAuthHandler.swift */,
+				66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
+		66EA78FC2C722B48007DCFCA /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78832C6FA59D007DCFCA /* GetRepositoriesResponse.swift */,
+				66EA78A32C70AF33007DCFCA /* GetUsersResponse.swift */,
+				66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		66EA78FE2C722BCF007DCFCA /* UserRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				66EA789D2C70A53D007DCFCA /* UserRepositoriesView.swift */,
+				66EA78B92C720ED7007DCFCA /* UserRepositoriesViewModel.swift */,
+			);
+			path = UserRepositories;
+			sourceTree = "<group>";
+		};
+		66EA78FF2C722BFE007DCFCA /* UserHistory */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78992C708FCC007DCFCA /* UserHistoryView.swift */,
+			);
+			path = UserHistory;
+			sourceTree = "<group>";
+		};
+		66EA79002C722C05007DCFCA /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				66EA786B2C6FA23E007DCFCA /* RepositoriesView.swift */,
+				66EA78AF2C7203F9007DCFCA /* RepositoriesViewModel.swift */,
+				66EA78B12C72041C007DCFCA /* RepositoryRowView.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		66EA79012C722C1C007DCFCA /* RepositoryHistory */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */,
+			);
+			path = RepositoryHistory;
+			sourceTree = "<group>";
+		};
+		66EA79032C722D15007DCFCA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78A92C70CD38007DCFCA /* LoadingView.swift */,
+				66EA788D2C6FAF6B007DCFCA /* LoginView.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,11 +611,13 @@
 			files = (
 				66EA78902C6FB42C007DCFCA /* OAuthTokenResponse.swift in Sources */,
 				66EA78842C6FA59D007DCFCA /* GetRepositoriesResponse.swift in Sources */,
+				66EA78E12C7222AB007DCFCA /* NetworkClient.swift in Sources */,
 				66EA78A02C70A65E007DCFCA /* TabBarView.swift in Sources */,
 				66EA78822C6FA51B007DCFCA /* Repository.swift in Sources */,
 				66EA78D82C72211A007DCFCA /* UserHistoryProviderImpl.swift in Sources */,
 				66EA78CE2C721BAA007DCFCA /* AccessTokenProvider.swift in Sources */,
 				66EA78A82C70CC33007DCFCA /* KeychainError.swift in Sources */,
+				66EA78DF2C722275007DCFCA /* KeychainService.swift in Sources */,
 				66EA78B22C72041C007DCFCA /* RepositoryRowView.swift in Sources */,
 				66EA78622C6FA0D0007DCFCA /* UserProfile.swift in Sources */,
 				66EA78642C6FA185007DCFCA /* RepositoryHistoryProviderImpl.swift in Sources */,
@@ -460,8 +635,11 @@
 				66EA78D62C721BB6007DCFCA /* RepositoriesProvider.swift in Sources */,
 				66EA78C62C721AC7007DCFCA /* RepositoriesProviderImpl.swift in Sources */,
 				66EA78AC2C70CDC0007DCFCA /* AppStateManager.swift in Sources */,
+				66EA78F42C7228FA007DCFCA /* History+Injection.swift in Sources */,
 				66EA78B42C7206E2007DCFCA /* Injected.swift in Sources */,
+				66EA78ED2C722757007DCFCA /* User+Injection.swift in Sources */,
 				66EA78962C708F4F007DCFCA /* UserHistoryProvider.swift in Sources */,
+				66EA78E82C72250A007DCFCA /* OAuthHandler.swift in Sources */,
 				66EA786C2C6FA23E007DCFCA /* RepositoriesView.swift in Sources */,
 				66EA782B2C6F9326007DCFCA /* GittyApp.swift in Sources */,
 				66EA78682C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift in Sources */,
@@ -469,15 +647,17 @@
 				66EA78C22C721ABA007DCFCA /* UsersProviderImpl.swift in Sources */,
 				66EA78A62C70AFA3007DCFCA /* User.swift in Sources */,
 				66EA78AA2C70CD38007DCFCA /* LoadingView.swift in Sources */,
-				66EA78802C6FA4CB007DCFCA /* OAuthHandler.swift in Sources */,
+				66EA78F12C722817007DCFCA /* Authentication+Injection.swift in Sources */,
+				66EA78802C6FA4CB007DCFCA /* OAuthHandlerImpl.swift in Sources */,
 				66EA78C02C721AB6007DCFCA /* UserProfileProviderImpl.swift in Sources */,
 				66EA78B02C7203F9007DCFCA /* RepositoriesViewModel.swift in Sources */,
 				66EA78BA2C720ED7007DCFCA /* UserRepositoriesViewModel.swift in Sources */,
 				66EA78B82C720C0D007DCFCA /* UsersViewModel.swift in Sources */,
 				66EA78BC2C721AA9007DCFCA /* TokenValidatorImpl.swift in Sources */,
+				66EA78EF2C722803007DCFCA /* Repository+Injection.swift in Sources */,
 				66EA788E2C6FAF6B007DCFCA /* LoginView.swift in Sources */,
 				66EA78B62C7206ED007DCFCA /* DependencyContainer.swift in Sources */,
-				66EA78862C6FA856007DCFCA /* NetworkClientProtocol.swift in Sources */,
+				66EA78862C6FA856007DCFCA /* NetworkClientImpl.swift in Sources */,
 				66EA789E2C70A53D007DCFCA /* UserRepositoriesView.swift in Sources */,
 				66EA78D02C721BAD007DCFCA /* UserProfileProvider.swift in Sources */,
 				66EA78A22C70A66D007DCFCA /* UsersView.swift in Sources */,
@@ -638,15 +818,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Gitty/Gitty.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Gitty/Resources/Gitty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Gitty/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Gitty/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = H2GG6VBRM9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Gitty/Info.plist;
+				INFOPLIST_FILE = Gitty/Resources/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -679,15 +859,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Gitty/Gitty.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Gitty/Resources/Gitty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Gitty/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Gitty/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = H2GG6VBRM9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Gitty/Info.plist;
+				INFOPLIST_FILE = Gitty/Resources/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

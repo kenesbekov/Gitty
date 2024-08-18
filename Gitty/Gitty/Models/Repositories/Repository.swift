@@ -16,7 +16,7 @@ struct Repository: Identifiable, Codable, Hashable {
     let name: String
     let description: String?
     let stargazersCount: Int
-    let owner: GitHubUser
+    let owner: User
     let updatedAt: Date
     let forksCount: Int
     let htmlURL: URL
@@ -28,7 +28,7 @@ struct Repository: Identifiable, Codable, Hashable {
         name = try container.decode(String.self, forKey: .name)
         description = try container.decodeIfPresent(String.self, forKey: .description)
         stargazersCount = try container.decode(Int.self, forKey: .stargazersCount)
-        owner = try container.decode(GitHubUser.self, forKey: .owner)
+        owner = try container.decode(User.self, forKey: .owner)
         forksCount = try container.decode(Int.self, forKey: .forksCount)
         htmlURL = try container.decode(URL.self, forKey: .htmlURL)
 

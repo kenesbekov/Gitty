@@ -1,12 +1,7 @@
 import Foundation
 import Security
 
-enum KeychainError: Error {
-    case unexpectedData
-    case keychainError(status: OSStatus)
-}
-
-class KeychainService {
+final class KeychainService {
     static let shared = KeychainService()
     
     private let service = "com.kenesbekov.adam.gitty"
