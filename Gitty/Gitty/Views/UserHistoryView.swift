@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct UserHistoryView: View {
-    let api: GitHubAPI
-    let history: UserHistory
-
+    @Inject private var history: UserHistory
     @State private var showAlert = false
 
     var body: some View {
@@ -14,7 +12,7 @@ struct UserHistoryView: View {
                     .padding()
             } else {
                 List(history.users) { user in
-                    NavigationLink(destination: UserRepositoriesView(api: api, user: user)) {
+                    NavigationLink(destination: UserRepositoriesView(user: user)) {
                         Text(user.login)
                             .font(.headline)
                     }

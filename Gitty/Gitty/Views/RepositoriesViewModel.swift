@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 final class RepositoriesViewModel: ObservableObject {
     @Published var searchQuery = ""
     @Published var repositories: [GitHubRepository] = []
@@ -44,7 +45,13 @@ final class RepositoriesViewModel: ObservableObject {
         do {
             let sortOption: SortOption = .forks // You can make this dynamic if needed
             let orderOption: OrderOption = .descending // You can make this dynamic if needed
-            let newRepositories = try await apiService.searchRepositories(query: query, sort: sortOption, order: orderOption, page: page, perPage: 20)
+            let newRepositories = try await apiService.searchRepositories(
+                query: query,
+                sort: sortOption,
+                order: orderOption,
+                page: page,
+                perPage: 30
+            )
             if newRepositories.isEmpty {
                 hasMorePages = false
             } else {

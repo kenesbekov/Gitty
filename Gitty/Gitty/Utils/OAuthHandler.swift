@@ -3,7 +3,7 @@ import SwiftUI
 
 struct OAuthHandler {
     @MainActor
-    static func handleOAuthCallback(url: URL, api: GitHubAPI, appStateManager: AppStateManager) {
+    static func handleOAuthCallback(url: URL, appStateManager: AppStateManager) {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let queryItems = components.queryItems,
               let code = queryItems.first(where: { $0.name == "code" })?.value else {
@@ -11,6 +11,7 @@ struct OAuthHandler {
             return
         }
 
+        @Inject var api: GitHubAPI
         appStateManager.state = .loading
         Task {
             do {

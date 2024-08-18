@@ -1,24 +1,23 @@
 import SwiftUI
 
 struct UserRepositoriesView: View {
-    let api: GitHubAPI
-    let user: GitHubUser
+    @StateObject private var viewModel: UserRepositoriesViewModel
 
-    @State private var repositories: [GitHubRepository] = []
-    @State private var isLoading = false
-    @State private var errorMessage: String?
+    init(user: GitHubUser) {
+        _viewModel = StateObject(wrappedValue: UserRepositoriesViewModel(user: user))
+    }
 
     var body: some View {
-        VStack {
-            if isLoading {
+        ZStack {
+            if viewModel.isLoading {
                 ProgressView("Loading...")
                     .padding()
-            } else if let errorMessage = errorMessage {
+            } else if let errorMessage = viewModel.errorMessage {
                 Text("Error: \(errorMessage)")
                     .foregroundColor(.red)
                     .padding()
             } else {
-                List(repositories) { repository in
+                List(viewModel.repositories) { repository in
                     VStack(alignment: .leading) {
                         Text(repository.name)
                             .font(.headline)
@@ -35,24 +34,7 @@ struct UserRepositoriesView: View {
                 }
             }
         }
-        .navigationTitle("\(user.login)'s Repos")
-        .onAppear {
-            Task {
-                await fetchRepositories()
-            }
-        }
-    }
-
-    private func fetchRepositories() async {
-        defer {
-            isLoading = false
-        }
-
-        do {
-            isLoading = true
-            repositories = try await api.searchRepositories(query: "user:\(user.login)", page: 1, perPage: 30)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
+        .navigationTitle("\(viewModel.user.login)'s Repos")
+        .padding()
     }
 }
