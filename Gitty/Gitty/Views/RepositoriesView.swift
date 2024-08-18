@@ -15,6 +15,7 @@ struct RepositoriesView: View {
     @State private var isLoading = false
     @State private var errorMessage: String?
     @State private var searchCancellable: AnyCancellable?
+    @Environment(\.openURL) var openURL
 
     private var searchSubject = PassthroughSubject<String, Never>()
 
@@ -40,28 +41,39 @@ struct RepositoriesView: View {
                         .foregroundColor(.gray)
                         .padding()
                 } else {
-                    List(repositories) { repository in
-                        Button {
-                            addToHistory(repository)
-                        } label: {
-                            VStack(alignment: .leading) {
-                                Text(repository.fullName)
-                                    .font(.headline)
-                                Text(repository.description ?? "No description")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
+                    List(repositories.indices, id: \.self) { index in
+                        let repository = repositories[index]
 
-                                Text("Owner: \(repository.owner.login)")
-                                HStack {
-                                    Text("Stars: \(repository.stargazersCount)")
-                                    Text("Forks: \(repository.forksCount)")
-                                }
+                        VStack(alignment: .leading) {
+                            Button {
+                                openURL(repository.htmlURL)
+                                history.add(repository)
+                                markAsViewed(at: index)
+                            } label: {
+                                Text(repository.name)
+                                    .font(.headline)
+                            }
+
+                            Text(repository.description ?? "No description")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+
+                            Text("Owner: \(repository.owner.login)")
+                            HStack {
+                                Text("Stars: \(repository.stargazersCount)")
+                                Text("Forks: \(repository.forksCount)")
+                            }
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+
+                            Text("Updated: \(dateFormatter.string(from: repository.updatedAt))")
                                 .font(.footnote)
                                 .foregroundColor(.secondary)
 
-                                Text("Updated: \(dateFormatter.string(from: repository.updatedAt))")
+                            if repository.isViewed {
+                                Text("Viewed")
                                     .font(.footnote)
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(.blue)
                             }
                         }
                     }
@@ -103,7 +115,7 @@ struct RepositoriesView: View {
 
         do {
             isLoading = true
-            let sortOption: SortOption = .updated // You can make this dynamic if needed
+            let sortOption: SortOption = .forks // You can make this dynamic if needed
             let orderOption: OrderOption = .descending // You can make this dynamic if needed
             repositories = try await api.searchRepositories(query: query, sort: sortOption, order: orderOption, page: 1, perPage: 30)
             errorMessage = nil
@@ -113,7 +125,7 @@ struct RepositoriesView: View {
         }
     }
 
-    private func addToHistory(_ repository: GitHubRepository) {
-        history.add(repository)
+    private func markAsViewed(at index: Int) {
+        repositories[index].isViewed = true
     }
 }

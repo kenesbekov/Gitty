@@ -58,6 +58,9 @@ struct UsersView: View {
                 }
             }
             .padding()
+            .onChange(of: query) { newValue in
+                searchSubject.send(newValue)
+            }
             .onAppear {
                 searchCancellable = searchSubject
                     .debounce(for: .milliseconds(300), scheduler: RunLoop.main)

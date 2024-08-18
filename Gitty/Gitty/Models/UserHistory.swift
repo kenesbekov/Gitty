@@ -11,7 +11,7 @@ final class UserHistoryImpl: UserHistory {
     var viewedUsers: [GitHubUser] = []
 
     private let maxHistoryCount = 20
-    private let historyKey = "viewedUsers"
+    private let historyKey = "ViewedUsers"
 
     init() {
         loadHistory()

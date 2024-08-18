@@ -22,6 +22,7 @@ struct GitHubRepository: Identifiable, Codable, Hashable {
     let updatedAt: Date
     let forksCount: Int
     let htmlURL: URL
+    var isViewed = false
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -34,8 +35,23 @@ struct GitHubRepository: Identifiable, Codable, Hashable {
         forksCount = try container.decode(Int.self, forKey: .forksCount)
         htmlURL = try container.decode(URL.self, forKey: .htmlURL)
 
-        let dateString = try container.decode(String.self, forKey: .updatedAt)
-        let formatter = ISO8601DateFormatter()
-        updatedAt = formatter.date(from: dateString) ?? Date()
+        let timestamp = try container.decode(TimeInterval.self, forKey: .updatedAt)
+        updatedAt = Date(timeIntervalSince1970: timestamp)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(fullName, forKey: .fullName)
+        try container.encode(owner, forKey: .owner)
+        try container.encodeIfPresent(description, forKey: .description)
+        try container.encode(stargazersCount, forKey: .stargazersCount)
+        try container.encode(forksCount, forKey: .forksCount)
+        try container.encode(htmlURL, forKey: .htmlURL)
+
+        let timestamp = updatedAt.timeIntervalSince1970
+        try container.encode(timestamp, forKey: .updatedAt)
     }
 }
