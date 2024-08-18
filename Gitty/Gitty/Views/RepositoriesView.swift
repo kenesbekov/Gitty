@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RepositoriesView: View {
-    @ObservedObject var viewModel: RepositoriesViewModel
+    @StateObject private var viewModel = RepositoriesViewModel()
     @Environment(\.openURL) private var openURL
 
     var body: some View {
@@ -19,33 +19,13 @@ struct RepositoriesView: View {
                         .foregroundColor(.gray)
                         .padding()
                 } else {
-                    ScrollView {
-                        LazyVStack {
-                            ForEach(viewModel.repositories.indices, id: \.self) { index in
-                                RepositoryRowView(
-                                    repository: viewModel.repositories[index],
-                                    openURL: { url in openURL(url) },
-                                    markAsViewed: { viewModel.markAsViewed(at: index) }
-                                )
-                                .onAppear {
-                                    if index == viewModel.repositories.count - 1 {
-                                        viewModel.loadMoreRepositories()
-                                    }
-                                }
-                            }
-
-                            if viewModel.isPaginationLoading {
-                                ProgressView()
-                                    .padding()
-                            }
-                        }
-                    }
+                    repositoryList
                 }
             }
-            .onChange(of: viewModel.query) { _ in
-                viewModel.searchRepositories()
+            .onChange(of: viewModel.searchQuery) { _ in
+                viewModel.performSearch()
             }
-            .searchable(text: $viewModel.query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
             .navigationTitle("Repos")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -62,6 +42,37 @@ struct RepositoriesView: View {
                 }
             }
             .padding()
+        }
+    }
+
+    private var repositoryList: some View {
+        ScrollView {
+            LazyVStack {
+                repositoryRows
+                if viewModel.isPaginationLoading {
+                    ProgressView()
+                        .padding()
+                }
+            }
+        }
+    }
+
+    private var repositoryRows: some View {
+        ForEach(viewModel.repositories.indices, id: \.self) { index in
+            RepositoryRowView(
+                repository: viewModel.repositories[index],
+                openURL: { url in openURL(url) },
+                markAsViewed: { viewModel.markRepositoryAsViewed(at: index) }
+            )
+            .onAppear {
+                loadMoreIfNeeded(at: index)
+            }
+        }
+    }
+
+    private func loadMoreIfNeeded(at index: Int) {
+        if index == viewModel.repositories.count - 1 {
+            viewModel.loadMoreRepositories()
         }
     }
 }

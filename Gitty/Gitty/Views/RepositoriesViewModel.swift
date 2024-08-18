@@ -8,15 +8,11 @@ final class RepositoriesViewModel: ObservableObject {
     @Published var isPaginationLoading = false
     @Published var errorMessage: String?
 
-    private let history: RepositoryHistory
-    private let apiService: GitHubAPI
+    @Inject var apiService: GitHubAPI
+    @Inject var history: RepositoryHistory
+
     private var currentPage = 1
     private var hasMorePages = true
-
-    init(apiService: GitHubAPI, history: RepositoryHistory) {
-        self.apiService = apiService
-        self.history = history
-    }
 
     func performSearch() {
         guard !isLoading && !isPaginationLoading else { return }
@@ -71,7 +67,7 @@ final class RepositoriesViewModel: ObservableObject {
     }
 
     func deleteToken() {
-        appStateManager.logout()
+//        appStateManager.logout()
     }
 
     private func handle(error: Error) -> String {

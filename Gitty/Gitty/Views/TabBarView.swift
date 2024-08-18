@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @StateObject private var repositoriesViewModel: RepositoriesViewModel
-
     let api: GitHubAPI
     let repositoryHistory: RepositoryHistory
     let userHistory: UserHistory
@@ -19,15 +17,13 @@ struct TabBarView: View {
         self.api = api
         self.repositoryHistory = repositoryHistory
         self.userHistory = userHistory
-        
-        _repositoriesViewModel = StateObject(wrappedValue: RepositoriesViewModel(apiService: api, history: repositoryHistory))
     }
 
     @EnvironmentObject private var appStateManager: AppStateManager
 
     var body: some View {
         TabView {
-            RepositoriesView(viewModel: repositoriesViewModel)
+            RepositoriesView()
                 .tabItem {
                     Label("Repos", systemImage: "square.stack")
                 }
