@@ -6,6 +6,7 @@ struct TabBarView: View {
     var body: some View {
         TabView {
             RepositoriesView()
+                .environmentObject(appStateManager)
                 .tabItem {
                     Label("Repos", systemImage: "square.stack")
                 }

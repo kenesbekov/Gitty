@@ -16,21 +16,27 @@ final class RepositoriesViewModel: ObservableObject {
     private var hasMorePages = true
 
     func performSearch() {
-        guard !isLoading && !isPaginationLoading else { return }
+        guard !isLoading && !isPaginationLoading else {
+            return
+        }
+
         Task {
-            await fetchRepositories(query: searchQuery, page: 1)
+            await getRepositories(query: searchQuery, page: 1)
         }
     }
 
     func loadMoreRepositories() {
-        guard hasMorePages, !isLoading, !isPaginationLoading else { return }
+        guard hasMorePages, !isLoading, !isPaginationLoading else {
+            return
+        }
+
         currentPage += 1
         Task {
-            await fetchRepositories(query: searchQuery, page: currentPage)
+            await getRepositories(query: searchQuery, page: currentPage)
         }
     }
 
-    private func fetchRepositories(query: String, page: Int) async {
+    private func getRepositories(query: String, page: Int) async {
         defer {
             isLoading = false
             isPaginationLoading = false
@@ -52,13 +58,24 @@ final class RepositoriesViewModel: ObservableObject {
                 page: page,
                 perPage: 30
             )
+
+            let viewedRepositories = historyProvider.repositories
+
+            let updatedRepositories = newRepositories.map { repo in
+                var updatedRepo = repo
+                if viewedRepositories.contains(where: { $0.id == repo.id }) {
+                    updatedRepo.isViewed = true
+                }
+                return updatedRepo
+            }
+
             if newRepositories.isEmpty {
                 hasMorePages = false
             } else {
                 if page == 1 {
-                    repositories = newRepositories
+                    repositories = updatedRepositories
                 } else {
-                    repositories.append(contentsOf: newRepositories)
+                    repositories.append(contentsOf: updatedRepositories)
                 }
             }
             hasError = false
@@ -68,12 +85,15 @@ final class RepositoriesViewModel: ObservableObject {
     }
 
     func markRepositoryAsViewed(at index: Int) {
-        guard index >= 0 && index < repositories.count else { return }
+        guard index >= 0 && index < repositories.count else {
+            return
+        }
+
         repositories[index].isViewed = true
         historyProvider.add(repositories[index])
     }
 
-    func deleteToken() {
-//        appStateManager.logout()
+    func deleteToken(appStateManager: AppStateManager) {
+        appStateManager.logout()
     }
 }

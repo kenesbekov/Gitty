@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66C7FA1E2C724D8100CEF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7FA1D2C724D7E00CEF262 /* Constants.swift */; };
 		66EA782B2C6F9326007DCFCA /* GittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA782A2C6F9326007DCFCA /* GittyApp.swift */; };
 		66EA782D2C6F9326007DCFCA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA782C2C6F9326007DCFCA /* ContentView.swift */; };
 		66EA782F2C6F9327007DCFCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66EA782E2C6F9327007DCFCA /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66C7FA1D2C724D7E00CEF262 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		66EA78272C6F9326007DCFCA /* Gitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EA782A2C6F9326007DCFCA /* GittyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GittyApp.swift; sourceTree = "<group>"; };
 		66EA782C2C6F9326007DCFCA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66C7FA1C2C724D7000CEF262 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				66C7FA1D2C724D7E00CEF262 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		66EA781E2C6F9326007DCFCA = {
 			isa = PBXGroup;
 			children = (
@@ -309,8 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				66EA78FA2C7229EB007DCFCA /* Dependency */,
-				66EA78DC2C722252007DCFCA /* Persistence */,
 				66EA785E2C6FA07D007DCFCA /* Networking */,
+				66EA78DC2C722252007DCFCA /* Persistence */,
+				66C7FA1C2C724D7000CEF262 /* Utilities */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -621,6 +632,7 @@
 				66EA78E12C7222AB007DCFCA /* NetworkClient.swift in Sources */,
 				66EA790B2C723EA9007DCFCA /* HTTPMethod.swift in Sources */,
 				66EA78A02C70A65E007DCFCA /* TabBarView.swift in Sources */,
+				66C7FA1E2C724D8100CEF262 /* Constants.swift in Sources */,
 				66EA78822C6FA51B007DCFCA /* Repository.swift in Sources */,
 				66EA78D82C72211A007DCFCA /* UserHistoryProviderImpl.swift in Sources */,
 				66EA78CE2C721BAA007DCFCA /* AccessTokenProvider.swift in Sources */,

@@ -35,7 +35,7 @@ struct UsersView: View {
             }
             .navigationTitle("Users")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink(destination: UserHistoryView()) {
                         Image(systemName: "clock")
                     }

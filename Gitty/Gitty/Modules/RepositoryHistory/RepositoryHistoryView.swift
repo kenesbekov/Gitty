@@ -1,52 +1,16 @@
 import SwiftUI
 
 struct RepositoryHistoryView: View {
-    @Injected private var history: RepositoryHistoryProvider
+    @Injected private var historyProvider: RepositoryHistoryProvider
     @State private var showAlert = false
     @Environment(\.openURL) private var openURL
 
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter
-    }()
-
     var body: some View {
         ZStack {
-            if history.repositories.isEmpty {
-                Text("No viewed repos")
-                    .foregroundColor(.gray)
-                    .padding()
+            if historyProvider.repositories.isEmpty {
+                emptyStateView
             } else {
-                List(history.repositories) { repository in
-                    VStack(alignment: .leading) {
-                        Button {
-                            openURL(repository.htmlURL)
-                            history.add(repository)
-                        } label: {
-                            Text(repository.name)
-                                .font(.headline)
-                        }
-
-                        Text(repository.description ?? "No description")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .lineLimit(4)
-
-                        Text("Owner: \(repository.owner.login)")
-                        HStack {
-                            Text("Stars: \(repository.stargazersCount)")
-                            Text("Forks: \(repository.forksCount)")
-                        }
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-
-                        Text("Updated: \(dateFormatter.string(from: repository.updatedAt))")
-                            .font(.footnote)
-                            .foregroundColor(.secondary)
-                    }
-                }
+                repositoryListView
             }
         }
         .navigationTitle("History")
@@ -64,10 +28,42 @@ struct RepositoryHistoryView: View {
                 title: Text("Clear History"),
                 message: Text("Are you sure you want to clear the history?"),
                 primaryButton: .destructive(Text("Clear")) {
-                    history.clear()
+                    historyProvider.clear()
                 },
                 secondaryButton: .cancel()
             )
+        }
+    }
+
+    private var emptyStateView: some View {
+        VStack {
+            Image(systemName: "clock")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 60, height: 60)
+                .foregroundColor(.gray)
+                .padding()
+
+            Text("No viewed repos")
+                .font(.headline)
+                .foregroundColor(.gray)
+                .padding()
+        }
+    }
+
+    private var repositoryListView: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(historyProvider.repositories) { repository in
+                    RepositoryRowView(
+                        repository: repository,
+                        openURL: { url in openURL(url) },
+                        markAsViewed: { historyProvider.add(repository) },
+                        showViewedIndicator: false
+                    )
+                }
+            }
+            .padding(.bottom, 20)
         }
     }
 }

@@ -1,17 +1,12 @@
-//
-//  RepositoryRowView.swift
-//  Gitty
-//
-//  Created by Adam Kenesbekov on 18.08.2024.
-//
-
-
 import SwiftUI
 
 struct RepositoryRowView: View {
     let repository: Repository
     let openURL: (URL) -> Void
     let markAsViewed: () -> Void
+    let showViewedIndicator: Bool
+
+    @State private var isViewed: Bool
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -20,51 +15,79 @@ struct RepositoryRowView: View {
         return formatter
     }()
 
+    init(
+        repository: Repository,
+        openURL: @escaping (URL) -> Void,
+        markAsViewed: @escaping () -> Void,
+        showViewedIndicator: Bool = true
+    ) {
+        self.repository = repository
+        self.openURL = openURL
+        self.markAsViewed = markAsViewed
+        self.showViewedIndicator = showViewedIndicator
+        _isViewed = State(initialValue: repository.isViewed)
+    }
+
     var body: some View {
-        VStack(alignment: .leading) {
-            Button(action: {
-                openURL(repository.htmlURL)
+        Button {
+            openURL(repository.htmlURL)
+            if !isViewed {
                 markAsViewed()
-            }) {
-                Text(repository.name)
-                    .font(.headline)
-                    .foregroundColor(.primary)
+                isViewed = true
             }
-            .buttonStyle(PlainButtonStyle())
-            
-            if let description = repository.description {
-                Text(description)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .lineLimit(4)
-            } else {
-                Text("No description")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .lineLimit(4)
-            }
+        } label: {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Text(repository.name)
+                        .font(.headline)
+                        .foregroundColor(.accentColor)
+                        .lineLimit(1)
 
-            Text("Owner: \(repository.owner.login)")
-                .font(.footnote)
-                .foregroundColor(.secondary)
+                    Spacer()
 
-            HStack {
-                Text("Stars: \(repository.stargazersCount)")
-                Text("Forks: \(repository.forksCount)")
-            }
-            .font(.footnote)
-            .foregroundColor(.secondary)
+                    if showViewedIndicator && isViewed {
+                        Image(systemName: "eye")
+                            .foregroundColor(.secondary)
+                            .opacity(0.5)
+                            .transition(.opacity)
+                    }
+                }
 
-            Text("Updated: \(dateFormatter.string(from: repository.updatedAt))")
-                .font(.footnote)
-                .foregroundColor(.secondary)
+                if let description = repository.description, !description.isEmpty {
+                    Text(description)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .lineLimit(2)
+                } else {
+                    Text("No description available")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .italic()
+                }
 
-            if repository.isViewed {
-                Text("Viewed")
+                Label("\(repository.owner.login)", systemImage: "person.fill")
                     .font(.footnote)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.secondary)
+
+                HStack {
+                    Label("\(repository.stargazersCount)", systemImage: "star.fill")
+                        .font(.footnote)
+                        .foregroundColor(.yellow)
+
+                    Label("\(repository.forksCount)", systemImage: "tuningfork")
+                        .font(.footnote)
+                        .foregroundColor(.blue)
+                }
+
+                Text("Updated: \(dateFormatter.string(from: repository.updatedAt))")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
             }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(showViewedIndicator && isViewed ? Color.blue.opacity(0.1) : Color.clear)
+            .animation(.easeInOut, value: isViewed)
         }
-        .padding()
+        .buttonStyle(PlainButtonStyle())
     }
 }

@@ -3,92 +3,134 @@ import SwiftUI
 struct RepositoriesView: View {
     @StateObject private var viewModel = RepositoriesViewModel()
     @Environment(\.openURL) private var openURL
+    @EnvironmentObject private var appStateManager: AppStateManager
+
+    @State private var showingLogoutAlert = false
 
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack {
                 if viewModel.isLoading {
                     ProgressView("Loading...")
+                        .progressViewStyle(CircularProgressViewStyle())
                         .padding()
                 } else if viewModel.searchQuery.isEmpty {
-                    Text("Start typing to search for repositories.")
-                        .foregroundColor(.gray)
-                        .padding()
+                    emptyStateView
                 } else if viewModel.repositories.isEmpty {
-                    noResults
+                    noResultsView
                 } else if viewModel.hasError {
-                    Text("Oops! Something went wrong. Please try again.")
-                        .foregroundColor(.red)
-                        .multilineTextAlignment(.center)
-                        .padding()
+                    errorView
                 } else {
-                    repositoryList
+                    repositoryListView
                 }
             }
             .onChange(of: viewModel.searchQuery) { _ in
                 viewModel.performSearch()
             }
-            .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Repositories")
             .navigationTitle("Repositories")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: RepositoryHistoryView()) {
-                        Image(systemName: "clock")
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showingLogoutAlert = true
+                    } label: {
+                        Label("Logout", systemImage: "figure.walk")
+                            .foregroundColor(.red)
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.deleteToken()
-                    } label: {
-                        Image(systemName: "figure.walk")
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: RepositoryHistoryView()) {
+                        Label("History", systemImage: "clock")
                     }
                 }
             }
-            .padding()
+            .alert("Are you sure you want to log out?", isPresented: $showingLogoutAlert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Log Out", role: .destructive) {
+                    viewModel.deleteToken(appStateManager: appStateManager)
+                }
+            }
         }
     }
 
-    private var noResults: some View {
-        VStack(spacing: 0) {
-            Image(systemName: "pill.circle")
+    private var emptyStateView: some View {
+        VStack {
+            Image(systemName: "magnifyingglass")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 60, height: 60)
+                .foregroundColor(.gray)
+                .padding()
+
+            Text("Start typing to search for repositories.")
+                .font(.headline)
+                .foregroundColor(.gray)
+                .padding()
+        }
+    }
+
+    private var noResultsView: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "exclamationmark.triangle")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 60)
-                .foregroundStyle(.secondary)
+                .foregroundColor(.orange)
                 .padding()
 
-            Text("No Repos")
-                .font(.title)
+            Text("No Repositories Found")
+                .font(.title2)
                 .bold()
 
             Text("Check your connection or try again later.")
-                .foregroundStyle(.secondary)
+                .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
         }
-        .padding(.horizontal, 16)
+        .padding()
     }
 
-    private var repositoryList: some View {
+    private var errorView: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "xmark.octagon")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 60)
+                .foregroundColor(.red)
+                .padding()
+
+            Text("Oops! Something went wrong.")
+                .font(.title2)
+                .foregroundColor(.red)
+
+            Text("Please try again.")
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+        }
+        .padding()
+    }
+
+    private var repositoryListView: some View {
         ScrollView {
             LazyVStack {
-                repositoryRows
+                ForEach(viewModel.repositories.indices, id: \.self) { index in
+                    RepositoryRowView(
+                        repository: viewModel.repositories[index],
+                        openURL: { url in openURL(url) },
+                        markAsViewed: { viewModel.markRepositoryAsViewed(at: index) }
+                    )
+                    .onAppear {
+                        loadMoreIfNeeded(at: index)
+                    }
+                }
+
                 if viewModel.isPaginationLoading {
                     ProgressView()
                         .padding()
                 }
             }
-        }
-    }
-
-    private var repositoryRows: some View {
-        ForEach(viewModel.repositories.indices, id: \.self) { index in
-            RepositoryRowView(
-                repository: viewModel.repositories[index],
-                openURL: { url in openURL(url) },
-                markAsViewed: { viewModel.markRepositoryAsViewed(at: index) }
-            )
-            .onAppear {
-                loadMoreIfNeeded(at: index)
+            .padding(.bottom, 20)
+            .refreshable {
+                viewModel.performSearch()
             }
         }
     }
