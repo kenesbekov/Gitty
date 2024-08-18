@@ -13,7 +13,7 @@ struct TabBarView: View {
 
             UsersView()
                 .tabItem {
-                    Label("Users", systemImage: "person.circle")
+                    Label("Users", systemImage: "person.2.fill")
                 }
         }
     }

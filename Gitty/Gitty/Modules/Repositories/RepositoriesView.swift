@@ -26,8 +26,8 @@ struct RepositoriesView: View {
             .onChange(of: viewModel.searchQuery) { _ in
                 viewModel.performSearch()
             }
-            .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Repositories")
-            .navigationTitle("Repositories")
+            .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .navigationTitle("Repos")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
