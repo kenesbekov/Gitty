@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 struct OAuthHandler {
+    @MainActor
     static func handleOAuthCallback(url: URL, api: GitHubAPI, appStateManager: AppStateManager) {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let queryItems = components.queryItems,

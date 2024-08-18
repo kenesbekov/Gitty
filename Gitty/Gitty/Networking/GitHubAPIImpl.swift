@@ -11,6 +11,25 @@ final class GitHubAPIImpl: GitHubAPI {
         self.networkClient = networkClient
     }
 
+    func validateToken(_ token: String) async throws -> Bool {
+        let endpoint = "/user"
+        let headers = ["Authorization": "token \(token)"]
+
+        do {
+            let user: GitHubUserProfile = try await networkClient.fetch(
+                endpoint,
+                method: "GET",
+                body: nil,
+                headers: headers,
+                isOAuthRequest: false
+            )
+            return true
+        } catch {
+            return false
+        }
+    }
+
+
     func searchUsers(query: String, page: Int, perPage: Int) async throws -> GitHubUserSearchResponse {
         let endpoint = "/search/users?q=\(query)&page=\(page)&per_page=\(perPage)"
         return try await networkClient.fetch(endpoint, method: "GET", body: nil, headers: nil, isOAuthRequest: false)
@@ -78,7 +97,6 @@ final class GitHubAPIImpl: GitHubAPI {
         return response.items
     }
 
-
     func fetchAccessToken(authorizationCode: String) async throws -> String {
         let endpoint = "/login/oauth/access_token"
         let bodyComponents = [
@@ -120,6 +138,13 @@ final class GitHubAPIImpl: GitHubAPI {
         let accessToken = try KeychainService.shared.retrieveToken()
 
         guard let token = accessToken else {
+            throw URLError(.userAuthenticationRequired)
+        }
+
+        // Validate the token
+        let isValid = try await validateToken(token)
+        if !isValid {
+            try KeychainService.shared.deleteToken()
             throw URLError(.userAuthenticationRequired)
         }
 

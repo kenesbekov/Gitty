@@ -1,6 +1,7 @@
 import Foundation
 
 protocol GitHubAPI: AnyObject {
+    func validateToken(_ token: String) async throws -> Bool
     func fetchGitHubUserProfile() async throws -> GitHubUserProfile
     func fetchAccessToken(authorizationCode: String) async throws -> String
 
