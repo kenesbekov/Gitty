@@ -8,9 +8,9 @@ final class TokenValidatorImpl: TokenValidator {
         let headers = ["Authorization": "token \(token)"]
 
         do {
-            let _: UserProfile = try await networkClient.fetch(
+            let _: UserProfile = try await networkClient.request(
                 endpoint,
-                method: "GET",
+                method: .get,
                 body: nil,
                 headers: headers,
                 isOAuthRequest: false

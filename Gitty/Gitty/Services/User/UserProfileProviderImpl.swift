@@ -9,18 +9,12 @@ final class UserProfileProviderImpl: UserProfileProvider {
 
         let endpoint = "/user"
         let headers = ["Authorization": "token \(token)"]
-        let _: UserProfile = try await networkClient.fetch(
-            endpoint,
-            method: "GET",
-            body: nil,
-            headers: headers,
-            isOAuthRequest: false
-        )
+        let _: UserProfile = try await networkClient.request(endpoint, headers: headers)
     }
 
     func get(for user: User) async throws -> UserProfile {
         let endpoint = "/users/\(user.login)"
-        return try await networkClient.fetch(endpoint, method: "GET", body: nil, headers: nil, isOAuthRequest: false)
+        return try await networkClient.request(endpoint)
     }
 
     private func retrieveAndValidateToken() async throws -> String {

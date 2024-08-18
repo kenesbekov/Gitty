@@ -49,7 +49,7 @@ struct RepositoryHistoryView: View {
                 }
             }
         }
-        .navigationTitle("Viewed Repos")
+        .navigationTitle("History")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {

@@ -1,11 +1,20 @@
 import Foundation
 
 protocol NetworkClient {
-    func fetch<T: Decodable>(
+    func request<Response: Decodable>(
         _ endpoint: String,
-        method: String,
+        method: HTTPMethod,
         body: Data?,
         headers: [String: String]?,
         isOAuthRequest: Bool
-    ) async throws -> T
+    ) async throws -> Response
+
+    func request<Response: Decodable>(
+        _ endpoint: String
+    ) async throws -> Response
+
+    func request<Response: Decodable>(
+        _ endpoint: String,
+        headers: [String: String]?
+    ) async throws -> Response
 }

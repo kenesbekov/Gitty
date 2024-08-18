@@ -68,6 +68,9 @@
 		66EA78F42C7228FA007DCFCA /* History+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78F32C7228F4007DCFCA /* History+Injection.swift */; };
 		66EA79052C7231B8007DCFCA /* ServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA79042C7231B0007DCFCA /* ServiceRegistry.swift */; };
 		66EA79072C723C1E007DCFCA /* Network+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA79062C723C19007DCFCA /* Network+Injection.swift */; };
+		66EA790B2C723EA9007DCFCA /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA790A2C723EA8007DCFCA /* HTTPMethod.swift */; };
+		66EA790D2C724018007DCFCA /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA790C2C724018007DCFCA /* BaseURL.swift */; };
+		66EA790F2C724040007DCFCA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA790E2C724040007DCFCA /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +157,9 @@
 		66EA78F32C7228F4007DCFCA /* History+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+Injection.swift"; sourceTree = "<group>"; };
 		66EA79042C7231B0007DCFCA /* ServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRegistry.swift; sourceTree = "<group>"; };
 		66EA79062C723C19007DCFCA /* Network+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Injection.swift"; sourceTree = "<group>"; };
+		66EA790A2C723EA8007DCFCA /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		66EA790C2C724018007DCFCA /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		66EA790E2C724040007DCFCA /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,9 +274,12 @@
 		66EA785E2C6FA07D007DCFCA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				66EA790C2C724018007DCFCA /* BaseURL.swift */,
+				66EA790A2C723EA8007DCFCA /* HTTPMethod.swift */,
 				66EA79062C723C19007DCFCA /* Network+Injection.swift */,
 				66EA78E02C7222AB007DCFCA /* NetworkClient.swift */,
 				66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */,
+				66EA790E2C724040007DCFCA /* NetworkError.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -610,6 +619,7 @@
 				66EA78902C6FB42C007DCFCA /* OAuthTokenResponse.swift in Sources */,
 				66EA78842C6FA59D007DCFCA /* GetRepositoriesResponse.swift in Sources */,
 				66EA78E12C7222AB007DCFCA /* NetworkClient.swift in Sources */,
+				66EA790B2C723EA9007DCFCA /* HTTPMethod.swift in Sources */,
 				66EA78A02C70A65E007DCFCA /* TabBarView.swift in Sources */,
 				66EA78822C6FA51B007DCFCA /* Repository.swift in Sources */,
 				66EA78D82C72211A007DCFCA /* UserHistoryProviderImpl.swift in Sources */,
@@ -624,6 +634,7 @@
 				66EA78C82C721B98007DCFCA /* SortOption.swift in Sources */,
 				66EA789A2C708FCC007DCFCA /* UserHistoryView.swift in Sources */,
 				66EA78AE2C70CDCA007DCFCA /* AppState.swift in Sources */,
+				66EA790F2C724040007DCFCA /* NetworkError.swift in Sources */,
 				66EA78C42C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift in Sources */,
 				66EA78942C708C88007DCFCA /* RepositoryHistoryView.swift in Sources */,
 				66EA79052C7231B8007DCFCA /* ServiceRegistry.swift in Sources */,
@@ -636,6 +647,7 @@
 				66EA78AC2C70CDC0007DCFCA /* AppStateManager.swift in Sources */,
 				66EA78F42C7228FA007DCFCA /* History+Injection.swift in Sources */,
 				66EA78B42C7206E2007DCFCA /* Injected.swift in Sources */,
+				66EA790D2C724018007DCFCA /* BaseURL.swift in Sources */,
 				66EA78ED2C722757007DCFCA /* User+Injection.swift in Sources */,
 				66EA78962C708F4F007DCFCA /* UserHistoryProvider.swift in Sources */,
 				66EA78E82C72250A007DCFCA /* OAuthHandler.swift in Sources */,

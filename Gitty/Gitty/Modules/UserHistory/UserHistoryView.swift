@@ -42,6 +42,6 @@ struct UserHistoryView: View {
                 secondaryButton: .cancel()
             )
         }
-        .navigationTitle("Viewed Users")
+        .navigationTitle("History")
     }
 }

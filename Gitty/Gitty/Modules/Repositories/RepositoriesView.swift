@@ -15,12 +15,11 @@ struct RepositoriesView: View {
                         .foregroundColor(.gray)
                         .padding()
                 } else if viewModel.repositories.isEmpty {
-                    Text("No repositories found. Please try a different search.")
-                        .foregroundColor(.gray)
-                        .padding()
+                    noResults
                 } else if viewModel.hasError {
                     Text("Oops! Something went wrong. Please try again.")
                         .foregroundColor(.red)
+                        .multilineTextAlignment(.center)
                         .padding()
                 } else {
                     repositoryList
@@ -47,6 +46,26 @@ struct RepositoriesView: View {
             }
             .padding()
         }
+    }
+
+    private var noResults: some View {
+        VStack(spacing: 0) {
+            Image(systemName: "pill.circle")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 60)
+                .foregroundStyle(.secondary)
+                .padding()
+
+            Text("No Repos")
+                .font(.title)
+                .bold()
+
+            Text("Check your connection or try again later.")
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+        }
+        .padding(.horizontal, 16)
     }
 
     private var repositoryList: some View {

@@ -34,14 +34,14 @@ final class AccessTokenProviderImpl: AccessTokenProvider {
         let headers = ["Content-Type": "application/x-www-form-urlencoded"]
 
         do {
-            let response: OAuthTokenResponse = try await networkClient.fetch(
+            let response: OAuthTokenResponse = try await networkClient.request(
                 endpoint,
-                method: "POST",
+                method: .post,
                 body: body,
                 headers: headers,
                 isOAuthRequest: true
             )
-            try KeychainService.shared.saveToken(response.accessToken)
+            try? KeychainService.shared.saveToken(response.accessToken)
         } catch {
             print("Failed to fetch access token: \(error.localizedDescription)")
             throw error

@@ -4,7 +4,7 @@ struct User: Identifiable, Codable, Hashable {
     private enum CodingKeys: String, CodingKey {
        case login
        case id
-       case avatarURL = "avatar_url"
+       case avatarURL = "avatarUrl"
    }
 
     let login: String

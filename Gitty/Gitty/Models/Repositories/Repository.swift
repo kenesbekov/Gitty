@@ -6,10 +6,10 @@ struct Repository: Identifiable, Codable, Hashable {
         case name
         case description
         case owner
-        case stargazersCount = "stargazers_count"
-        case forksCount = "forks_count"
-        case htmlURL = "html_url"
-        case updatedAt = "updated_at"
+        case stargazersCount
+        case forksCount
+        case htmlURL = "htmlUrl"
+        case updatedAt
     }
 
     let id: Int

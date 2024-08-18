@@ -30,13 +30,7 @@ final class RepositoriesProviderImpl: RepositoriesProvider {
         }
 
         let endpoint = "/search/repositories?q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&sort=\(sortValue)&order=\(orderValue)&page=\(page)&per_page=\(perPage)"
-        let response: GetRepositoriesResponse = try await networkClient.fetch(
-            endpoint,
-            method: "GET",
-            body: nil,
-            headers: nil,
-            isOAuthRequest: false
-        )
+        let response: GetRepositoriesResponse = try await networkClient.request(endpoint)
 
         return response.items
     }
@@ -47,14 +41,7 @@ final class RepositoriesProviderImpl: RepositoriesProvider {
         perPage: Int
     ) async throws -> [Repository] {
         let endpoint = "/users/\(userLogin)/repos?page=\(page)&per_page=\(perPage)"
-        let response: GetRepositoriesResponse = try await networkClient.fetch(
-            endpoint,
-            method: "GET",
-            body: nil,
-            headers: nil,
-            isOAuthRequest: false
-        )
-
+        let response: GetRepositoriesResponse = try await networkClient.request(endpoint)
         return response.items
     }
 }

@@ -7,18 +7,16 @@ struct UserProfile: Identifiable, Codable, Hashable {
     let url: String
     let htmlURL: String
     let followers: Int
-    let following: Int
     let name: String?
     let bio: String?
 
     enum CodingKeys: String, CodingKey {
         case id
         case login
-        case avatarURL = "avatar_url"
+        case avatarURL = "avatarUrl"
         case url
-        case htmlURL = "html_url"
+        case htmlURL = "htmlUrl"
         case followers
-        case following
         case name
         case bio
     }
