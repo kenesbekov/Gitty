@@ -16,7 +16,7 @@ struct RepositoryHistoryView: View {
     var body: some View {
         ZStack {
             if history.repositories.isEmpty {
-                Text("No viewed repositories")
+                Text("No viewed repos")
                     .foregroundColor(.gray)
                     .padding()
             } else {
@@ -49,7 +49,7 @@ struct RepositoryHistoryView: View {
                 }
             }
         }
-        .navigationTitle("Viewed Repositories")
+        .navigationTitle("Viewed Repos")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {

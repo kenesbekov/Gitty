@@ -20,7 +20,7 @@ struct UserRepositoriesView: View {
             } else {
                 List(repositories) { repository in
                     VStack(alignment: .leading) {
-                        Text(repository.fullName)
+                        Text(repository.name)
                             .font(.headline)
                         Text(repository.description ?? "No description")
                             .font(.subheadline)
@@ -35,7 +35,7 @@ struct UserRepositoriesView: View {
                 }
             }
         }
-        .navigationTitle("\(user.login)'s Repositories")
+        .navigationTitle("\(user.login)'s Repos")
         .onAppear {
             Task {
                 await fetchRepositories()

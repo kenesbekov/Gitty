@@ -12,6 +12,7 @@ struct ContentView: View {
             switch appStateManager.state {
             case .home:
                 TabBarView(api: api, repositoryHistory: repositoryHistory, userHistory: userHistory)
+                    .environmentObject(appStateManager)
             case .login:
                 LoginView()
             case .loading:

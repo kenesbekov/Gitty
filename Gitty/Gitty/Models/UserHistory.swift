@@ -1,14 +1,15 @@
 import Foundation
 
 protocol UserHistory: AnyObject {
-    var viewedUsers: [GitHubUser] { get }
+    var users: [GitHubUser] { get }
 
-    func addUser(_ user: GitHubUser)
+    func add(_ user: GitHubUser)
+    func clear()
 }
 
 
 final class UserHistoryImpl: UserHistory {
-    var viewedUsers: [GitHubUser] = []
+    var users: [GitHubUser] = []
 
     private let maxHistoryCount = 20
     private let historyKey = "ViewedUsers"
@@ -17,29 +18,34 @@ final class UserHistoryImpl: UserHistory {
         loadHistory()
     }
 
-    func addUser(_ user: GitHubUser) {
-        if let existingIndex = viewedUsers.firstIndex(where: { $0.id == user.id }) {
-            viewedUsers.remove(at: existingIndex)
+    func add(_ user: GitHubUser) {
+        if let existingIndex = users.firstIndex(where: { $0.id == user.id }) {
+            users.remove(at: existingIndex)
         }
 
-        viewedUsers.insert(user, at: 0)
+        users.insert(user, at: 0)
 
-        if viewedUsers.count > maxHistoryCount {
-            viewedUsers.removeLast()
+        if users.count > maxHistoryCount {
+            users.removeLast()
         }
 
+        saveHistory()
+    }
+
+    func clear() {
+        users.removeAll()
         saveHistory()
     }
 
     private func loadHistory() {
         if let data = UserDefaults.standard.data(forKey: historyKey),
            let decodedUsers = try? JSONDecoder().decode([GitHubUser].self, from: data) {
-            viewedUsers = decodedUsers
+            users = decodedUsers
         }
     }
 
     private func saveHistory() {
-        if let data = try? JSONEncoder().encode(viewedUsers) {
+        if let data = try? JSONEncoder().encode(users) {
             UserDefaults.standard.set(data, forKey: historyKey)
         }
     }

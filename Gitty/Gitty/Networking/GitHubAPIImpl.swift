@@ -16,7 +16,7 @@ final class GitHubAPIImpl: GitHubAPI {
         let headers = ["Authorization": "token \(token)"]
 
         do {
-            let user: GitHubUserProfile = try await networkClient.fetch(
+            let _: GitHubUserProfile = try await networkClient.fetch(
                 endpoint,
                 method: "GET",
                 body: nil,
@@ -106,8 +106,10 @@ final class GitHubAPIImpl: GitHubAPI {
             "redirect_uri": redirectURI
         ]
 
-        let bodyString = bodyComponents.map { "\($0.key)=\($0.value)" }
-                                        .joined(separator: "&")
+        let bodyString = bodyComponents
+            .map { "\($0.key)=\($0.value)" }
+            .joined(separator: "&")
+
         guard let body = bodyString.data(using: .utf8) else {
             throw URLError(.cannotParseResponse)
         }
@@ -127,7 +129,6 @@ final class GitHubAPIImpl: GitHubAPI {
 
             try KeychainService.shared.saveToken(response.accessToken)
             return response.accessToken
-
         } catch {
             print("Failed to fetch access token: \(error.localizedDescription)")
             throw error

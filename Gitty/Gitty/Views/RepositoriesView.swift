@@ -16,6 +16,7 @@ struct RepositoriesView: View {
     @State private var errorMessage: String?
     @State private var searchCancellable: AnyCancellable?
     @Environment(\.openURL) var openURL
+    @EnvironmentObject private var appStateManager: AppStateManager
 
     private var searchSubject = PassthroughSubject<String, Never>()
 
@@ -96,16 +97,27 @@ struct RepositoriesView: View {
                 searchCancellable?.cancel()
             }
             .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
-            .navigationTitle("Repositories")
+            .navigationTitle("Repos")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: RepositoryHistoryView(history: history)) {
                         Image(systemName: "clock")
                     }
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        deleteToken()
+                    } label: {
+                        Image(systemName: "pip.exit")
+                    }
+                }
             }
             .padding()
         }
+    }
+
+    private func deleteToken() {
+        appStateManager.logout()
     }
 
     private func searchRepositories(query: String) async {

@@ -11,6 +11,7 @@ struct OAuthHandler {
             return
         }
 
+        appStateManager.state = .loading
         Task {
             do {
                 let accessToken = try await api.fetchAccessToken(authorizationCode: code)
@@ -23,6 +24,7 @@ struct OAuthHandler {
                 print("Access token: \(accessToken)")
                 print("User profile: \(userProfile)")
             } catch {
+                appStateManager.state = .login
                 print("Error during OAuth callback: \(error.localizedDescription.utf8)")
             }
         }

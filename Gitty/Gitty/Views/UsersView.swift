@@ -14,11 +14,8 @@ struct UsersView: View {
     @State private var users: [GitHubUser] = []
     @State private var isLoading = false
     @State private var errorMessage: String?
-    @State private var searchCancellable: AnyCancellable?
 
-    private var searchSubject = PassthroughSubject<String, Never>()
-
-    public var body: some View {
+    var body: some View {
         NavigationView {
             VStack {
                 if isLoading {
@@ -46,6 +43,9 @@ struct UsersView: View {
                                 }
                             }
                         }
+                        .onTapGesture {
+                            history.add(user)
+                        }
                     }
                 }
             }
@@ -58,23 +58,12 @@ struct UsersView: View {
                 }
             }
             .padding()
-            .onChange(of: query) { newValue in
-                searchSubject.send(newValue)
-            }
-            .onAppear {
-                searchCancellable = searchSubject
-                    .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
-                    .removeDuplicates()
-                    .sink { query in
-                        Task {
-                            await searchUsers(query: query)
-                        }
-                    }
-            }
-            .onDisappear {
-                searchCancellable?.cancel()
-            }
             .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .onSubmit(of: .search) {
+                Task {
+                    await searchUsers(query: query)
+                }
+            }
         }
     }
 

@@ -13,6 +13,17 @@ final class AppStateManager: ObservableObject {
         retrieveTokenFromKeychain()
     }
 
+    func logout() {
+        do {
+            try KeychainService.shared.deleteToken()
+            state = .login
+            // Optionally notify the user about the success or redirect to login screen
+        } catch {
+            // Handle errors, e.g., show an alert to the user
+            print("Failed to delete token: \(error.localizedDescription)")
+        }
+    }
+
     private func retrieveTokenFromKeychain() {
         do {
             if let token = try KeychainService.shared.retrieveToken() {

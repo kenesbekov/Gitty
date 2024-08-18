@@ -13,11 +13,14 @@ struct TabBarView: View {
     let repositoryHistory: RepositoryHistory
     let userHistory: UserHistory
 
+    @EnvironmentObject private var appStateManager: AppStateManager
+
     var body: some View {
         TabView {
             RepositoriesView(api: api, history: repositoryHistory)
+                .environmentObject(appStateManager)
                 .tabItem {
-                    Label("Repositories", systemImage: "square.stack")
+                    Label("Repos", systemImage: "square.stack")
                 }
 
             UsersView(api: api, history: userHistory)
