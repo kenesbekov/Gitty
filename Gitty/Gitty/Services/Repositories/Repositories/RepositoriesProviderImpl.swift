@@ -5,8 +5,8 @@ final class RepositoriesProviderImpl: RepositoriesProvider {
 
     func get(
         matching query: String,
-        sort: SortOption,
-        order: OrderOption,
+        sort: SortKind,
+        order: OrderKind,
         page: Int,
         perPage: Int
     ) async throws -> [Repository] {

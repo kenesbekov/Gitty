@@ -49,12 +49,12 @@ final class RepositoriesViewModel: ObservableObject {
         }
 
         do {
-            let sortOption: SortOption = .forks // You can make this dynamic if needed
-            let orderOption: OrderOption = .descending // You can make this dynamic if needed
+            let sortKind: SortKind = .forks // You can make this dynamic if needed
+            let orderKind: OrderKind = .descending // You can make this dynamic if needed
             let newRepositories = try await repositoriesProvider.get(
                 matching: query,
-                sort: sortOption,
-                order: orderOption,
+                sort: sortKind,
+                order: orderKind,
                 page: page,
                 perPage: 30
             )

@@ -3,6 +3,7 @@ import SwiftUI
 struct UsersView: View {
     @StateObject private var viewModel = UsersViewModel()
     @Environment(\.openURL) private var openURL
+    @State private var showingLogoutAlert = false
 
     var body: some View {
         NavigationView {
@@ -35,9 +36,17 @@ struct UsersView: View {
             }
             .navigationTitle("Users")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showingLogoutAlert = true
+                    } label: {
+                        Label("Logout", systemImage: "figure.walk")
+                            .foregroundColor(.red)
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink(destination: UserHistoryView()) {
-                        Image(systemName: "clock")
+                    NavigationLink(destination: RepositoryHistoryView()) {
+                        Label("History", systemImage: "clock")
                     }
                 }
             }
@@ -45,6 +54,12 @@ struct UsersView: View {
             .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
             .onSubmit(of: .search) {
                 viewModel.searchUsers()
+            }
+            .alert("Are you sure you want to log out?", isPresented: $showingLogoutAlert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Log Out", role: .destructive) {
+//                    viewModel.deleteToken(appStateManager: appStateManager)
+                }
             }
         }
     }

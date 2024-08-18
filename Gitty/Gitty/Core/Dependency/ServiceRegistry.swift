@@ -4,7 +4,7 @@ extension DependencyContainer {
     func registerServices() {
         registerNetworkServices()
         registerAuthenticationServices()
-        registerRepositoryServices()
+        registerRepositoriesServices()
         registerHistoryServices()
         registerUserServices()
     }

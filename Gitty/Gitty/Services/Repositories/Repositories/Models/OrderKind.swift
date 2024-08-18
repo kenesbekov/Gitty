@@ -1,6 +1,6 @@
 import Foundation
 
-enum OrderOption {
+enum OrderKind {
     case ascending
     case descending
 }

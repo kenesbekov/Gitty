@@ -4,7 +4,6 @@ struct RepositoriesView: View {
     @StateObject private var viewModel = RepositoriesViewModel()
     @Environment(\.openURL) private var openURL
     @EnvironmentObject private var appStateManager: AppStateManager
-
     @State private var showingLogoutAlert = false
 
     var body: some View {

@@ -14,11 +14,22 @@ struct LoginView: View {
         VStack {
             Spacer()
 
-            Image(systemName: "person.3")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 120, height: 120)
-                .padding(.bottom, 20)
+            ZStack {
+                RadialGradient(
+                    colors: [Color.accentColor, Color.clear],
+                    center: .center,
+                    startRadius: 0,
+                    endRadius: 120
+                )
+                .frame(height: 240)
+                .clipShape(.circle)
+
+                Image(systemName: "person.3")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 60)
+                    .padding(.bottom, 20)
+            }
 
             Text("Welcome to Gitty!")
                 .font(.largeTitle)
@@ -37,8 +48,8 @@ struct LoginView: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.accent)
-                    .cornerRadius(8)
+                    .background(Color.accentColor)
+                    .cornerRadius(20)
                     .shadow(radius: 10)
             }
             .padding(.horizontal, 40)
@@ -46,7 +57,7 @@ struct LoginView: View {
 
             Spacer()
         }
-        .background(Color(.systemGray6).edgesIgnoringSafeArea(.all))
+        .background(Color(uiColor: .systemGroupedBackground))
     }
 
     private func initiateGitHubLogin() {
@@ -56,4 +67,8 @@ struct LoginView: View {
         }
         UIApplication.shared.open(url)
     }
+}
+
+#Preview {
+    LoginView()
 }

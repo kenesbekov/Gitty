@@ -1,8 +1,7 @@
 import Foundation
 
 extension DependencyContainer {
-    func registerRepositoryServices() {
+    func registerRepositoriesServices() {
         register(RepositoriesProviderImpl(), forType: RepositoriesProvider.self)
-        register(UserRepositoriesProviderImpl(), forType: UserRepositoriesProvider.self)
     }
 }

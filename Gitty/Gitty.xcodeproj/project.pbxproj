@@ -52,7 +52,7 @@
 		66EA78C42C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C32C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift */; };
 		66EA78C62C721AC7007DCFCA /* RepositoriesProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C52C721AC7007DCFCA /* RepositoriesProviderImpl.swift */; };
 		66EA78C82C721B98007DCFCA /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C72C721B98007DCFCA /* SortOption.swift */; };
-		66EA78CA2C721B9C007DCFCA /* OrderOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C92C721B9C007DCFCA /* OrderOption.swift */; };
+		66EA78CA2C721B9C007DCFCA /* OrderKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C92C721B9C007DCFCA /* OrderKind.swift */; };
 		66EA78CC2C721BA6007DCFCA /* TokenValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */; };
 		66EA78CE2C721BAA007DCFCA /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */; };
 		66EA78D02C721BAD007DCFCA /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78CF2C721BAD007DCFCA /* UserProfileProvider.swift */; };
@@ -142,7 +142,7 @@
 		66EA78C32C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoriesProviderImpl.swift; sourceTree = "<group>"; };
 		66EA78C52C721AC7007DCFCA /* RepositoriesProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesProviderImpl.swift; sourceTree = "<group>"; };
 		66EA78C72C721B98007DCFCA /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
-		66EA78C92C721B9C007DCFCA /* OrderOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOption.swift; sourceTree = "<group>"; };
+		66EA78C92C721B9C007DCFCA /* OrderKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderKind.swift; sourceTree = "<group>"; };
 		66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenValidator.swift; sourceTree = "<group>"; };
 		66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
 		66EA78CF2C721BAD007DCFCA /* UserProfileProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileProvider.swift; sourceTree = "<group>"; };
@@ -197,6 +197,139 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		66C7FA2C2C72696F00CEF262 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				66EA790C2C724018007DCFCA /* BaseURL.swift */,
+				66EA790A2C723EA8007DCFCA /* HTTPMethod.swift */,
+				66EA790E2C724040007DCFCA /* NetworkError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66C7FA302C726A1A00CEF262 /* OAuthHandler */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78E72C72250A007DCFCA /* OAuthHandler.swift */,
+				66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */,
+				66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */,
+			);
+			path = OAuthHandler;
+			sourceTree = "<group>";
+		};
+		66C7FA312C726A2C00CEF262 /* TokenValidator */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */,
+				66EA78BB2C721AA9007DCFCA /* TokenValidatorImpl.swift */,
+			);
+			path = TokenValidator;
+			sourceTree = "<group>";
+		};
+		66C7FA322C726A3A00CEF262 /* AccessToken */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */,
+				66EA78BD2C721AAE007DCFCA /* AccessTokenProviderImpl.swift */,
+			);
+			path = AccessToken;
+			sourceTree = "<group>";
+		};
+		66C7FA332C726A6800CEF262 /* UserRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */,
+				66EA78BF2C721AB6007DCFCA /* UserProfileProviderImpl.swift */,
+				66EA78C32C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift */,
+			);
+			path = UserRepositories;
+			sourceTree = "<group>";
+		};
+		66C7FA342C726A8300CEF262 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				66C7FA3A2C726C4700CEF262 /* Models */,
+				66EA78CF2C721BAD007DCFCA /* UserProfileProvider.swift */,
+				66EA78D12C721BB0007DCFCA /* UsersProvider.swift */,
+				66EA78C12C721ABA007DCFCA /* UsersProviderImpl.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		66C7FA352C726ABC00CEF262 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				66C7FA382C726BC300CEF262 /* Models */,
+				66EA78D52C721BB6007DCFCA /* RepositoriesProvider.swift */,
+				66EA78C52C721AC7007DCFCA /* RepositoriesProviderImpl.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		66C7FA362C726B1A00CEF262 /* RepositoryHistory */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */,
+				66EA78632C6FA185007DCFCA /* RepositoryHistoryProviderImpl.swift */,
+			);
+			path = RepositoryHistory;
+			sourceTree = "<group>";
+		};
+		66C7FA372C726B2500CEF262 /* UserHistory */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78952C708F4F007DCFCA /* UserHistoryProvider.swift */,
+				66EA78D72C72211A007DCFCA /* UserHistoryProviderImpl.swift */,
+			);
+			path = UserHistory;
+			sourceTree = "<group>";
+		};
+		66C7FA382C726BC300CEF262 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				66C7FA392C726C2200CEF262 /* Responses */,
+				66EA78C92C721B9C007DCFCA /* OrderKind.swift */,
+				66EA78812C6FA51B007DCFCA /* Repository.swift */,
+				66EA78C72C721B98007DCFCA /* SortOption.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66C7FA392C726C2200CEF262 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78832C6FA59D007DCFCA /* GetRepositoriesResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		66C7FA3A2C726C4700CEF262 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				66C7FA3B2C726C5000CEF262 /* Responses */,
+				66EA78A52C70AFA3007DCFCA /* User.swift */,
+				66EA78612C6FA0D0007DCFCA /* UserProfile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66C7FA3B2C726C5000CEF262 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78A32C70AF33007DCFCA /* GetUsersResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		66C7FA3C2C726C9A00CEF262 /* NetworkClient */ = {
+			isa = PBXGroup;
+			children = (
+				66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */,
+				66EA78E02C7222AB007DCFCA /* NetworkClient.swift */,
+			);
+			path = NetworkClient;
+			sourceTree = "<group>";
+		};
 		66EA781E2C6F9326007DCFCA = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +355,6 @@
 			children = (
 				66EA78DA2C72220F007DCFCA /* App */,
 				66EA78DB2C72223C007DCFCA /* Core */,
-				66EA785B2C6FA04A007DCFCA /* Models */,
 				66EA78E32C722357007DCFCA /* Resources */,
 				66EA78D92C7221C4007DCFCA /* Services */,
 				66EA785A2C6FA03C007DCFCA /* Modules */,
@@ -271,25 +403,12 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		66EA785B2C6FA04A007DCFCA /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				66EA78F62C72295E007DCFCA /* Repositories */,
-				66EA78FC2C722B48007DCFCA /* Responses */,
-				66EA78F52C722954007DCFCA /* Users */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		66EA785E2C6FA07D007DCFCA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				66EA790C2C724018007DCFCA /* BaseURL.swift */,
-				66EA790A2C723EA8007DCFCA /* HTTPMethod.swift */,
 				66EA79062C723C19007DCFCA /* Network+Injection.swift */,
-				66EA78E02C7222AB007DCFCA /* NetworkClient.swift */,
-				66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */,
-				66EA790E2C724040007DCFCA /* NetworkError.swift */,
+				66C7FA2C2C72696F00CEF262 /* Models */,
+				66C7FA3C2C726C9A00CEF262 /* NetworkClient */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -299,7 +418,7 @@
 			children = (
 				66EA78EB2C72273D007DCFCA /* Authentication */,
 				66EA78F22C7228D3007DCFCA /* History */,
-				66EA78EA2C722728007DCFCA /* Repository */,
+				66EA78EA2C722728007DCFCA /* Repositories */,
 				66EA78E92C7226E2007DCFCA /* User */,
 			);
 			path = Services;
@@ -350,36 +469,28 @@
 			isa = PBXGroup;
 			children = (
 				66EA78EC2C722754007DCFCA /* User+Injection.swift */,
-				66EA78CF2C721BAD007DCFCA /* UserProfileProvider.swift */,
-				66EA78BF2C721AB6007DCFCA /* UserProfileProviderImpl.swift */,
-				66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */,
-				66EA78C32C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift */,
-				66EA78D12C721BB0007DCFCA /* UsersProvider.swift */,
-				66EA78C12C721ABA007DCFCA /* UsersProviderImpl.swift */,
+				66C7FA342C726A8300CEF262 /* User */,
+				66C7FA332C726A6800CEF262 /* UserRepositories */,
 			);
 			path = User;
 			sourceTree = "<group>";
 		};
-		66EA78EA2C722728007DCFCA /* Repository */ = {
+		66EA78EA2C722728007DCFCA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				66EA78EE2C7227FE007DCFCA /* Repository+Injection.swift */,
-				66EA78D52C721BB6007DCFCA /* RepositoriesProvider.swift */,
-				66EA78C52C721AC7007DCFCA /* RepositoriesProviderImpl.swift */,
+				66C7FA352C726ABC00CEF262 /* Repositories */,
 			);
-			path = Repository;
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		66EA78EB2C72273D007DCFCA /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				66EA78F02C722814007DCFCA /* Authentication+Injection.swift */,
-				66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */,
-				66EA78BD2C721AAE007DCFCA /* AccessTokenProviderImpl.swift */,
-				66EA78E72C72250A007DCFCA /* OAuthHandler.swift */,
-				66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */,
-				66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */,
-				66EA78BB2C721AA9007DCFCA /* TokenValidatorImpl.swift */,
+				66C7FA322C726A3A00CEF262 /* AccessToken */,
+				66C7FA302C726A1A00CEF262 /* OAuthHandler */,
+				66C7FA312C726A2C00CEF262 /* TokenValidator */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -388,31 +499,10 @@
 			isa = PBXGroup;
 			children = (
 				66EA78F32C7228F4007DCFCA /* History+Injection.swift */,
-				66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */,
-				66EA78632C6FA185007DCFCA /* RepositoryHistoryProviderImpl.swift */,
-				66EA78952C708F4F007DCFCA /* UserHistoryProvider.swift */,
-				66EA78D72C72211A007DCFCA /* UserHistoryProviderImpl.swift */,
+				66C7FA362C726B1A00CEF262 /* RepositoryHistory */,
+				66C7FA372C726B2500CEF262 /* UserHistory */,
 			);
 			path = History;
-			sourceTree = "<group>";
-		};
-		66EA78F52C722954007DCFCA /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				66EA78A52C70AFA3007DCFCA /* User.swift */,
-				66EA78612C6FA0D0007DCFCA /* UserProfile.swift */,
-			);
-			path = Users;
-			sourceTree = "<group>";
-		};
-		66EA78F62C72295E007DCFCA /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				66EA78C92C721B9C007DCFCA /* OrderOption.swift */,
-				66EA78812C6FA51B007DCFCA /* Repository.swift */,
-				66EA78C72C721B98007DCFCA /* SortOption.swift */,
-			);
-			path = Repositories;
 			sourceTree = "<group>";
 		};
 		66EA78F72C72297F007DCFCA /* Main */ = {
@@ -441,16 +531,6 @@
 				66EA79042C7231B0007DCFCA /* ServiceRegistry.swift */,
 			);
 			path = Dependency;
-			sourceTree = "<group>";
-		};
-		66EA78FC2C722B48007DCFCA /* Responses */ = {
-			isa = PBXGroup;
-			children = (
-				66EA78832C6FA59D007DCFCA /* GetRepositoriesResponse.swift */,
-				66EA78A32C70AF33007DCFCA /* GetUsersResponse.swift */,
-				66EA788F2C6FB42C007DCFCA /* OAuthTokenResponse.swift */,
-			);
-			path = Responses;
 			sourceTree = "<group>";
 		};
 		66EA78FE2C722BCF007DCFCA /* UserRepositories */ = {
@@ -652,7 +732,7 @@
 				66EA79052C7231B8007DCFCA /* ServiceRegistry.swift in Sources */,
 				66EA782D2C6F9326007DCFCA /* ContentView.swift in Sources */,
 				66EA78CC2C721BA6007DCFCA /* TokenValidator.swift in Sources */,
-				66EA78CA2C721B9C007DCFCA /* OrderOption.swift in Sources */,
+				66EA78CA2C721B9C007DCFCA /* OrderKind.swift in Sources */,
 				66EA78D42C721BB3007DCFCA /* UserRepositoriesProvider.swift in Sources */,
 				66EA78D62C721BB6007DCFCA /* RepositoriesProvider.swift in Sources */,
 				66EA78C62C721AC7007DCFCA /* RepositoriesProviderImpl.swift in Sources */,
