@@ -1,13 +1,13 @@
 import Foundation
 
-struct GitHubUserSearchResponse: Decodable {
+struct GetUsersResponse: Decodable {
     private enum CodingKeys: String, CodingKey {
         case items
         case totalCount = "total_count"
         case incompleteResults = "incomplete_results"
     }
 
-    let items: [GitHubUser]
+    let items: [User]
     let totalCount: Int
     let incompleteResults: Bool
 }

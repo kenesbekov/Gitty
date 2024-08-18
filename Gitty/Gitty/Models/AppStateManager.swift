@@ -3,12 +3,10 @@ import Security
 
 @MainActor
 final class AppStateManager: ObservableObject {
-    private let api: GitHubAPI
-
+    @Injected private var tokenValidator: TokenValidator
     @Published var state: AppState
     
-    init(api: GitHubAPI = GitHubAPIImpl()) {
-        self.api = api
+    init() {
         state = .loading
         retrieveTokenFromKeychain()
     }
@@ -28,7 +26,7 @@ final class AppStateManager: ObservableObject {
         do {
             if let token = try KeychainService.shared.retrieveToken() {
                 Task {
-                    let isValid = try await api.validateToken(token)
+                    let isValid = try await tokenValidator.validate(token)
 
                     if isValid {
                         // Token is valid, transition to home state

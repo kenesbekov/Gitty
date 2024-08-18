@@ -11,12 +11,14 @@ struct OAuthHandler {
             return
         }
 
-        @Inject var api: GitHubAPI
+        @Injected var accessTokenProvider: AccessTokenProvider
+        @Injected var userProfileProvider: UserProfileProvider
+
         appStateManager.state = .loading
         Task {
             do {
-                let accessToken = try await api.fetchAccessToken(authorizationCode: code)
-                let userProfile = try await api.fetchGitHubUserProfile()
+                let accessToken = try await accessTokenProvider.get(for: code)
+                let userProfile = try await userProfileProvider.getMe()
 
                 // Handle successful OAuth login
                 appStateManager.state = .home

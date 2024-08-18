@@ -1,6 +1,6 @@
 import Foundation
 
-struct GitHubUserProfile: Identifiable, Codable, Hashable {
+struct UserProfile: Identifiable, Codable, Hashable {
     let id: Int
     let login: String
     let avatarURL: String

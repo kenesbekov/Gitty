@@ -47,7 +47,7 @@ struct UsersView: View {
 }
 
 struct UserRowView: View {
-    let user: GitHubUser
+    let user: User
 
     var body: some View {
         VStack(alignment: .leading) {

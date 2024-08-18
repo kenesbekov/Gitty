@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RepositoryRowView: View {
-    let repository: GitHubRepository
+    let repository: Repository
     let openURL: (URL) -> Void
     let markAsViewed: () -> Void
 

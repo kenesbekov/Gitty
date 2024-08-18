@@ -4,12 +4,13 @@ import SwiftUI
 @MainActor
 final class UsersViewModel: ObservableObject {
     @Published var query = ""
-    @Published var users: [GitHubUser] = []
+    @Published var users: [User] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
 
-    @Inject var apiService: GitHubAPI
-    @Inject var history: UserHistory
+    @Injected var userProfileProvider: UserProfileProvider
+    @Injected var usersProvider: UsersProvider
+    @Injected var historyProvider: UserHistoryProvider
 
     func searchUsers() {
         Task {
@@ -17,8 +18,8 @@ final class UsersViewModel: ObservableObject {
         }
     }
 
-    func addToHistory(user: GitHubUser) {
-        history.add(user)
+    func addToHistory(user: User) {
+        historyProvider.add(user)
     }
 
     private func performSearch() async {
@@ -28,13 +29,13 @@ final class UsersViewModel: ObservableObject {
 
         do {
             isLoading = true
-            let searchResponse = try await apiService.searchUsers(query: query, page: 1, perPage: 30)
+            let searchResponse = try await usersProvider.get(matching: query, page: 1, perPage: 30)
             var fetchedUsers = searchResponse.items
 
             // Fetch followers count for each user
             for (index, user) in fetchedUsers.enumerated() {
                 do {
-                    let userProfile = try await apiService.fetchUserProfile(for: user)
+                    let userProfile = try await userProfileProvider.get(for: user)
                     fetchedUsers[index].followers = userProfile.followers
                 } catch {
                     print("Failed to fetch profile for \(user.login): \(error.localizedDescription)")

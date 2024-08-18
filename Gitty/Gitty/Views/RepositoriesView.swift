@@ -29,7 +29,7 @@ struct RepositoriesView: View {
             .navigationTitle("Repos")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: RepositoryHistoryView(history: viewModel.history)) {
+                    NavigationLink(destination: RepositoryHistoryView()) {
                         Image(systemName: "clock")
                     }
                 }

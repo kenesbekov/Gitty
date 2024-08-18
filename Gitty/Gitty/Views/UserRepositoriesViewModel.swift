@@ -3,16 +3,17 @@ import SwiftUI
 
 @MainActor
 final class UserRepositoriesViewModel: ObservableObject {
-    @Published var repositories: [GitHubRepository] = []
+    @Published var repositories: [Repository] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
 
-    @Inject private var api: GitHubAPI
+    @Injected private var repositoriesProvider: RepositoriesProvider
 
-    let user: GitHubUser
+    let user: User
 
-    init(user: GitHubUser) {
+    init(user: User) {
         self.user = user
+
         Task {
             await fetchRepositories()
         }
@@ -25,7 +26,7 @@ final class UserRepositoriesViewModel: ObservableObject {
 
         do {
             isLoading = true
-            repositories = try await api.searchRepositories(query: "user:\(user.login)", page: 1, perPage: 30)
+            repositories = try await repositoriesProvider.get(userLogin: user.login, page: 1, perPage: 30)
         } catch {
             errorMessage = error.localizedDescription
         }

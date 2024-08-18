@@ -3,7 +3,7 @@ import SwiftUI
 struct UserRepositoriesView: View {
     @StateObject private var viewModel: UserRepositoriesViewModel
 
-    init(user: GitHubUser) {
+    init(user: User) {
         _viewModel = StateObject(wrappedValue: UserRepositoriesViewModel(user: user))
     }
 

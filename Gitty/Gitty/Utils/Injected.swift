@@ -1,7 +1,7 @@
 import SwiftUI
 
 @propertyWrapper
-struct Inject<T> {
+struct Injected<T> {
     private var value: T
 
     init() {

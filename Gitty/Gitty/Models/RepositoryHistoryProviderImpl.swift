@@ -1,7 +1,7 @@
 import Foundation
 
-final class RepositoryHistoryImpl: RepositoryHistory {
-    var repositories: [GitHubRepository] = []
+final class RepositoryHistoryProviderImpl: RepositoryHistoryProvider {
+    var repositories: [Repository] = []
 
     private let maxHistoryCount = 20
     private let historyKey = "ViewedRepositories"
@@ -10,7 +10,7 @@ final class RepositoryHistoryImpl: RepositoryHistory {
         loadHistory()
     }
 
-    func add(_ repository: GitHubRepository) {
+    func add(_ repository: Repository) {
         if let existingIndex = repositories.firstIndex(where: { $0.id == repository.id }) {
             repositories.remove(at: existingIndex)
         }
@@ -35,7 +35,7 @@ final class RepositoryHistoryImpl: RepositoryHistory {
         }
 
         do {
-            let decodedRepositories = try JSONDecoder().decode([GitHubRepository].self, from: data)
+            let decodedRepositories = try JSONDecoder().decode([Repository].self, from: data)
             repositories = decodedRepositories
         } catch {
             print("Load history error:", error.localizedDescription)

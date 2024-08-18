@@ -1,15 +1,7 @@
 import Foundation
 
-protocol UserHistory: AnyObject {
-    var users: [GitHubUser] { get }
-
-    func add(_ user: GitHubUser)
-    func clear()
-}
-
-
-final class UserHistoryImpl: UserHistory {
-    var users: [GitHubUser] = []
+final class UserHistoryProviderImpl: UserHistoryProvider {
+    var users: [User] = []
 
     private let maxHistoryCount = 20
     private let historyKey = "ViewedUsers"
@@ -18,7 +10,7 @@ final class UserHistoryImpl: UserHistory {
         loadHistory()
     }
 
-    func add(_ user: GitHubUser) {
+    func add(_ user: User) {
         if let existingIndex = users.firstIndex(where: { $0.id == user.id }) {
             users.remove(at: existingIndex)
         }
@@ -39,7 +31,7 @@ final class UserHistoryImpl: UserHistory {
 
     private func loadHistory() {
         if let data = UserDefaults.standard.data(forKey: historyKey),
-           let decodedUsers = try? JSONDecoder().decode([GitHubUser].self, from: data) {
+           let decodedUsers = try? JSONDecoder().decode([User].self, from: data) {
             users = decodedUsers
         }
     }

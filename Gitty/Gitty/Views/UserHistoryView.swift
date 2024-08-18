@@ -1,23 +1,24 @@
 import SwiftUI
 
 struct UserHistoryView: View {
-    @Inject private var history: UserHistory
+    @Injected private var historyProvider: UserHistoryProvider
+
     @State private var showAlert = false
 
     var body: some View {
         ZStack {
-            if history.users.isEmpty {
+            if historyProvider.users.isEmpty {
                 Text("No viewed users")
                     .foregroundColor(.gray)
                     .padding()
             } else {
-                List(history.users) { user in
+                List(historyProvider.users) { user in
                     NavigationLink(destination: UserRepositoriesView(user: user)) {
                         Text(user.login)
                             .font(.headline)
                     }
                     .onTapGesture {
-                        history.add(user)
+                        historyProvider.add(user)
                     }
                 }
             }
@@ -36,7 +37,7 @@ struct UserHistoryView: View {
                 title: Text("Clear History"),
                 message: Text("Are you sure you want to clear the history?"),
                 primaryButton: .destructive(Text("Clear")) {
-                    history.clear()
+                    historyProvider.clear()
                 },
                 secondaryButton: .cancel()
             )

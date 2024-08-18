@@ -1,10 +1,9 @@
 import SwiftUI
 
 struct RepositoryHistoryView: View {
-    let history: RepositoryHistory
-
-    @Environment(\.openURL) var openURL
+    @Injected private var history: RepositoryHistoryProvider
     @State private var showAlert = false
+    @Environment(\.openURL) private var openURL
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
