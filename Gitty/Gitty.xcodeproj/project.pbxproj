@@ -66,6 +66,8 @@
 		66EA78EF2C722803007DCFCA /* Repository+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78EE2C7227FE007DCFCA /* Repository+Injection.swift */; };
 		66EA78F12C722817007DCFCA /* Authentication+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78F02C722814007DCFCA /* Authentication+Injection.swift */; };
 		66EA78F42C7228FA007DCFCA /* History+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78F32C7228F4007DCFCA /* History+Injection.swift */; };
+		66EA79052C7231B8007DCFCA /* ServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA79042C7231B0007DCFCA /* ServiceRegistry.swift */; };
+		66EA79072C723C1E007DCFCA /* Network+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA79062C723C19007DCFCA /* Network+Injection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +152,8 @@
 		66EA78EE2C7227FE007DCFCA /* Repository+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repository+Injection.swift"; sourceTree = "<group>"; };
 		66EA78F02C722814007DCFCA /* Authentication+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Authentication+Injection.swift"; sourceTree = "<group>"; };
 		66EA78F32C7228F4007DCFCA /* History+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+Injection.swift"; sourceTree = "<group>"; };
+		66EA79042C7231B0007DCFCA /* ServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRegistry.swift; sourceTree = "<group>"; };
+		66EA79062C723C19007DCFCA /* Network+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Injection.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +268,7 @@
 		66EA785E2C6FA07D007DCFCA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				66EA79062C723C19007DCFCA /* Network+Injection.swift */,
 				66EA78E02C7222AB007DCFCA /* NetworkClient.swift */,
 				66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */,
 			);
@@ -275,7 +280,6 @@
 			children = (
 				66EA78EB2C72273D007DCFCA /* Authentication */,
 				66EA78F22C7228D3007DCFCA /* History */,
-				66EA78FB2C722A25007DCFCA /* OAuth */,
 				66EA78EA2C722728007DCFCA /* Repository */,
 				66EA78E92C7226E2007DCFCA /* User */,
 			);
@@ -352,6 +356,8 @@
 				66EA78F02C722814007DCFCA /* Authentication+Injection.swift */,
 				66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */,
 				66EA78BD2C721AAE007DCFCA /* AccessTokenProviderImpl.swift */,
+				66EA78E72C72250A007DCFCA /* OAuthHandler.swift */,
+				66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */,
 				66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */,
 				66EA78BB2C721AA9007DCFCA /* TokenValidatorImpl.swift */,
 			);
@@ -412,17 +418,9 @@
 			children = (
 				66EA78B52C7206ED007DCFCA /* DependencyContainer.swift */,
 				66EA78B32C7206E2007DCFCA /* Injected.swift */,
+				66EA79042C7231B0007DCFCA /* ServiceRegistry.swift */,
 			);
 			path = Dependency;
-			sourceTree = "<group>";
-		};
-		66EA78FB2C722A25007DCFCA /* OAuth */ = {
-			isa = PBXGroup;
-			children = (
-				66EA78E72C72250A007DCFCA /* OAuthHandler.swift */,
-				66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */,
-			);
-			path = OAuth;
 			sourceTree = "<group>";
 		};
 		66EA78FC2C722B48007DCFCA /* Responses */ = {
@@ -628,6 +626,7 @@
 				66EA78AE2C70CDCA007DCFCA /* AppState.swift in Sources */,
 				66EA78C42C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift in Sources */,
 				66EA78942C708C88007DCFCA /* RepositoryHistoryView.swift in Sources */,
+				66EA79052C7231B8007DCFCA /* ServiceRegistry.swift in Sources */,
 				66EA782D2C6F9326007DCFCA /* ContentView.swift in Sources */,
 				66EA78CC2C721BA6007DCFCA /* TokenValidator.swift in Sources */,
 				66EA78CA2C721B9C007DCFCA /* OrderOption.swift in Sources */,
@@ -654,6 +653,7 @@
 				66EA78BA2C720ED7007DCFCA /* UserRepositoriesViewModel.swift in Sources */,
 				66EA78B82C720C0D007DCFCA /* UsersViewModel.swift in Sources */,
 				66EA78BC2C721AA9007DCFCA /* TokenValidatorImpl.swift in Sources */,
+				66EA79072C723C1E007DCFCA /* Network+Injection.swift in Sources */,
 				66EA78EF2C722803007DCFCA /* Repository+Injection.swift in Sources */,
 				66EA788E2C6FAF6B007DCFCA /* LoginView.swift in Sources */,
 				66EA78B62C7206ED007DCFCA /* DependencyContainer.swift in Sources */,

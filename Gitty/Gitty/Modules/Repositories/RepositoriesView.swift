@@ -10,13 +10,17 @@ struct RepositoriesView: View {
                 if viewModel.isLoading {
                     ProgressView("Loading...")
                         .padding()
-                } else if let errorMessage = viewModel.errorMessage {
-                    Text("Error: \(errorMessage)")
-                        .foregroundColor(.red)
+                } else if viewModel.searchQuery.isEmpty {
+                    Text("Start typing to search for repositories.")
+                        .foregroundColor(.gray)
                         .padding()
                 } else if viewModel.repositories.isEmpty {
-                    Text("No repos found")
+                    Text("No repositories found. Please try a different search.")
                         .foregroundColor(.gray)
+                        .padding()
+                } else if viewModel.hasError {
+                    Text("Oops! Something went wrong. Please try again.")
+                        .foregroundColor(.red)
                         .padding()
                 } else {
                     repositoryList
@@ -26,7 +30,7 @@ struct RepositoriesView: View {
                 viewModel.performSearch()
             }
             .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
-            .navigationTitle("Repos")
+            .navigationTitle("Repositories")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: RepositoryHistoryView()) {
@@ -37,7 +41,7 @@ struct RepositoriesView: View {
                     Button {
                         viewModel.deleteToken()
                     } label: {
-                        Image(systemName: "pip.exit")
+                        Image(systemName: "figure.walk")
                     }
                 }
             }
@@ -71,8 +75,10 @@ struct RepositoriesView: View {
     }
 
     private func loadMoreIfNeeded(at index: Int) {
-        if index == viewModel.repositories.count - 1 {
-            viewModel.loadMoreRepositories()
+        guard index == viewModel.repositories.count - 1 else {
+            return
         }
+
+        viewModel.loadMoreRepositories()
     }
 }

@@ -1,11 +1,7 @@
 import Foundation
 
 final class TokenValidatorImpl: TokenValidator {
-    private let networkClient: NetworkClient
-
-    init(networkClient: NetworkClient = NetworkClientImpl()) {
-        self.networkClient = networkClient
-    }
+    @Injected private var networkClient: NetworkClient
 
     func validate(_ token: String) async throws -> Bool {
         let endpoint = "/user"

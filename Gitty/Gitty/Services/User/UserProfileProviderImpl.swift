@@ -1,31 +1,39 @@
 import Foundation
 
 final class UserProfileProviderImpl: UserProfileProvider {
-    private let networkClient: NetworkClient
+    @Injected private var tokenValidator: TokenValidator
+    @Injected private var networkClient: NetworkClient
 
-    init(networkClient: NetworkClient = NetworkClientImpl()) {
-        self.networkClient = networkClient
-    }
-
-    func getMe() async throws -> UserProfile {
-        let accessToken = try KeychainService.shared.retrieveToken()
-        guard let token = accessToken else {
-            throw URLError(.userAuthenticationRequired)
-        }
-
-        let isValid = try await TokenValidatorImpl(networkClient: networkClient).validate(token)
-        if !isValid {
-            try KeychainService.shared.deleteToken()
-            throw URLError(.userAuthenticationRequired)
-        }
+    func getMe() async throws {
+        let token = try await retrieveAndValidateToken()
 
         let endpoint = "/user"
         let headers = ["Authorization": "token \(token)"]
-        return try await networkClient.fetch(endpoint, method: "GET", body: nil, headers: headers, isOAuthRequest: false)
+        let _: UserProfile = try await networkClient.fetch(
+            endpoint,
+            method: "GET",
+            body: nil,
+            headers: headers,
+            isOAuthRequest: false
+        )
     }
 
     func get(for user: User) async throws -> UserProfile {
         let endpoint = "/users/\(user.login)"
         return try await networkClient.fetch(endpoint, method: "GET", body: nil, headers: nil, isOAuthRequest: false)
+    }
+
+    private func retrieveAndValidateToken() async throws -> String {
+        guard let token = try KeychainService.shared.retrieveToken() else {
+            throw URLError(.userAuthenticationRequired)
+        }
+
+        let isValid = try await tokenValidator.validate(token)
+        if !isValid {
+            try KeychainService.shared.deleteToken()
+            throw URLError(.userAuthenticationRequired)
+        }
+
+        return token
     }
 }

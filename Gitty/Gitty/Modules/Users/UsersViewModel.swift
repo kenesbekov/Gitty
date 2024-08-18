@@ -3,7 +3,7 @@ import SwiftUI
 
 @MainActor
 final class UsersViewModel: ObservableObject {
-    @Published var query = ""
+    @Published var searchQuery = ""
     @Published var users: [User] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
@@ -29,7 +29,7 @@ final class UsersViewModel: ObservableObject {
 
         do {
             isLoading = true
-            let searchResponse = try await usersProvider.get(matching: query, page: 1, perPage: 30)
+            let searchResponse = try await usersProvider.get(matching: searchQuery, page: 1, perPage: 30)
             var fetchedUsers = searchResponse.items
 
             // Fetch followers count for each user

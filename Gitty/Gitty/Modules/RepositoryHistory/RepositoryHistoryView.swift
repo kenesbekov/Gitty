@@ -32,6 +32,7 @@ struct RepositoryHistoryView: View {
                         Text(repository.description ?? "No description")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
+                            .lineLimit(4)
 
                         Text("Owner: \(repository.owner.login)")
                         HStack {

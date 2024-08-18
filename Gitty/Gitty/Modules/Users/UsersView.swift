@@ -10,6 +10,10 @@ struct UsersView: View {
                 if viewModel.isLoading {
                     ProgressView("Loading...")
                         .padding()
+                } else if viewModel.searchQuery.isEmpty {
+                    Text("Start typing to search for repositories.")
+                        .foregroundColor(.gray)
+                        .padding()
                 } else if let errorMessage = viewModel.errorMessage {
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
@@ -38,7 +42,7 @@ struct UsersView: View {
                 }
             }
             .padding()
-            .searchable(text: $viewModel.query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
             .onSubmit(of: .search) {
                 viewModel.searchUsers()
             }

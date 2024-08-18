@@ -1,11 +1,7 @@
 import Foundation
 
 final class RepositoriesProviderImpl: RepositoriesProvider {
-    private let networkClient: NetworkClient
-
-    init(networkClient: NetworkClient = NetworkClientImpl()) {
-        self.networkClient = networkClient
-    }
+    @Injected private var networkClient: NetworkClient
 
     func get(
         matching query: String,

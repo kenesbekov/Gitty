@@ -7,7 +7,7 @@ final class RepositoriesViewModel: ObservableObject {
     @Published var repositories: [Repository] = []
     @Published var isLoading = false
     @Published var isPaginationLoading = false
-    @Published var errorMessage: String?
+    @Published var hasError = false
 
     @Injected private var repositoriesProvider: RepositoriesProvider
     @Injected private var historyProvider: RepositoryHistoryProvider
@@ -61,9 +61,9 @@ final class RepositoriesViewModel: ObservableObject {
                     repositories.append(contentsOf: newRepositories)
                 }
             }
-            errorMessage = nil
+            hasError = false
         } catch {
-            errorMessage = handle(error: error)
+            hasError = true
         }
     }
 
@@ -75,10 +75,5 @@ final class RepositoriesViewModel: ObservableObject {
 
     func deleteToken() {
 //        appStateManager.logout()
-    }
-
-    private func handle(error: Error) -> String {
-        // Return a user-friendly error message based on the error type.
-        return error.localizedDescription
     }
 }

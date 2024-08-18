@@ -11,13 +11,10 @@ final class AccessTokenProviderImpl: AccessTokenProvider {
     private let clientID = "Ov23liKBw7Yddbu1ty8g"
     private let clientSecret = "cc04f9881b71ba8d8557c53141583a53c8527180"
     private let redirectURI = "gitty://oauth-callback"
-    private let networkClient: NetworkClient
 
-    init(networkClient: NetworkClient = NetworkClientImpl()) {
-        self.networkClient = networkClient
-    }
+    @Injected private var networkClient: NetworkClient
 
-    func get(for authorizationCode: String) async throws -> String {
+    func get(for authorizationCode: String) async throws {
         let endpoint = "/login/oauth/access_token"
         let bodyComponents = [
             "client_id": clientID,
@@ -45,7 +42,6 @@ final class AccessTokenProviderImpl: AccessTokenProvider {
                 isOAuthRequest: true
             )
             try KeychainService.shared.saveToken(response.accessToken)
-            return response.accessToken
         } catch {
             print("Failed to fetch access token: \(error.localizedDescription)")
             throw error

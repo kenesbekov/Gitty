@@ -1,11 +1,3 @@
-//
-//  HomeView.swift
-//  Gitty
-//
-//  Created by Adam Kenesbekov on 17.08.2024.
-//
-
-
 import SwiftUI
 
 struct TabBarView: View {

@@ -1,11 +1,7 @@
 import Foundation
 
 final class UserRepositoriesProviderImpl: UserRepositoriesProvider {
-    private let networkClient: NetworkClient
-
-    init(networkClient: NetworkClient = NetworkClientImpl()) {
-        self.networkClient = networkClient
-    }
+    @Injected private var networkClient: NetworkClient
 
     func get(for user: UserProfile) async throws -> [Repository] {
         let endpoint = "/users/\(user.login)/repos"
