@@ -44,6 +44,8 @@
 		66EA78AA2C70CD38007DCFCA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78A92C70CD38007DCFCA /* LoadingView.swift */; };
 		66EA78AC2C70CDC0007DCFCA /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78AB2C70CDC0007DCFCA /* AppStateManager.swift */; };
 		66EA78AE2C70CDCA007DCFCA /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78AD2C70CDCA007DCFCA /* AppState.swift */; };
+		66EA78B02C7203F9007DCFCA /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78AF2C7203F9007DCFCA /* RepositoriesViewModel.swift */; };
+		66EA78B22C72041C007DCFCA /* RepositoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78B12C72041C007DCFCA /* RepositoryRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		66EA78A92C70CD38007DCFCA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		66EA78AB2C70CDC0007DCFCA /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
 		66EA78AD2C70CDCA007DCFCA /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		66EA78AF2C7203F9007DCFCA /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModel.swift; sourceTree = "<group>"; };
+		66EA78B12C72041C007DCFCA /* RepositoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,12 +206,14 @@
 		66EA785A2C6FA03C007DCFCA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				66EA78A92C70CD38007DCFCA /* LoadingView.swift */,
 				66EA782C2C6F9326007DCFCA /* ContentView.swift */,
-				66EA789F2C70A65E007DCFCA /* TabBarView.swift */,
+				66EA78A92C70CD38007DCFCA /* LoadingView.swift */,
 				66EA788D2C6FAF6B007DCFCA /* LoginView.swift */,
-				66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */,
 				66EA786B2C6FA23E007DCFCA /* RepositoriesView.swift */,
+				66EA78AF2C7203F9007DCFCA /* RepositoriesViewModel.swift */,
+				66EA78932C708C88007DCFCA /* RepositoryHistoryView.swift */,
+				66EA78B12C72041C007DCFCA /* RepositoryRowView.swift */,
+				66EA789F2C70A65E007DCFCA /* TabBarView.swift */,
 				66EA78992C708FCC007DCFCA /* UserHistoryView.swift */,
 				66EA789D2C70A53D007DCFCA /* UserRepositoriesView.swift */,
 				66EA78A12C70A66D007DCFCA /* UsersView.swift */,
@@ -412,6 +418,7 @@
 				66EA78A02C70A65E007DCFCA /* TabBarView.swift in Sources */,
 				66EA78822C6FA51B007DCFCA /* GitHubRepository.swift in Sources */,
 				66EA78A82C70CC33007DCFCA /* KeychainError.swift in Sources */,
+				66EA78B22C72041C007DCFCA /* RepositoryRowView.swift in Sources */,
 				66EA786F2C6FA259007DCFCA /* RepositoryRepositoryImpl.swift in Sources */,
 				66EA78622C6FA0D0007DCFCA /* GitHubUserProfile.swift in Sources */,
 				66EA78642C6FA185007DCFCA /* RepositoryHistoryImpl.swift in Sources */,
@@ -433,6 +440,7 @@
 				66EA78AA2C70CD38007DCFCA /* LoadingView.swift in Sources */,
 				66EA78602C6FA088007DCFCA /* GitHubAPIImpl.swift in Sources */,
 				66EA78802C6FA4CB007DCFCA /* OAuthHandler.swift in Sources */,
+				66EA78B02C7203F9007DCFCA /* RepositoriesViewModel.swift in Sources */,
 				66EA788E2C6FAF6B007DCFCA /* LoginView.swift in Sources */,
 				66EA78862C6FA856007DCFCA /* NetworkClientProtocol.swift in Sources */,
 				66EA789E2C70A53D007DCFCA /* UserRepositoriesView.swift in Sources */,
