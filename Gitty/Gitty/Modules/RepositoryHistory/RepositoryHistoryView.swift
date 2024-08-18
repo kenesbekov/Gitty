@@ -16,11 +16,12 @@ struct RepositoryHistoryView: View {
         .navigationTitle("History")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
+                Button {
                     showAlert = true
-                }) {
+                } label: {
                     Text("Clear")
                 }
+                .disabled(historyProvider.repositories.isEmpty)
             }
         }
         .alert(isPresented: $showAlert) {
@@ -28,11 +29,22 @@ struct RepositoryHistoryView: View {
                 title: Text("Clear History"),
                 message: Text("Are you sure you want to clear the history?"),
                 primaryButton: .destructive(Text("Clear")) {
-                    historyProvider.clear()
+                    clearHistory()
                 },
                 secondaryButton: .cancel()
             )
         }
+    }
+
+    private func clearHistory() {
+        historyProvider.clear()
+        provideSuccessHapticFeedback()
+    }
+
+    private func provideSuccessHapticFeedback() {
+        let feedbackGenerator = UINotificationFeedbackGenerator()
+        feedbackGenerator.prepare()
+        feedbackGenerator.notificationOccurred(.success)
     }
 
     private var emptyStateView: some View {
