@@ -256,7 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */,
-				66EA78BF2C721AB6007DCFCA /* UserProfileProviderImpl.swift */,
 				66EA78C32C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift */,
 			);
 			path = UserRepositories;
@@ -265,10 +264,11 @@
 		66C7FA342C726A8300CEF262 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				66C7FA3A2C726C4700CEF262 /* Models */,
 				66EA78CF2C721BAD007DCFCA /* UserProfileProvider.swift */,
+				66EA78BF2C721AB6007DCFCA /* UserProfileProviderImpl.swift */,
 				66EA78D12C721BB0007DCFCA /* UsersProvider.swift */,
 				66EA78C12C721ABA007DCFCA /* UsersProviderImpl.swift */,
+				66C7FA3A2C726C4700CEF262 /* Models */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -304,10 +304,10 @@
 		66C7FA382C726BC300CEF262 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				66C7FA392C726C2200CEF262 /* Responses */,
 				66EA78C92C721B9C007DCFCA /* OrderKind.swift */,
 				66EA78812C6FA51B007DCFCA /* Repository.swift */,
 				66EA78C72C721B98007DCFCA /* SortOption.swift */,
+				66C7FA392C726C2200CEF262 /* Responses */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -341,8 +341,8 @@
 		66C7FA3C2C726C9A00CEF262 /* NetworkClient */ = {
 			isa = PBXGroup;
 			children = (
-				66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */,
 				66EA78E02C7222AB007DCFCA /* NetworkClient.swift */,
+				66EA78852C6FA856007DCFCA /* NetworkClientImpl.swift */,
 			);
 			path = NetworkClient;
 			sourceTree = "<group>";
