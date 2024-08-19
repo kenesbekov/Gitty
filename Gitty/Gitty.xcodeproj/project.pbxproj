@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660C49BA2C733652008ACB28 /* PaginationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C49B92C733652008ACB28 /* PaginationManager.swift */; };
+		660C49BC2C73366E008ACB28 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C49BB2C73366E008ACB28 /* PaginationState.swift */; };
 		6687FB912C7331A1008D4670 /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687FB902C7331A1008D4670 /* UserRowView.swift */; };
 		66C7FA1E2C724D8100CEF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7FA1D2C724D7E00CEF262 /* Constants.swift */; };
 		66EA782B2C6F9326007DCFCA /* GittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA782A2C6F9326007DCFCA /* GittyApp.swift */; };
@@ -93,6 +95,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		660C49B92C733652008ACB28 /* PaginationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationManager.swift; sourceTree = "<group>"; };
+		660C49BB2C73366E008ACB28 /* PaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
 		6687FB902C7331A1008D4670 /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
 		66C7FA1D2C724D7E00CEF262 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		66EA78272C6F9326007DCFCA /* Gitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				66C7FA1D2C724D7E00CEF262 /* Constants.swift */,
+				660C49B92C733652008ACB28 /* PaginationManager.swift */,
+				660C49BB2C73366E008ACB28 /* PaginationState.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -717,6 +723,7 @@
 				66EA78A02C70A65E007DCFCA /* TabBarView.swift in Sources */,
 				66C7FA1E2C724D8100CEF262 /* Constants.swift in Sources */,
 				66EA78822C6FA51B007DCFCA /* Repository.swift in Sources */,
+				660C49BA2C733652008ACB28 /* PaginationManager.swift in Sources */,
 				66EA78D82C72211A007DCFCA /* UserHistoryProviderImpl.swift in Sources */,
 				66EA78CE2C721BAA007DCFCA /* AccessTokenProvider.swift in Sources */,
 				66EA78A82C70CC33007DCFCA /* KeychainError.swift in Sources */,
@@ -725,6 +732,7 @@
 				66EA78622C6FA0D0007DCFCA /* UserProfile.swift in Sources */,
 				66EA78642C6FA185007DCFCA /* RepositoryHistoryProviderImpl.swift in Sources */,
 				66EA78A42C70AF33007DCFCA /* GetUsersResponse.swift in Sources */,
+				660C49BC2C73366E008ACB28 /* PaginationState.swift in Sources */,
 				66EA78D22C721BB0007DCFCA /* UsersProvider.swift in Sources */,
 				66EA78C82C721B98007DCFCA /* SortOption.swift in Sources */,
 				66EA789A2C708FCC007DCFCA /* UserHistoryView.swift in Sources */,

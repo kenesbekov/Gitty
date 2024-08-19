@@ -9,22 +9,23 @@ struct UsersView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if viewModel.isLoading {
+                switch viewModel.paginationState {
+                case .default:
+                    emptyStateView
+                case .loading:
                     ProgressView("Loading...")
                         .progressViewStyle(CircularProgressViewStyle())
                         .padding()
-                } else if viewModel.searchQuery.isEmpty {
-                    emptyStateView
-                } else if viewModel.users.isEmpty {
+                case .noResults:
                     noResultsView
-                } else if viewModel.hasError {
-                    errorView
-                } else {
+                case .success, .paginating:
                     usersListView
+                case .error:
+                    errorView
                 }
             }
             .onChange(of: viewModel.searchQuery) { _ in
-                viewModel.performSearch()
+                viewModel.search()
             }
             .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Users")
             .navigationTitle("Users")
@@ -131,14 +132,14 @@ struct UsersView: View {
                     }
                 }
 
-                if viewModel.isPaginationLoading {
+                if viewModel.paginationState == .paginating {
                     ProgressView()
                         .padding()
                 }
             }
             .padding(.bottom, 20)
             .refreshable {
-                viewModel.performSearch()
+                viewModel.search()
             }
         }
     }
