@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct RepositoriesView: View {
-    @StateObject private var viewModel = RepositoriesViewModel()
     @Environment(\.openURL) private var openURL
     @EnvironmentObject private var appStateManager: AppStateManager
     @State private var showingLogoutAlert = false
+    @StateObject private var viewModel = RepositoriesViewModel()
 
     var body: some View {
         NavigationView {

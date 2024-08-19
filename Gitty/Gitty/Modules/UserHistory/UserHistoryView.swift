@@ -1,35 +1,33 @@
 import SwiftUI
 
 struct UserHistoryView: View {
-    @Injected private var historyProvider: UserHistoryProvider
-
+    @Injected private var provider: UserHistoryProvider
+    @Injected private var cleaner: UserHistoryCleaner
+    
     @State private var showAlert = false
+    @State private var users: [User]
+
+    init() {
+        @Injected var provider: UserHistoryProvider
+        self.users = provider.users
+    }
 
     var body: some View {
         ZStack {
-            if historyProvider.users.isEmpty {
-                Text("No viewed users")
-                    .foregroundColor(.gray)
-                    .padding()
+            if users.isEmpty {
+                emptyStateView
             } else {
-                List(historyProvider.users) { user in
-                    NavigationLink(destination: UserRepositoriesView(user: user)) {
-                        Text(user.login)
-                            .font(.headline)
-                    }
-                    .onTapGesture {
-                        historyProvider.add(user)
-                    }
-                }
+                usersListView
             }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
+                Button {
                     showAlert = true
-                }) {
+                } label: {
                     Text("Clear")
                 }
+                .disabled(users.isEmpty)
             }
         }
         .alert(isPresented: $showAlert) {
@@ -37,11 +35,60 @@ struct UserHistoryView: View {
                 title: Text("Clear History"),
                 message: Text("Are you sure you want to clear the history?"),
                 primaryButton: .destructive(Text("Clear")) {
-                    historyProvider.clear()
+                    clearHistory()
                 },
                 secondaryButton: .cancel()
             )
         }
         .navigationTitle("History")
+    }
+
+    private func clearHistory() {
+        users.removeAll()
+        cleaner.clear()
+        provideSuccessHapticFeedback()
+    }
+
+    private func provideSuccessHapticFeedback() {
+        let feedbackGenerator = UINotificationFeedbackGenerator()
+        feedbackGenerator.prepare()
+        feedbackGenerator.notificationOccurred(.success)
+    }
+
+    private var emptyStateView: some View {
+        VStack {
+            Image(systemName: "clock")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 60, height: 60)
+                .foregroundColor(.gray)
+                .padding()
+
+            Text("No viewed users")
+                .font(.headline)
+                .foregroundColor(.gray)
+                .padding()
+        }
+    }
+
+    private var usersListView: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(users) { user in
+                    NavigationLink(
+                        destination: UserRepositoriesView(user: user)
+                    ) {
+                        UserRowView(
+                            user: user,
+                            markAsViewed: {
+                                provider.add(user)
+                            },
+                            showViewedIndicator: false
+                        )
+                    }
+                }
+            }
+            .padding(.bottom, 20)
+        }
     }
 }

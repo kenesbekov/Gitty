@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct UsersView: View {
-    @StateObject private var viewModel = UsersViewModel()
     @Environment(\.openURL) private var openURL
     @EnvironmentObject private var appStateManager: AppStateManager
     @State private var showingLogoutAlert = false
+    @StateObject private var viewModel = UsersViewModel()
 
     var body: some View {
         NavigationView {
@@ -120,8 +120,7 @@ struct UsersView: View {
                             user: viewModel.users[index],
                             markAsViewed: {
                                 viewModel.addToHistory(user: viewModel.users[index])
-                            },
-                            showViewedIndicator: true
+                            }
                         )
                     }
                     .onAppear {

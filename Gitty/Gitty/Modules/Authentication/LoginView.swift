@@ -2,15 +2,7 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.openURL) private var openURL
-
-    private var authorizationURL: URL? {
-        var components = URLComponents(string: "https://github.com/login/oauth/authorize")
-        components?.queryItems = [
-            URLQueryItem(name: "client_id", value: Constants.clientID),
-            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI)
-        ]
-        return components?.url
-    }
+    @Injected private var urlProvider: AuthorizationURLProvider
 
     var body: some View {
         VStack {
@@ -63,7 +55,7 @@ struct LoginView: View {
     }
 
     private func initiateGitHubLogin() {
-        guard let url = authorizationURL else {
+        guard let url = urlProvider.get() else {
             print("Invalid URL")
             return
         }

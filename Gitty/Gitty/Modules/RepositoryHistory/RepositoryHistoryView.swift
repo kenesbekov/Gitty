@@ -1,13 +1,21 @@
 import SwiftUI
 
 struct RepositoryHistoryView: View {
-    @Injected private var historyProvider: RepositoryHistoryProvider
-    @State private var showAlert = false
+    @Injected private var cleaner: RepositoryHistoryCleaner
+    @Injected private var provider: RepositoryHistoryProvider
+
     @Environment(\.openURL) private var openURL
+    @State private var showAlert = false
+    @State private var repositories: [Repository]
+
+    init() {
+        @Injected var provider: RepositoryHistoryProvider
+        self.repositories = provider.repositories
+    }
 
     var body: some View {
         ZStack {
-            if historyProvider.repositories.isEmpty {
+            if repositories.isEmpty {
                 emptyStateView
             } else {
                 repositoryListView
@@ -21,7 +29,7 @@ struct RepositoryHistoryView: View {
                 } label: {
                     Text("Clear")
                 }
-                .disabled(historyProvider.repositories.isEmpty)
+                .disabled(repositories.isEmpty)
             }
         }
         .alert(isPresented: $showAlert) {
@@ -37,7 +45,8 @@ struct RepositoryHistoryView: View {
     }
 
     private func clearHistory() {
-        historyProvider.clear()
+        repositories.removeAll()
+        cleaner.clear()
         provideSuccessHapticFeedback()
     }
 
@@ -66,11 +75,11 @@ struct RepositoryHistoryView: View {
     private var repositoryListView: some View {
         ScrollView {
             LazyVStack {
-                ForEach(historyProvider.repositories) { repository in
+                ForEach(repositories) { repository in
                     RepositoryRowView(
                         repository: repository,
                         openURL: { url in openURL(url) },
-                        markAsViewed: { historyProvider.add(repository) },
+                        markAsViewed: { provider.add(repository) },
                         showViewedIndicator: false
                     )
                 }

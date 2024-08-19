@@ -1,6 +1,8 @@
 import Foundation
 
-final class RepositoryHistoryProviderImpl: RepositoryHistoryProvider {
+// MARK: - RepositoryHistoryManager
+
+final class RepositoryHistoryManager {
     var repositories: [Repository] {
         cachedRepositories.value
     }
@@ -11,29 +13,6 @@ final class RepositoryHistoryProviderImpl: RepositoryHistoryProvider {
 
     init() {
         loadHistory()
-    }
-
-    func add(_ repository: Repository) {
-        var repositories = cachedRepositories.value
-
-        if let existingIndex = repositories.firstIndex(where: { $0.id == repository.id }) {
-            repositories.remove(at: existingIndex)
-        }
-
-        repositories.insert(repository, at: 0)
-
-        if repositories.count > maxHistoryCount {
-            repositories.removeLast()
-        }
-
-        cachedRepositories.update(with: repositories)
-        saveHistory(repositories)
-    }
-
-    func clear() {
-        let emptyRepositories: [Repository] = []
-        cachedRepositories.update(with: emptyRepositories)
-        saveHistory(emptyRepositories)
     }
 
     private func loadHistory() {
@@ -57,5 +36,35 @@ final class RepositoryHistoryProviderImpl: RepositoryHistoryProvider {
         } catch {
             print("Save history error:", error.localizedDescription)
         }
+    }
+}
+
+// MARK: - RepositoryHistoryManager.RepositoryHistoryProvider
+
+extension RepositoryHistoryManager: RepositoryHistoryProvider {
+    func add(_ repository: Repository) {
+        var repositories = cachedRepositories.value
+
+        if let existingIndex = repositories.firstIndex(where: { $0.id == repository.id }) {
+            repositories.remove(at: existingIndex)
+        }
+
+        repositories.insert(repository, at: 0)
+
+        if repositories.count > maxHistoryCount {
+            repositories.removeLast()
+        }
+
+        cachedRepositories.update(with: repositories)
+        saveHistory(repositories)
+    }
+}
+
+// MARK: - RepositoryHistoryManager.RepositoryHistoryCleaner
+
+extension RepositoryHistoryManager: RepositoryHistoryCleaner {
+    func clear() {
+        cachedRepositories.update(with: [])
+        saveHistory([])
     }
 }

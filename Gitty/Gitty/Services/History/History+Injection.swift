@@ -2,7 +2,9 @@ import Foundation
 
 extension DependencyContainer {
     func registerHistoryServices() {
-        register(RepositoryHistoryProviderImpl(), forType: RepositoryHistoryProvider.self)
-        register(UserHistoryProviderImpl(), forType: UserHistoryProvider.self)
+        register(RepositoryHistoryManager(), forType: RepositoryHistoryCleaner.self)
+        register(RepositoryHistoryManager(), forType: RepositoryHistoryProvider.self)
+        register(UserHistoryManager(), forType: UserHistoryCleaner.self)
+        register(UserHistoryManager(), forType: UserHistoryProvider.self)
     }
 }

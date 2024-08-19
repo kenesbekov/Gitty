@@ -1,6 +1,8 @@
 import Foundation
 
-final class UserHistoryProviderImpl: UserHistoryProvider {
+// MARK: - UserHistoryManager
+
+final class UserHistoryManager {
     var users: [User] {
         cachedUsers.value
     }
@@ -11,29 +13,6 @@ final class UserHistoryProviderImpl: UserHistoryProvider {
 
     init() {
         loadHistory()
-    }
-
-    func add(_ user: User) {
-        var users = cachedUsers.value
-
-        if let existingIndex = users.firstIndex(where: { $0.id == user.id }) {
-            users.remove(at: existingIndex)
-        }
-
-        users.insert(user, at: 0)
-
-        if users.count > maxHistoryCount {
-            users.removeLast()
-        }
-
-        cachedUsers.update(with: users)
-        saveHistory(users)
-    }
-
-    func clear() {
-        let emptyUsers: [User] = []
-        cachedUsers.update(with: emptyUsers)
-        saveHistory(emptyUsers)
     }
 
     private func loadHistory() {
@@ -56,5 +35,35 @@ final class UserHistoryProviderImpl: UserHistoryProvider {
         } catch {
             print("Failed to save history: \(error.localizedDescription)")
         }
+    }
+}
+
+// MARK: - UserHistoryManager.UserHistoryProvider
+
+extension UserHistoryManager: UserHistoryProvider {
+    func add(_ user: User) {
+        var users = cachedUsers.value
+
+        if let existingIndex = users.firstIndex(where: { $0.id == user.id }) {
+            users.remove(at: existingIndex)
+        }
+
+        users.insert(user, at: 0)
+
+        if users.count > maxHistoryCount {
+            users.removeLast()
+        }
+
+        cachedUsers.update(with: users)
+        saveHistory(users)
+    }
+}
+
+// MARK: - UserHistoryManager.UserHistoryCleaner
+
+extension UserHistoryManager: UserHistoryCleaner {
+    func clear() {
+        cachedUsers.update(with: [])
+        saveHistory([])
     }
 }

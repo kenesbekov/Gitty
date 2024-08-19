@@ -6,10 +6,10 @@ final class AccessTokenProviderImpl: AccessTokenProvider {
     func get(for authorizationCode: String) async throws {
         let endpoint = "/login/oauth/access_token"
         let bodyComponents = [
-            "client_id": Constants.clientID,
-            "client_secret": Constants.clientSecret,
+            "client_id": APIConstants.clientID,
+            "client_secret": APIConstants.clientSecret,
             "code": authorizationCode,
-            "redirect_uri": Constants.redirectURI
+            "redirect_uri": APIConstants.redirectURI
         ]
 
         guard let body = createBody(from: bodyComponents) else {

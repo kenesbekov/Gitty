@@ -6,7 +6,7 @@ final class UsersViewModel: ObservableObject {
     @Published var users: [User] = []
     @Published var paginationState: PaginationState = .default
 
-    @Injected private var userProfileProvider: UserProfileProvider
+    @Injected private var profileProvider: UserProfileProvider
     @Injected private var usersProvider: UsersProvider
     @Injected private var historyProvider: UserHistoryProvider
 
@@ -53,7 +53,7 @@ final class UsersViewModel: ObservableObject {
 
             for (index, user) in fetchedUsers.enumerated() {
                 do {
-                    let userProfile = try await userProfileProvider.get(for: user)
+                    let userProfile = try await profileProvider.get(for: user)
                     fetchedUsers[index].followers = userProfile.followers
                 } catch {
                     print("Failed to fetch profile for \(user.login): \(error.localizedDescription)")
