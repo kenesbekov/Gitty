@@ -11,4 +11,5 @@ struct User: Identifiable, Codable, Hashable {
     let id: Int
     let avatarURL: URL
     var followers: Int?
+    var isViewed = false
 }

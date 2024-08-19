@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6687FB912C7331A1008D4670 /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687FB902C7331A1008D4670 /* UserRowView.swift */; };
 		66C7FA1E2C724D8100CEF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7FA1D2C724D7E00CEF262 /* Constants.swift */; };
 		66EA782B2C6F9326007DCFCA /* GittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA782A2C6F9326007DCFCA /* GittyApp.swift */; };
 		66EA782D2C6F9326007DCFCA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA782C2C6F9326007DCFCA /* ContentView.swift */; };
@@ -92,6 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6687FB902C7331A1008D4670 /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
 		66C7FA1D2C724D7E00CEF262 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		66EA78272C6F9326007DCFCA /* Gitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EA782A2C6F9326007DCFCA /* GittyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GittyApp.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 		66EA78F92C722992007DCFCA /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				6687FB902C7331A1008D4670 /* UserRowView.swift */,
 				66EA78A12C70A66D007DCFCA /* UsersView.swift */,
 				66EA78B72C720C0D007DCFCA /* UsersViewModel.swift */,
 			);
@@ -736,6 +739,7 @@
 				66EA78D42C721BB3007DCFCA /* UserRepositoriesProvider.swift in Sources */,
 				66EA78D62C721BB6007DCFCA /* RepositoriesProvider.swift in Sources */,
 				66EA78C62C721AC7007DCFCA /* RepositoriesProviderImpl.swift in Sources */,
+				6687FB912C7331A1008D4670 /* UserRowView.swift in Sources */,
 				66EA78AC2C70CDC0007DCFCA /* AppStateManager.swift in Sources */,
 				66EA78F42C7228FA007DCFCA /* History+Injection.swift in Sources */,
 				66EA78B42C7206E2007DCFCA /* Injected.swift in Sources */,
