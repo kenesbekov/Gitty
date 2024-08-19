@@ -15,7 +15,7 @@ struct UserRowView: View {
         self.user = user
         self.markAsViewed = markAsViewed
         self.showViewedIndicator = showViewedIndicator
-        _isViewed = State(initialValue: user.isViewed)
+        self.isViewed = user.isViewed
     }
 
     var body: some View {

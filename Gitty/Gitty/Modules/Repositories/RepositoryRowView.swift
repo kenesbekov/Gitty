@@ -25,7 +25,7 @@ struct RepositoryRowView: View {
         self.openURL = openURL
         self.markAsViewed = markAsViewed
         self.showViewedIndicator = showViewedIndicator
-        _isViewed = State(initialValue: repository.isViewed)
+        self.isViewed = repository.isViewed
     }
 
     var body: some View {
