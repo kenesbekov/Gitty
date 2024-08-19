@@ -1,9 +1,11 @@
 import Foundation
 
 enum NetworkError: Error, LocalizedError {
+    typealias StatusCode = Int
+
     case invalidURL
     case invalidResponse
-    case httpError(statusCode: Int)
+    case httpError(statusCode: StatusCode)
     case networkError(Error)
     case decodingError(Error)
 

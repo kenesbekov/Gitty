@@ -204,9 +204,12 @@
 		66C7FA1C2C724D7000CEF262 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				660C49BE2C734D4B008ACB28 /* Atomic.swift */,
 				66C7FA1D2C724D7E00CEF262 /* Constants.swift */,
+				660C49C22C734D76008ACB28 /* NSLocking+Critical.swift */,
 				660C49B92C733652008ACB28 /* PaginationManager.swift */,
 				660C49BB2C73366E008ACB28 /* PaginationState.swift */,
+				660C49C02C734D58008ACB28 /* UnfairLock.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -462,9 +465,6 @@
 		66EA78DC2C722252007DCFCA /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				660C49C22C734D76008ACB28 /* NSLocking+Critical.swift */,
-				660C49C02C734D58008ACB28 /* UnfairLock.swift */,
-				660C49BE2C734D4B008ACB28 /* Atomic.swift */,
 				66EA78A72C70CC33007DCFCA /* KeychainError.swift */,
 				66EA78DE2C722275007DCFCA /* KeychainService.swift */,
 			);

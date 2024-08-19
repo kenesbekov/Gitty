@@ -1,11 +1,11 @@
 import Foundation
 
 struct UserProfile: Identifiable, Codable, Hashable {
-    let id: Int
+    typealias ID = Int
+
+    let id: ID
     let login: String
-    let avatarURL: String
-    let url: String
-    let htmlURL: String
+    let avatarURL: URL
     let followers: Int
     let name: String?
     let bio: String?
@@ -14,8 +14,6 @@ struct UserProfile: Identifiable, Codable, Hashable {
         case id
         case login
         case avatarURL = "avatarUrl"
-        case url
-        case htmlURL = "htmlUrl"
         case followers
         case name
         case bio
