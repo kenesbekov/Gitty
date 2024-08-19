@@ -45,8 +45,7 @@ final class UserHistoryProviderImpl: UserHistoryProvider {
             let decodedUsers = try JSONDecoder().decode([User].self, from: data)
             cachedUsers.update(with: decodedUsers)
         } catch {
-            print("Load history error:", error.localizedDescription)
-            print("Data content: \(String(data: data, encoding: .utf8) ?? "Invalid data")")
+            print("Failed to load history: \(error.localizedDescription)")
         }
     }
 
@@ -55,7 +54,7 @@ final class UserHistoryProviderImpl: UserHistoryProvider {
             let data = try JSONEncoder().encode(users)
             UserDefaults.standard.set(data, forKey: historyKey)
         } catch {
-            print("Save history error:", error.localizedDescription)
+            print("Failed to save history: \(error.localizedDescription)")
         }
     }
 }
