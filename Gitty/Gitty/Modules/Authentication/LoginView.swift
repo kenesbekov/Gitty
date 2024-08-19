@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(\.openURL) private var openURL
+
     private var authorizationURL: URL? {
         var components = URLComponents(string: "https://github.com/login/oauth/authorize")
         components?.queryItems = [
@@ -65,7 +67,8 @@ struct LoginView: View {
             print("Invalid URL")
             return
         }
-        UIApplication.shared.open(url)
+
+        openURL(url)
     }
 }
 
