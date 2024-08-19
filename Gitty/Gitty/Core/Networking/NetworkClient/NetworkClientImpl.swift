@@ -19,14 +19,14 @@ final class NetworkClientImpl: NetworkClient {
         body: Data? = nil,
         headers: [String: String]? = nil,
         isOAuthRequest: Bool = false
-    ) async throws -> Response {
+    ) async throws(NetworkError) -> Response {
         let baseURL = isOAuthRequest ? BaseURL.oauth : BaseURL.api
 
         guard
             let baseURL,
             let url = URL(string: "\(baseURL)\(endpoint)")
         else {
-            throw NetworkError.invalidURL
+            throw .invalidURL
         }
 
         var request = URLRequest(url: url)
@@ -41,29 +41,29 @@ final class NetworkClientImpl: NetworkClient {
             let (data, response) = try await session.data(for: request)
             return try processResponse(data: data, response: response)
         } catch {
-            throw NetworkError.networkError(error)
+            throw .networkError(error)
         }
     }
 
-    func request<Response: Decodable>(_ endpoint: String) async throws -> Response {
+    func request<Response: Decodable>(_ endpoint: String) async throws(NetworkError) -> Response {
         try await request(endpoint, method: .get, body: nil, headers: nil, isOAuthRequest: false)
     }
 
-    func request<Response: Decodable>(_ endpoint: String, headers: [String: String]?) async throws -> Response {
+    func request<Response: Decodable>(_ endpoint: String, headers: [String: String]?) async throws(NetworkError) -> Response {
         try await request(endpoint, method: .get, body: nil, headers: headers, isOAuthRequest: false)
     }
 
     private func processResponse<Response: Decodable>(
         data: Data,
         response: URLResponse
-    ) throws -> Response {
+    ) throws(NetworkError) -> Response {
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkError.invalidResponse
+            throw .invalidResponse
         }
 
         guard (200...299).contains(httpResponse.statusCode) else {
             let statusCode = httpResponse.statusCode
-            throw NetworkError.httpError(statusCode: statusCode)
+            throw .httpError(statusCode: statusCode)
         }
 
         do {
@@ -72,7 +72,7 @@ final class NetworkClientImpl: NetworkClient {
             let jsonString = String(data: data, encoding: .utf8) ?? "No data"
             print("Decoding Error: \(error.localizedDescription)")
             print("Response Data: \(jsonString)")
-            throw NetworkError.decodingError(error)
+            throw .decodingError(error)
         }
     }
 }

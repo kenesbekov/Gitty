@@ -27,9 +27,8 @@ final class AccessTokenProviderImpl: AccessTokenProvider {
                 isOAuthRequest: true
             )
             try KeychainService.shared.saveToken(response.accessToken)
-        } catch {
-            print("Failed to fetch access token: \(error.localizedDescription)")
-            throw error
+        } catch let KeychainError.keychainError(status: status) {
+            print("Failed to fetch access token: \(status)")
         }
     }
 

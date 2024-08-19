@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 
 final class OAuthHandlerImpl: @preconcurrency OAuthHandler {
