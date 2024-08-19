@@ -1,7 +1,7 @@
 import Foundation
 
 final class RepositoriesProviderImpl: RepositoriesProvider {
-    @Injected private var networkClient: NetworkClient
+    private let networkClient: NetworkClient = DependencyContainer.shared.resolve()
 
     func get(
         matching query: String,

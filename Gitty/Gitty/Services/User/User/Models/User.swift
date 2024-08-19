@@ -1,6 +1,6 @@
 import Foundation
 
-struct User: Identifiable, Codable, Hashable {
+struct User: Identifiable, Codable, Sendable, Hashable {
     private enum CodingKeys: String, CodingKey {
        case login
        case id

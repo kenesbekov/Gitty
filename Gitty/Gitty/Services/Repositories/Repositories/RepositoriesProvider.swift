@@ -1,12 +1,6 @@
-//
-//  RepositoriesProvider.swift
-//  Gitty
-//
-//  Created by Adam Kenesbekov on 18.08.2024.
-//
+import Foundation
 
-
-protocol RepositoriesProvider: AnyObject {
+protocol RepositoriesProvider: AnyObject, Sendable {
     func get(
         matching query: String,
         sort: SortKind,

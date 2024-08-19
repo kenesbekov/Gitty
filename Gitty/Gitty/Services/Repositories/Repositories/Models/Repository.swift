@@ -1,6 +1,6 @@
 import Foundation
 
-struct Repository: Identifiable, Codable, Hashable {
+struct Repository: Identifiable, Codable, Sendable, Hashable {
     private enum CodingKeys: String, CodingKey {
         case id
         case name

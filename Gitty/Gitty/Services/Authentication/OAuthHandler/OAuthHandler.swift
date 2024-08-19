@@ -1,5 +1,5 @@
 import Foundation
 
-protocol OAuthHandler {
+protocol OAuthHandler: AnyObject, Sendable {
     func handleOAuthCallback(url: URL, appStateManager: AppStateManager)
 }

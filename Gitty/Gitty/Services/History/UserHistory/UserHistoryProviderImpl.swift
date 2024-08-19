@@ -1,8 +1,11 @@
 import Foundation
 
 final class UserHistoryProviderImpl: UserHistoryProvider {
-    var users: [User] = []
+    var users: [User] {
+        cachedUsers.value
+    }
 
+    private let cachedUsers = Atomic<[User]>(with: [])
     private let maxHistoryCount = 20
     private let historyKey = "ViewedUsers"
 
@@ -11,6 +14,8 @@ final class UserHistoryProviderImpl: UserHistoryProvider {
     }
 
     func add(_ user: User) {
+        var users = cachedUsers.value
+
         if let existingIndex = users.firstIndex(where: { $0.id == user.id }) {
             users.remove(at: existingIndex)
         }
@@ -21,24 +26,36 @@ final class UserHistoryProviderImpl: UserHistoryProvider {
             users.removeLast()
         }
 
-        saveHistory()
+        cachedUsers.update(with: users)
+        saveHistory(users)
     }
 
     func clear() {
-        users.removeAll()
-        saveHistory()
+        let emptyUsers: [User] = []
+        cachedUsers.update(with: emptyUsers)
+        saveHistory(emptyUsers)
     }
 
     private func loadHistory() {
-        if let data = UserDefaults.standard.data(forKey: historyKey),
-           let decodedUsers = try? JSONDecoder().decode([User].self, from: data) {
-            users = decodedUsers
+        guard let data = UserDefaults.standard.data(forKey: historyKey) else {
+            return
+        }
+
+        do {
+            let decodedUsers = try JSONDecoder().decode([User].self, from: data)
+            cachedUsers.update(with: decodedUsers)
+        } catch {
+            print("Load history error:", error.localizedDescription)
+            print("Data content: \(String(data: data, encoding: .utf8) ?? "Invalid data")")
         }
     }
 
-    private func saveHistory() {
-        if let data = try? JSONEncoder().encode(users) {
+    private func saveHistory(_ users: [User]) {
+        do {
+            let data = try JSONEncoder().encode(users)
             UserDefaults.standard.set(data, forKey: historyKey)
+        } catch {
+            print("Save history error:", error.localizedDescription)
         }
     }
 }

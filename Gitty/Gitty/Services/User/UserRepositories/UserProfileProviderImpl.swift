@@ -1,8 +1,8 @@
 import Foundation
 
 final class UserProfileProviderImpl: UserProfileProvider {
-    @Injected private var tokenValidator: TokenValidator
-    @Injected private var networkClient: NetworkClient
+    private let tokenValidator: TokenValidator = DependencyContainer.shared.resolve()
+    private let networkClient: NetworkClient = DependencyContainer.shared.resolve()
 
     func getMe() async throws {
         let token = try await retrieveAndValidateToken()

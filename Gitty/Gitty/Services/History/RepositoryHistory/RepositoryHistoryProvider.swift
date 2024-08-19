@@ -1,6 +1,6 @@
 import Foundation
 
-protocol RepositoryHistoryProvider {
+protocol RepositoryHistoryProvider: AnyObject, Sendable {
     var repositories: [Repository] { get }
 
     func add(_ repository: Repository)

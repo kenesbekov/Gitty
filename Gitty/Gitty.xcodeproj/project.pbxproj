@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		660C49BA2C733652008ACB28 /* PaginationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C49B92C733652008ACB28 /* PaginationManager.swift */; };
 		660C49BC2C73366E008ACB28 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C49BB2C73366E008ACB28 /* PaginationState.swift */; };
+		660C49BF2C734D4B008ACB28 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C49BE2C734D4B008ACB28 /* Atomic.swift */; };
+		660C49C12C734D58008ACB28 /* UnfairLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C49C02C734D58008ACB28 /* UnfairLock.swift */; };
+		660C49C32C734D76008ACB28 /* NSLocking+Critical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C49C22C734D76008ACB28 /* NSLocking+Critical.swift */; };
 		6687FB912C7331A1008D4670 /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687FB902C7331A1008D4670 /* UserRowView.swift */; };
 		66C7FA1E2C724D8100CEF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7FA1D2C724D7E00CEF262 /* Constants.swift */; };
 		66EA782B2C6F9326007DCFCA /* GittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA782A2C6F9326007DCFCA /* GittyApp.swift */; };
@@ -97,6 +100,9 @@
 /* Begin PBXFileReference section */
 		660C49B92C733652008ACB28 /* PaginationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationManager.swift; sourceTree = "<group>"; };
 		660C49BB2C73366E008ACB28 /* PaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
+		660C49BE2C734D4B008ACB28 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		660C49C02C734D58008ACB28 /* UnfairLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfairLock.swift; sourceTree = "<group>"; };
+		660C49C22C734D76008ACB28 /* NSLocking+Critical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLocking+Critical.swift"; sourceTree = "<group>"; };
 		6687FB902C7331A1008D4670 /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
 		66C7FA1D2C724D7E00CEF262 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		66EA78272C6F9326007DCFCA /* Gitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -456,6 +462,9 @@
 		66EA78DC2C722252007DCFCA /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				660C49C22C734D76008ACB28 /* NSLocking+Critical.swift */,
+				660C49C02C734D58008ACB28 /* UnfairLock.swift */,
+				660C49BE2C734D4B008ACB28 /* Atomic.swift */,
 				66EA78A72C70CC33007DCFCA /* KeychainError.swift */,
 				66EA78DE2C722275007DCFCA /* KeychainService.swift */,
 			);
@@ -736,6 +745,7 @@
 				66EA78D22C721BB0007DCFCA /* UsersProvider.swift in Sources */,
 				66EA78C82C721B98007DCFCA /* SortOption.swift in Sources */,
 				66EA789A2C708FCC007DCFCA /* UserHistoryView.swift in Sources */,
+				660C49BF2C734D4B008ACB28 /* Atomic.swift in Sources */,
 				66EA78AE2C70CDCA007DCFCA /* AppState.swift in Sources */,
 				66EA790F2C724040007DCFCA /* NetworkError.swift in Sources */,
 				66EA78C42C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift in Sources */,
@@ -751,6 +761,8 @@
 				66EA78AC2C70CDC0007DCFCA /* AppStateManager.swift in Sources */,
 				66EA78F42C7228FA007DCFCA /* History+Injection.swift in Sources */,
 				66EA78B42C7206E2007DCFCA /* Injected.swift in Sources */,
+				660C49C12C734D58008ACB28 /* UnfairLock.swift in Sources */,
+				660C49C32C734D76008ACB28 /* NSLocking+Critical.swift in Sources */,
 				66EA790D2C724018007DCFCA /* BaseURL.swift in Sources */,
 				66EA78ED2C722757007DCFCA /* User+Injection.swift in Sources */,
 				66EA78962C708F4F007DCFCA /* UserHistoryProvider.swift in Sources */,
@@ -964,7 +976,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1005,7 +1017,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};

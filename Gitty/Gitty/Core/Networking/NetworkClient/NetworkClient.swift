@@ -1,6 +1,6 @@
 import Foundation
 
-protocol NetworkClient {
+protocol NetworkClient: Sendable {
     func request<Response: Decodable>(
         _ endpoint: String,
         method: HTTPMethod,

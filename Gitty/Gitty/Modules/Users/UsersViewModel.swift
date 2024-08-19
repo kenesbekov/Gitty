@@ -7,9 +7,9 @@ final class UsersViewModel: ObservableObject {
     @Published var users: [User] = []
     @Published var paginationState: PaginationState = .default
 
-    @Injected var userProfileProvider: UserProfileProvider
-    @Injected var usersProvider: UsersProvider
-    @Injected var historyProvider: UserHistoryProvider
+    @Injected private var userProfileProvider: UserProfileProvider
+    @Injected private var usersProvider: UsersProvider
+    @Injected private var historyProvider: UserHistoryProvider
 
     private var paginationManager = PaginationManager()
 

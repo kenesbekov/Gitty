@@ -1,7 +1,7 @@
 import Foundation
 
 final class AccessTokenProviderImpl: AccessTokenProvider {
-    @Injected private var networkClient: NetworkClient
+    private let networkClient: NetworkClient = DependencyContainer.shared.resolve()
 
     func get(for authorizationCode: String) async throws {
         let endpoint = "/login/oauth/access_token"
