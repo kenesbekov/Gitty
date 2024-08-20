@@ -3,20 +3,22 @@ import Testing
 
 struct KeychainServiceTests {
     let token = "sampleToken"
-    let keychainService = KeychainService.shared
+    let keychainManager = KeychainManagerImpl()
 
-    func testSaveAndRetrieveToken() {
-        try? keychainService.saveToken(token)
+    @Test("Save and retrieve token")
+    func saveAndRetrieveToken() {
+        try? keychainManager.saveToken(token)
 
-        let retrievedToken = try? keychainService.retrieveToken()
+        let retrievedToken = try? keychainManager.retrieveToken()
         #expect(retrievedToken == token)
     }
 
-    func testDeleteToken() {
-        try? keychainService.saveToken(token)
-        try? keychainService.deleteToken()
+    @Test("Delete token")
+    func deleteToken() {
+        try? keychainManager.saveToken(token)
+        try? keychainManager.deleteToken()
 
-        let retrievedToken = try? keychainService.retrieveToken()
+        let retrievedToken = try? keychainManager.retrieveToken()
 
         #expect(retrievedToken == nil)
     }

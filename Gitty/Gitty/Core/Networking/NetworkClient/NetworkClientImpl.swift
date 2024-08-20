@@ -3,7 +3,7 @@ import Foundation
 final class NetworkClientImpl: NetworkClient {
     private let session: URLSession
     private let decoder: JSONDecoder
-    private let authToken: String? = try? KeychainService.shared.retrieveToken()
+    private let keychainManager: KeychainManager = DependencyContainer.shared.resolve()
 
     init(
         session: URLSession = .shared,
@@ -35,7 +35,7 @@ final class NetworkClientImpl: NetworkClient {
         request.httpBody = body
         request.addValue("application/json", forHTTPHeaderField: "Accept")
 
-        if let token = authToken {
+        if let token = try? keychainManager.retrieveToken() {
             request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
         }
 

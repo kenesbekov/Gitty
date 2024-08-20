@@ -19,28 +19,32 @@ struct UserHistoryTests {
         cleaner = manager
     }
 
-    func testAddUser() {
+    @Test("Add user")
+    func addUser() {
         provider.add(user)
 
         #expect(provider.users.count == 1)
         #expect(provider.users.first == user)
     }
 
-    func testClearHistory() {
+    @Test("Clear history")
+    func clearHistory() {
         provider.add(user)
         cleaner.clear()
 
         #expect(provider.users.isEmpty)
     }
 
-    func testLoadHistory() {
+    @Test("Load history")
+    func loadHistory() {
         provider.add(user)
 
         #expect(provider.users.count == 1)
         #expect(provider.users.first == user)
     }
 
-    func testSaveHistory() {
+    @Test("Save history")
+    func saveHistory() {
         provider.add(user)
 
         #expect(UserDefaults.standard.data(forKey: Constants.historyKey) != nil)

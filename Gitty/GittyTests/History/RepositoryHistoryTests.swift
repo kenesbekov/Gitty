@@ -28,28 +28,32 @@ struct RepositoryHistoryTests {
         cleaner = manager
     }
 
-    func testAddUser() {
+    @Test("Add repository")
+    func add() {
         provider.add(repository)
 
         #expect(provider.repositories.count == 1)
         #expect(provider.repositories.first == repository)
     }
 
-    func testClearHistory() {
+    @Test("Clear history")
+    func clearHistory() {
         provider.add(repository)
         cleaner.clear()
 
         #expect(provider.repositories.isEmpty)
     }
 
-    func testLoadHistory() {
+    @Test("Load history")
+    func loadHistory() {
         provider.add(repository)
 
         #expect(provider.repositories.count == 1)
         #expect(provider.repositories.first == repository)
     }
 
-    func testSaveHistory() {
+    @Test("Save history")
+    func saveHistory() {
         provider.add(repository)
 
         #expect(UserDefaults.standard.data(forKey: Constants.historyKey) != nil)

@@ -9,6 +9,7 @@ protocol AppStateManager: ObservableObject {
 final class AppStateManagerImpl: AppStateManager {
     @Published var state: AppState
     @Injected private var tokenValidator: TokenValidator
+    @Injected private var keychainManager: KeychainManager
 
     init() {
         state = .loading
@@ -16,13 +17,13 @@ final class AppStateManagerImpl: AppStateManager {
     }
 
     func logout() {
-        try? KeychainService.shared.deleteToken()
+        try? keychainManager.deleteToken()
         state = .login
     }
 
     private func retrieveTokenFromKeychain() {
         do {
-            guard let token = try KeychainService.shared.retrieveToken() else {
+            guard let token = try keychainManager.retrieveToken() else {
                 state = .login
                 return
             }

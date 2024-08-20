@@ -8,13 +8,9 @@ private enum Constants {
     static let account = "accessToken"
 }
 
-// MARK: - KeychainService
+// MARK: - KeychainManagerImpl
 
-final class KeychainService: Sendable {
-    static let shared = KeychainService()
-
-    private init() {}
-
+final class KeychainManagerImpl: KeychainManager {
     func saveToken(_ token: String) throws(KeychainError) {
         let data = token.data(using: .utf8)!
 
