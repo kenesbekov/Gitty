@@ -24,6 +24,26 @@ struct Repository: Identifiable, Codable, Sendable, Hashable {
     let htmlURL: URL
     var isViewed = false
 
+    init(
+        id: ID,
+        name: String,
+        description: String?,
+        stargazersCount: Int,
+        forksCount: Int,
+        owner: User,
+        updatedAt: Date,
+        htmlURL: URL
+    ) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.stargazersCount = stargazersCount
+        self.forksCount = forksCount
+        self.owner = owner
+        self.updatedAt = updatedAt
+        self.htmlURL = htmlURL
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(ID.self, forKey: .id)

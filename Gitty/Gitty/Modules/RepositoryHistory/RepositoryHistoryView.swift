@@ -23,7 +23,7 @@ struct RepositoryHistoryView: View {
         }
         .navigationTitle("History")
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     showAlert = true
                 } label: {

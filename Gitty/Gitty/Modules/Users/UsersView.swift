@@ -2,7 +2,7 @@ import SwiftUI
 
 struct UsersView: View {
     @Environment(\.openURL) private var openURL
-    @EnvironmentObject private var appStateManager: AppStateManager
+    @EnvironmentObject private var appStateManager: AppStateManagerImpl
     @State private var showingLogoutAlert = false
     @StateObject private var viewModel = UsersViewModel()
 
@@ -25,7 +25,9 @@ struct UsersView: View {
                 }
             }
             .onChange(of: viewModel.searchQuery) { _ in
-                viewModel.search()
+                Task {
+                    await viewModel.search()
+                }
             }
             .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Users")
             .navigationTitle("Users")
@@ -123,8 +125,8 @@ struct UsersView: View {
                             }
                         )
                     }
-                    .onAppear {
-                        loadMoreIfNeeded(at: index)
+                    .task {
+                        await loadMoreIfNeeded(at: index)
                     }
                     .onTapGesture {
                         viewModel.addToHistory(user: viewModel.users[index])
@@ -138,16 +140,18 @@ struct UsersView: View {
             }
             .padding(.bottom, 20)
             .refreshable {
-                viewModel.search()
+                Task {
+                    await viewModel.search()
+                }
             }
         }
     }
 
-    private func loadMoreIfNeeded(at index: Int) {
+    private func loadMoreIfNeeded(at index: Int) async {
         guard index == viewModel.users.count - 1 else {
             return
         }
 
-        viewModel.loadMoreUsers()
+        await viewModel.loadMoreUsers()
     }
 }

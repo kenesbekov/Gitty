@@ -6,29 +6,45 @@ final class RepositoriesViewModel: ObservableObject {
     @Published var repositories: [Repository] = []
     @Published var paginationState: PaginationState = .default
 
-    @Injected private var repositoriesProvider: RepositoriesProvider
-    @Injected private var historyProvider: RepositoryHistoryProvider
+    private let repositoriesProvider: RepositoriesProvider
+    private let historyProvider: RepositoryHistoryProvider
+
+    init(
+        repositoriesProvider: RepositoriesProvider,
+        historyProvider: RepositoryHistoryProvider
+    ) {
+        self.repositoriesProvider = repositoriesProvider
+        self.historyProvider = historyProvider
+    }
+
+    init() {
+        @Injected var repositoriesProvider: RepositoriesProvider
+        self.repositoriesProvider = repositoriesProvider
+
+        @Injected var historyProvider: RepositoryHistoryProvider
+        self.historyProvider = historyProvider
+    }
 
     private var paginationManager = PaginationManager()
 
-    func search() {
-        guard paginationManager.shouldLoadMore(isLoading: paginationState == .loading) else { return }
-
-        Task {
-            paginationManager.reset()
-            await getRepositories(searchQuery: searchQuery, page: 1)
-        }
-    }
-
-    func loadMoreRepositories() {
-        guard paginationManager.shouldLoadMore(isLoading: paginationState == .loading || paginationState == .paginating) else {
+    func search() async {
+        guard paginationManager.shouldLoadMore(isLoading: paginationState == .loading) else {
             return
         }
 
-        Task {
-            paginationManager.loadNextPage()
-            await getRepositories(searchQuery: searchQuery, page: paginationManager.currentPage)
+        paginationManager.reset()
+        await getRepositories(searchQuery: searchQuery, page: 1)
+    }
+
+    func loadMoreRepositories() async {
+        guard paginationManager.shouldLoadMore(
+            isLoading: paginationState == .loading || paginationState == .paginating
+        ) else {
+            return
         }
+
+        paginationManager.loadNextPage()
+        await getRepositories(searchQuery: searchQuery, page: paginationManager.currentPage)
     }
 
     private func getRepositories(searchQuery: String, page: Int) async {
@@ -74,17 +90,20 @@ final class RepositoriesViewModel: ObservableObject {
                 ? .noResults
                 : .success
         } catch {
-            paginationState = .error(error.localizedDescription)
+            paginationState = .error("An error occurred")
         }
     }
 
     func markRepositoryAsViewed(at index: Int) {
-        guard index >= 0 && index < repositories.count else { return }
+        guard index >= 0 && index < repositories.count else {
+            return
+        }
+
         repositories[index].isViewed = true
         historyProvider.add(repositories[index])
     }
 
-    func deleteToken(appStateManager: AppStateManager) {
+    func deleteToken(appStateManager: AppStateManagerImpl) {
         appStateManager.logout()
     }
 }

@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct GittyApp: App {
-    @StateObject private var appStateManager = AppStateManager()
+    @StateObject private var appStateManager = AppStateManagerImpl()
 
     init() {
         DependencyContainer.shared.registerServices()

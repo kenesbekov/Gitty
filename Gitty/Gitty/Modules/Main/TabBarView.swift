@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @EnvironmentObject private var appStateManager: AppStateManager
+    @EnvironmentObject private var appStateManager: AppStateManagerImpl
 
     var body: some View {
         TabView {

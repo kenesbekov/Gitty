@@ -1,7 +1,12 @@
 import Foundation
 
 @MainActor
-final class AppStateManager: ObservableObject {
+protocol AppStateManager: ObservableObject {
+    func logout()
+}
+
+@MainActor
+final class AppStateManagerImpl: AppStateManager {
     @Published var state: AppState
     @Injected private var tokenValidator: TokenValidator
 

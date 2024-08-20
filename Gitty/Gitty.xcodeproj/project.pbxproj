@@ -23,8 +23,6 @@
 		66EA782F2C6F9327007DCFCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66EA782E2C6F9327007DCFCA /* Assets.xcassets */; };
 		66EA78332C6F9327007DCFCA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66EA78322C6F9327007DCFCA /* Preview Assets.xcassets */; };
 		66EA783D2C6F9327007DCFCA /* GittyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA783C2C6F9327007DCFCA /* GittyTests.swift */; };
-		66EA78472C6F9327007DCFCA /* GittyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78462C6F9327007DCFCA /* GittyUITests.swift */; };
-		66EA78492C6F9327007DCFCA /* GittyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78482C6F9327007DCFCA /* GittyUITestsLaunchTests.swift */; };
 		66EA78622C6FA0D0007DCFCA /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78612C6FA0D0007DCFCA /* UserProfile.swift */; };
 		66EA78642C6FA185007DCFCA /* RepositoryHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78632C6FA185007DCFCA /* RepositoryHistoryManager.swift */; };
 		66EA78682C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */; };
@@ -81,6 +79,10 @@
 		66EA790D2C724018007DCFCA /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA790C2C724018007DCFCA /* BaseURL.swift */; };
 		66EA790F2C724040007DCFCA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA790E2C724040007DCFCA /* NetworkError.swift */; };
 		66EF09802C747F6D00D2D23D /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */; };
+		66EF098A2C748CA400D2D23D /* UserHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF09892C748CA400D2D23D /* UserHistoryTests.swift */; };
+		66EF098E2C749DA200D2D23D /* RepositoryHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF098D2C749DA200D2D23D /* RepositoryHistoryTests.swift */; };
+		66EF09902C749ED700D2D23D /* Test+Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF098F2C749ED700D2D23D /* Test+Tag.swift */; };
+		66EF09922C74A15700D2D23D /* RepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF09912C74A15700D2D23D /* RepositoriesViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,8 +123,6 @@
 		66EA78382C6F9327007DCFCA /* GittyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GittyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EA783C2C6F9327007DCFCA /* GittyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GittyTests.swift; sourceTree = "<group>"; };
 		66EA78422C6F9327007DCFCA /* GittyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GittyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66EA78462C6F9327007DCFCA /* GittyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GittyUITests.swift; sourceTree = "<group>"; };
-		66EA78482C6F9327007DCFCA /* GittyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GittyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		66EA78552C6F9CE5007DCFCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66EA78612C6FA0D0007DCFCA /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		66EA78632C6FA185007DCFCA /* RepositoryHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryManager.swift; sourceTree = "<group>"; };
@@ -180,6 +180,10 @@
 		66EA790C2C724018007DCFCA /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		66EA790E2C724040007DCFCA /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
+		66EF09892C748CA400D2D23D /* UserHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistoryTests.swift; sourceTree = "<group>"; };
+		66EF098D2C749DA200D2D23D /* RepositoryHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryTests.swift; sourceTree = "<group>"; };
+		66EF098F2C749ED700D2D23D /* Test+Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test+Tag.swift"; sourceTree = "<group>"; };
+		66EF09912C74A15700D2D23D /* RepositoriesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,7 +373,6 @@
 			children = (
 				66EA78292C6F9326007DCFCA /* Gitty */,
 				66EA783B2C6F9327007DCFCA /* GittyTests */,
-				66EA78452C6F9327007DCFCA /* GittyUITests */,
 				66EA78282C6F9326007DCFCA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -407,19 +410,14 @@
 		66EA783B2C6F9327007DCFCA /* GittyTests */ = {
 			isa = PBXGroup;
 			children = (
-				66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */,
 				66EA783C2C6F9327007DCFCA /* GittyTests.swift */,
+				66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */,
+				66EF09912C74A15700D2D23D /* RepositoriesViewModelTests.swift */,
+				66EF098D2C749DA200D2D23D /* RepositoryHistoryTests.swift */,
+				66EF098F2C749ED700D2D23D /* Test+Tag.swift */,
+				66EF09892C748CA400D2D23D /* UserHistoryTests.swift */,
 			);
 			path = GittyTests;
-			sourceTree = "<group>";
-		};
-		66EA78452C6F9327007DCFCA /* GittyUITests */ = {
-			isa = PBXGroup;
-			children = (
-				66EA78462C6F9327007DCFCA /* GittyUITests.swift */,
-				66EA78482C6F9327007DCFCA /* GittyUITestsLaunchTests.swift */,
-			);
-			path = GittyUITests;
 			sourceTree = "<group>";
 		};
 		66EA785A2C6FA03C007DCFCA /* Modules */ = {
@@ -817,8 +815,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66EF09922C74A15700D2D23D /* RepositoriesViewModelTests.swift in Sources */,
+				66EF09902C749ED700D2D23D /* Test+Tag.swift in Sources */,
 				66EF09802C747F6D00D2D23D /* KeychainServiceTests.swift in Sources */,
 				66EA783D2C6F9327007DCFCA /* GittyTests.swift in Sources */,
+				66EF098E2C749DA200D2D23D /* RepositoryHistoryTests.swift in Sources */,
+				66EF098A2C748CA400D2D23D /* UserHistoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,8 +828,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66EA78492C6F9327007DCFCA /* GittyUITestsLaunchTests.swift in Sources */,
-				66EA78472C6F9327007DCFCA /* GittyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -992,8 +992,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kenesbekov.adam.Gitty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
@@ -1033,8 +1034,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kenesbekov.adam.Gitty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
@@ -1059,7 +1061,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gitty.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Gitty";
 				XROS_DEPLOYMENT_TARGET = 2.0;
@@ -1082,7 +1084,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gitty.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Gitty";
 				XROS_DEPLOYMENT_TARGET = 2.0;

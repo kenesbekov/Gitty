@@ -12,31 +12,27 @@ final class UsersViewModel: ObservableObject {
 
     private var paginationManager = PaginationManager()
 
-    func search() {
+    func search() async {
         guard paginationManager.shouldLoadMore(isLoading: paginationState == .loading) else { return }
 
-        Task {
-            paginationManager.reset()
-            await performSearch(page: 1)
-        }
+        paginationManager.reset()
+        await performSearch(page: 1)
     }
 
-    func loadMoreUsers() {
+    func loadMoreUsers() async {
         guard paginationManager.shouldLoadMore(isLoading: paginationState == .loading || paginationState == .paginating) else {
             return
         }
 
-        Task {
-            paginationManager.loadNextPage()
-            await performSearch(page: paginationManager.currentPage)
-        }
+        paginationManager.loadNextPage()
+        await performSearch(page: paginationManager.currentPage)
     }
 
     func addToHistory(user: User) {
         historyProvider.add(user)
     }
 
-    func deleteToken(appStateManager: AppStateManager) {
+    func deleteToken(appStateManager: AppStateManagerImpl) {
         appStateManager.logout()
     }
 

@@ -2,7 +2,7 @@ import SwiftUI
 
 final class OAuthHandlerImpl: @preconcurrency OAuthHandler {
     @MainActor
-    func handleOAuthCallback(url: URL, appStateManager: AppStateManager) {
+    func handleOAuthCallback(url: URL, appStateManager: AppStateManagerImpl) {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let queryItems = components.queryItems,
               let code = queryItems.first(where: { $0.name == "code" })?.value else {
