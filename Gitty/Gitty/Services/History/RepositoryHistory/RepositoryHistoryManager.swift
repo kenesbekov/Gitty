@@ -1,5 +1,12 @@
 import Foundation
 
+// MARK: - Constants
+
+private enum Constants {
+    static let maxHistoryCount = 20
+    static let historyKey = "ViewedRepositories"
+}
+
 // MARK: - RepositoryHistoryManager
 
 final class RepositoryHistoryManager {
@@ -8,15 +15,13 @@ final class RepositoryHistoryManager {
     }
 
     private let cachedRepositories = Atomic<[Repository]>(with: [])
-    private let maxHistoryCount = 20
-    private let historyKey = "ViewedRepositories"
 
     init() {
         loadHistory()
     }
 
     private func loadHistory() {
-        guard let data = UserDefaults.standard.data(forKey: historyKey) else {
+        guard let data = UserDefaults.standard.data(forKey: Constants.historyKey) else {
             return
         }
 
@@ -32,7 +37,7 @@ final class RepositoryHistoryManager {
     private func saveHistory(_ repositories: [Repository]) {
         do {
             let data = try JSONEncoder().encode(repositories)
-            UserDefaults.standard.set(data, forKey: historyKey)
+            UserDefaults.standard.set(data, forKey: Constants.historyKey)
         } catch {
             print("Save history error:", error.localizedDescription)
         }
@@ -51,7 +56,7 @@ extension RepositoryHistoryManager: RepositoryHistoryProvider {
 
         repositories.insert(repository, at: 0)
 
-        if repositories.count > maxHistoryCount {
+        if repositories.count > Constants.maxHistoryCount {
             repositories.removeLast()
         }
 

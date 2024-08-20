@@ -1,5 +1,12 @@
 import Foundation
 
+// MARK: - Constants
+
+private enum Constants {
+    static let maxHistoryCount = 20
+    static let historyKey = "ViewedUsers"
+}
+
 // MARK: - UserHistoryManager
 
 final class UserHistoryManager {
@@ -8,15 +15,13 @@ final class UserHistoryManager {
     }
 
     private let cachedUsers = Atomic<[User]>(with: [])
-    private let maxHistoryCount = 20
-    private let historyKey = "ViewedUsers"
 
     init() {
         loadHistory()
     }
 
     private func loadHistory() {
-        guard let data = UserDefaults.standard.data(forKey: historyKey) else {
+        guard let data = UserDefaults.standard.data(forKey: Constants.historyKey) else {
             return
         }
 
@@ -31,7 +36,7 @@ final class UserHistoryManager {
     private func saveHistory(_ users: [User]) {
         do {
             let data = try JSONEncoder().encode(users)
-            UserDefaults.standard.set(data, forKey: historyKey)
+            UserDefaults.standard.set(data, forKey: Constants.historyKey)
         } catch {
             print("Failed to save history: \(error.localizedDescription)")
         }
@@ -50,7 +55,7 @@ extension UserHistoryManager: UserHistoryProvider {
 
         users.insert(user, at: 0)
 
-        if users.count > maxHistoryCount {
+        if users.count > Constants.maxHistoryCount {
             users.removeLast()
         }
 

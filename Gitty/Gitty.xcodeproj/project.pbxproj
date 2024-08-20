@@ -29,8 +29,6 @@
 		66EA78642C6FA185007DCFCA /* RepositoryHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78632C6FA185007DCFCA /* RepositoryHistoryManager.swift */; };
 		66EA78682C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */; };
 		66EA786C2C6FA23E007DCFCA /* RepositoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA786B2C6FA23E007DCFCA /* RepositoriesView.swift */; };
-		66EA787B2C6FA3D0007DCFCA /* GitHubAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787A2C6FA3D0007DCFCA /* GitHubAPITests.swift */; };
-		66EA787D2C6FA3F0007DCFCA /* OAuthFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787C2C6FA3F0007DCFCA /* OAuthFlowTests.swift */; };
 		66EA78802C6FA4CB007DCFCA /* OAuthHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */; };
 		66EA78822C6FA51B007DCFCA /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78812C6FA51B007DCFCA /* Repository.swift */; };
 		66EA78842C6FA59D007DCFCA /* GetRepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78832C6FA59D007DCFCA /* GetRepositoriesResponse.swift */; };
@@ -82,6 +80,7 @@
 		66EA790B2C723EA9007DCFCA /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA790A2C723EA8007DCFCA /* HTTPMethod.swift */; };
 		66EA790D2C724018007DCFCA /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA790C2C724018007DCFCA /* BaseURL.swift */; };
 		66EA790F2C724040007DCFCA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA790E2C724040007DCFCA /* NetworkError.swift */; };
+		66EF09802C747F6D00D2D23D /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,8 +128,6 @@
 		66EA78632C6FA185007DCFCA /* RepositoryHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryManager.swift; sourceTree = "<group>"; };
 		66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryProvider.swift; sourceTree = "<group>"; };
 		66EA786B2C6FA23E007DCFCA /* RepositoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesView.swift; sourceTree = "<group>"; };
-		66EA787A2C6FA3D0007DCFCA /* GitHubAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPITests.swift; sourceTree = "<group>"; };
-		66EA787C2C6FA3F0007DCFCA /* OAuthFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFlowTests.swift; sourceTree = "<group>"; };
 		66EA787F2C6FA4CB007DCFCA /* OAuthHandlerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandlerImpl.swift; sourceTree = "<group>"; };
 		66EA78812C6FA51B007DCFCA /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		66EA78832C6FA59D007DCFCA /* GetRepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRepositoriesResponse.swift; sourceTree = "<group>"; };
@@ -182,6 +179,7 @@
 		66EA790A2C723EA8007DCFCA /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		66EA790C2C724018007DCFCA /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		66EA790E2C724040007DCFCA /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,8 +407,7 @@
 		66EA783B2C6F9327007DCFCA /* GittyTests */ = {
 			isa = PBXGroup;
 			children = (
-				66EA787C2C6FA3F0007DCFCA /* OAuthFlowTests.swift */,
-				66EA787A2C6FA3D0007DCFCA /* GitHubAPITests.swift */,
+				66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */,
 				66EA783C2C6F9327007DCFCA /* GittyTests.swift */,
 			);
 			path = GittyTests;
@@ -820,9 +817,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66EA787D2C6FA3F0007DCFCA /* OAuthFlowTests.swift in Sources */,
+				66EF09802C747F6D00D2D23D /* KeychainServiceTests.swift in Sources */,
 				66EA783D2C6F9327007DCFCA /* GittyTests.swift in Sources */,
-				66EA787B2C6FA3D0007DCFCA /* GitHubAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

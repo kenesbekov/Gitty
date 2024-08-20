@@ -1,11 +1,17 @@
 import Foundation
 import Security
 
+// MARK: - Constants
+
+private enum Constants {
+    static let service = "com.kenesbekov.adam.gitty"
+    static let account = "accessToken"
+}
+
+// MARK: - KeychainService
+
 final class KeychainService: Sendable {
     static let shared = KeychainService()
-
-    private let service = "com.kenesbekov.adam.gitty"
-    private let account = "accessToken"
 
     private init() {}
 
@@ -14,8 +20,8 @@ final class KeychainService: Sendable {
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service,
-            kSecAttrAccount as String: account,
+            kSecAttrService as String: Constants.service,
+            kSecAttrAccount as String: Constants.account,
             kSecValueData as String: data
         ]
 
@@ -30,8 +36,8 @@ final class KeychainService: Sendable {
     func retrieveToken() throws(KeychainError) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service,
-            kSecAttrAccount as String: account,
+            kSecAttrService as String: Constants.service,
+            kSecAttrAccount as String: Constants.account,
             kSecReturnData as String: kCFBooleanTrue!,
             kSecMatchLimit as String: kSecMatchLimitOne
         ]
@@ -58,8 +64,8 @@ final class KeychainService: Sendable {
     func deleteToken() throws(KeychainError) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service,
-            kSecAttrAccount as String: account
+            kSecAttrService as String: Constants.service,
+            kSecAttrAccount as String: Constants.account
         ]
 
         let status = SecItemDelete(query as CFDictionary)
