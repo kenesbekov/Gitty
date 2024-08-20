@@ -411,11 +411,10 @@
 			isa = PBXGroup;
 			children = (
 				66EA783C2C6F9327007DCFCA /* GittyTests.swift */,
-				66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */,
-				66EF09912C74A15700D2D23D /* RepositoriesViewModelTests.swift */,
-				66EF098D2C749DA200D2D23D /* RepositoryHistoryTests.swift */,
 				66EF098F2C749ED700D2D23D /* Test+Tag.swift */,
-				66EF09892C748CA400D2D23D /* UserHistoryTests.swift */,
+				66EF09972C74AB9A00D2D23D /* History */,
+				66EF09982C74ABB600D2D23D /* Persistence */,
+				66EF09962C74AB9300D2D23D /* ViewModel */,
 			);
 			path = GittyTests;
 			sourceTree = "<group>";
@@ -608,6 +607,31 @@
 				66EA788D2C6FAF6B007DCFCA /* LoginView.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		66EF09962C74AB9300D2D23D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				66EF09912C74A15700D2D23D /* RepositoriesViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		66EF09972C74AB9A00D2D23D /* History */ = {
+			isa = PBXGroup;
+			children = (
+				66EF098D2C749DA200D2D23D /* RepositoryHistoryTests.swift */,
+				66EF09892C748CA400D2D23D /* UserHistoryTests.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		66EF09982C74ABB600D2D23D /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				66EF097F2C747F6D00D2D23D /* KeychainServiceTests.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

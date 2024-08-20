@@ -10,18 +10,26 @@ struct RepositoriesViewModelTests {
     var mockHistoryProvider: MockRepositoryHistoryProvider!
     var mockAppStateManager: MockAppStateManager!
 
-    let mockRepositories = [
-        Repository(
-            id: 1,
-            name: "Repo1",
-            description: nil,
-            stargazersCount: 10,
-            forksCount: 5,
-            owner: User(id: 1, login: "user1", avatarURL: URL(string: "https://example.com/avatar.png")!),
-            updatedAt: Date(),
-            htmlURL: URL(string: "https://example.com")!
-        )
-    ]
+    let repository = Repository(
+        id: 1,
+        name: "Repo1",
+        description: nil,
+        stargazersCount: 10,
+        forksCount: 5,
+        owner: User(id: 1, login: "user1", avatarURL: URL(string: "https://example.com/avatar.png")!),
+        updatedAt: Date(),
+        htmlURL: URL(string: "https://example.com")!
+    )
+    let repositories = [Repository(
+        id: 1,
+        name: "Repo1",
+        description: nil,
+        stargazersCount: 10,
+        forksCount: 5,
+        owner: User(id: 1, login: "user1", avatarURL: URL(string: "https://example.com/avatar.png")!),
+        updatedAt: Date(),
+        htmlURL: URL(string: "https://example.com")!
+    )]
 
     init() {
         mockRepositoriesProvider = MockRepositoriesProvider()
@@ -43,7 +51,7 @@ struct RepositoriesViewModelTests {
 
     @Test
     func testSearchUpdatesRepositories() async {
-        mockRepositoriesProvider.mockRepositories = mockRepositories
+        mockRepositoriesProvider.repositories = repositories
 
         viewModel.searchQuery = "Test"
         await viewModel.search()
@@ -55,7 +63,7 @@ struct RepositoriesViewModelTests {
 
     @Test
     func testLoadMoreRepositories() async {
-        mockRepositoriesProvider.mockRepositories = mockRepositories
+        mockRepositoriesProvider.repositories = repositories
 
         viewModel.searchQuery = "Test"
         await viewModel.search()
@@ -67,8 +75,7 @@ struct RepositoriesViewModelTests {
 
     @Test
     func testMarkRepositoryAsViewed() {
-        let repository = Repository(id: 3, name: "Repo3", description: nil, stargazersCount: 30, forksCount: 15, owner: User(id: 3, login: "user3", avatarURL: URL(string: "https://example.com/avatar3.png")!), updatedAt: Date(), htmlURL: URL(string: "https://example.com/repo3")!)
-        viewModel.repositories = [repository]
+        viewModel.repositories = repositories
 
         viewModel.markRepositoryAsViewed(at: 0)
 
@@ -87,10 +94,10 @@ struct RepositoriesViewModelTests {
     }
 }
 
-// Mocks
+// MARK: - Mocks
 
 final class MockRepositoriesProvider: RepositoriesProvider, @unchecked Sendable {
-    var mockRepositories: [Repository] = []
+    var repositories: [Repository] = []
     var shouldThrowError: Bool = false
 
     func get(
@@ -103,14 +110,14 @@ final class MockRepositoriesProvider: RepositoriesProvider, @unchecked Sendable 
         if shouldThrowError {
             throw NSError(domain: "", code: 0, userInfo: nil)
         }
-        return mockRepositories
+        return repositories
     }
 
     func get(userLogin: String, page: Int, perPage: Int) async throws -> [Repository] {
         if shouldThrowError {
             throw NSError(domain: "", code: 0, userInfo: nil)
         }
-        return mockRepositories
+        return repositories
     }
 }
 

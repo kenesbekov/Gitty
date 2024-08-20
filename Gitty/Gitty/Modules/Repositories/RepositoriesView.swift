@@ -8,7 +8,7 @@ struct RepositoriesView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
+            ScrollView {
                 switch viewModel.paginationState {
                 case .default:
                     emptyStateView
@@ -24,11 +24,7 @@ struct RepositoriesView: View {
                     errorView
                 }
             }
-            .onChange(of: viewModel.searchQuery) { _ in
-                Task {
-                    await viewModel.search()
-                }
-            }
+            .refreshable(action: viewModel.refreshed)
             .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
             .navigationTitle("Repos")
             .toolbar {
@@ -57,6 +53,8 @@ struct RepositoriesView: View {
 
     private var emptyStateView: some View {
         VStack {
+            Spacer()
+
             Image(systemName: "magnifyingglass")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -68,6 +66,8 @@ struct RepositoriesView: View {
                 .font(.headline)
                 .foregroundColor(.gray)
                 .padding()
+
+            Spacer()
         }
     }
 
@@ -112,31 +112,24 @@ struct RepositoriesView: View {
     }
 
     private var repositoryListView: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(viewModel.repositories.indices, id: \.self) { index in
-                    RepositoryRowView(
-                        repository: viewModel.repositories[index],
-                        openURL: { url in openURL(url) },
-                        markAsViewed: { viewModel.markRepositoryAsViewed(at: index) }
-                    )
-                    .task {
-                        await loadMoreIfNeeded(at: index)
-                    }
-                }
-
-                if viewModel.paginationState == .paginating {
-                    ProgressView()
-                        .padding()
+        LazyVStack {
+            ForEach(viewModel.repositories.indices, id: \.self) { index in
+                RepositoryRowView(
+                    repository: viewModel.repositories[index],
+                    openURL: { url in openURL(url) },
+                    markAsViewed: { viewModel.markRepositoryAsViewed(at: index) }
+                )
+                .task {
+                    await loadMoreIfNeeded(at: index)
                 }
             }
-            .padding(.bottom, 20)
-            .refreshable {
-                Task {
-                    await viewModel.search()
-                }
+
+            if viewModel.paginationState == .paginating {
+                ProgressView()
+                    .padding()
             }
         }
+        .padding(.bottom, 20)
     }
 
     private func loadMoreIfNeeded(at index: Int) async {

@@ -17,7 +17,6 @@ final class OAuthHandlerImpl: @preconcurrency OAuthHandler {
         Task {
             do {
                 try await accessTokenProvider.get(for: code)
-                try await userProfileProvider.getMe()
                 
                 appStateManager.state = .home
             } catch {
