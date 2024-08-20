@@ -9,7 +9,7 @@ private enum Constants {
 @Suite(.tags(.history))
 struct RepositoryHistoryTests {
     var provider: RepositoryHistoryProvider!
-    var cleaner: RepositoryHistoryCleaner!
+    var cleaner: HistoryCleaner!
 
     let repository = Repository(
         id: 1,

@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct UserHistoryView: View {
+    @Injected private var cleaner: HistoryCleaner
     @Injected private var provider: UserHistoryProvider
-    @Injected private var cleaner: UserHistoryCleaner
-    
+
     @State private var showAlert = false
     @State private var users: [User]
 
