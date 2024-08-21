@@ -1,5 +1,9 @@
 import Foundation
 
+enum DependencyError: Error {
+    case serviceNotFound(type: String)
+}
+
 final class DependencyContainer: Sendable {
     static let shared = DependencyContainer()
 
@@ -19,6 +23,15 @@ final class DependencyContainer: Sendable {
         guard let service = services.value[String(describing: T.self)] as? T else {
             fatalError("No registered service for type \(T.self)")
         }
+
+        return service
+    }
+
+    func resolveWithThrowing<T>() throws(DependencyError) -> T {
+        guard let service = services.value[String(describing: T.self)] as? T else {
+            throw .serviceNotFound(type: "No registered service for type \(T.self)")
+        }
+
         return service
     }
 }

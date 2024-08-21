@@ -8,8 +8,8 @@ private enum Constants {
 
 @Suite(.tags(.history))
 struct UserHistoryTests {
-    var provider: UserHistoryProvider!
-    var cleaner: HistoryCleaner!
+    let provider: UserHistoryProvider
+    let cleaner: UserHistoryCleaner
 
     let user = User(id: 1, login: "testuser", avatarURL: URL(string: "https://example.com/avatar.png")!)
 

@@ -1,7 +1,7 @@
 import Testing
 @testable import Gitty
 
-struct KeychainServiceTests {
+struct KeychainManagerTests {
     let token = "sampleToken"
     let keychainManager = KeychainManagerImpl()
 

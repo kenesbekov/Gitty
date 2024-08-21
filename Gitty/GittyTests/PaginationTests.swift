@@ -2,11 +2,7 @@ import Testing
 @testable import Gitty
 
 struct PaginationManagerTests {
-    var paginationManager: PaginationManager!
-
-    init() {
-        paginationManager = PaginationManager()
-    }
+    let paginationManager = PaginationManager()
 
     @Test("Check Initial State")
     func initialState() {
