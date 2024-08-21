@@ -3,8 +3,7 @@ import Foundation
 protocol RepositoriesProvider: AnyObject, Sendable {
     func get(
         matching query: String,
-        sort: SortKind,
-        order: OrderKind,
+        sort: RepositorySortKind,
         page: Int,
         perPage: Int
     ) async throws -> [Repository]

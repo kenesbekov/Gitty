@@ -5,8 +5,7 @@ final class RepositoriesProviderImpl: RepositoriesProvider {
 
     func get(
         matching query: String,
-        sort: SortKind,
-        order: OrderKind,
+        sort: RepositorySortKind,
         page: Int,
         perPage: Int
     ) async throws -> [Repository] {
@@ -22,14 +21,7 @@ final class RepositoriesProviderImpl: RepositoriesProvider {
             sortValue = "updated"
         }
 
-        switch order {
-        case .ascending:
-            orderValue = "asc"
-        case .descending:
-            orderValue = "desc"
-        }
-
-        let endpoint = "/search/repositories?q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&sort=\(sortValue)&order=\(orderValue)&page=\(page)&per_page=\(perPage)"
+        let endpoint = "/search/repositories?q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&sort=\(sortValue)&order=desc&page=\(page)&per_page=\(perPage)"
         let response: GetRepositoriesResponse = try await networkClient.request(endpoint)
 
         return response.items

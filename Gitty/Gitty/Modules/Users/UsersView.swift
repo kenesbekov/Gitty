@@ -32,13 +32,12 @@ struct UsersView: View {
                     Button {
                         showingLogoutAlert = true
                     } label: {
-                        Label("Logout", systemImage: "figure.walk")
-                            .foregroundColor(.red)
+                        Image(systemName: "figure.walk")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink(destination: UserHistoryView()) {
-                        Label("History", systemImage: "clock")
+                        Image(systemName: "clock")
                     }
                 }
             }

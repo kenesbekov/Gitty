@@ -9,6 +9,7 @@ final class RepositoriesViewModel: ObservableObject {
     }
     @Published var repositories: [Repository] = []
     @Published var paginationState: PaginationState = .default
+    @Published var selectedSortKind: RepositorySortKind = .forks
 
     private let repositoriesProvider: RepositoriesProvider
     private let historyProvider: RepositoryHistoryProvider
@@ -98,12 +99,9 @@ final class RepositoriesViewModel: ObservableObject {
         do {
             paginationState = page == 1 ? .loading : .paginating
 
-            let sortKind: SortKind = .forks
-            let orderKind: OrderKind = .descending
             let newRepositories = try await repositoriesProvider.get(
                 matching: searchQuery,
-                sort: sortKind,
-                order: orderKind,
+                sort: selectedSortKind,
                 page: page,
                 perPage: 30
             )

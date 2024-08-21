@@ -32,13 +32,23 @@ struct RepositoriesView: View {
                     Button {
                         showingLogoutAlert = true
                     } label: {
-                        Label("Logout", systemImage: "figure.walk")
-                            .foregroundColor(.red)
+                        Image(systemName: "figure.walk")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink(destination: RepositoryHistoryView()) {
-                        Label("History", systemImage: "clock")
+                        Image(systemName: "clock")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Picker(selection: $viewModel.selectedSortKind, label: EmptyView()) {
+                            Text("Stars").tag(RepositorySortKind.stars)
+                            Text("Forks").tag(RepositorySortKind.forks)
+                            Text("Updated").tag(RepositorySortKind.updated)
+                        }
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down")
                     }
                 }
             }

@@ -1,6 +1,6 @@
 import Foundation
 
-enum SortKind {
+enum RepositorySortKind {
     case stars
     case forks
     case updated
