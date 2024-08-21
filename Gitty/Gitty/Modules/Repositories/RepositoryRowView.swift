@@ -31,10 +31,8 @@ struct RepositoryRowView: View {
     var body: some View {
         Button {
             openURL(repository.htmlURL)
-            if !isViewed {
-                markAsViewed()
-                isViewed = true
-            }
+            markAsViewed()
+            isViewed = true
         } label: {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {

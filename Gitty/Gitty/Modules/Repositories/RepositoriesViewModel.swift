@@ -41,7 +41,7 @@ final class RepositoriesViewModel: ObservableObject {
         }
     }
 
-    func loadMoreRepositories() async {
+    func loadMore() async {
         guard paginationManager.shouldLoadMore(
             isLoading: paginationState == .loading || paginationState == .paginating
         ) else {
@@ -49,11 +49,11 @@ final class RepositoriesViewModel: ObservableObject {
         }
 
         paginationManager.loadNextPage()
-        await getRepositories(searchQuery: searchQuery, page: paginationManager.currentPage)
+        await get(searchQuery: searchQuery, page: paginationManager.currentPage)
     }
 
-    func markRepositoryAsViewed(at index: Int) {
-        guard index >= 0 && index < repositories.count else {
+    func markAsViewed(at index: Int) {
+        guard repositories.indices.contains(index) else {
             return
         }
 
@@ -85,11 +85,11 @@ final class RepositoriesViewModel: ObservableObject {
 
         currentSearchTask = Task {
             paginationManager.reset()
-            await getRepositories(searchQuery: searchQuery, page: 1)
+            await get(searchQuery: searchQuery, page: 1)
         }
     }
 
-    private func getRepositories(searchQuery: String, page: Int) async {
+    private func get(searchQuery: String, page: Int) async {
         guard !searchQuery.isEmpty else {
             paginationState = .default
             return

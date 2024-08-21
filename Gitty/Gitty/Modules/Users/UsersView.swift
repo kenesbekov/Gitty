@@ -8,13 +8,13 @@ struct UsersView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
+            ScrollView {
                 switch viewModel.paginationState {
                 case .default:
                     emptyStateView
                 case .loading:
                     ProgressView("Loading...")
-                        .progressViewStyle(CircularProgressViewStyle())
+                        .progressViewStyle(.circular)
                         .padding()
                 case .noResults:
                     noResultsView
@@ -24,11 +24,7 @@ struct UsersView: View {
                     errorView
                 }
             }
-            .onChange(of: viewModel.searchQuery) { _ in
-                Task {
-                    await viewModel.search()
-                }
-            }
+            .refreshable(action: viewModel.refreshed)
             .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Users")
             .navigationTitle("Users")
             .toolbar {
@@ -112,46 +108,30 @@ struct UsersView: View {
     }
 
     private var usersListView: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(viewModel.users.indices, id: \.self) { index in
-                    NavigationLink(
-                        destination: UserRepositoriesView(user: viewModel.users[index])
-                    ) {
-                        UserRowView(
-                            user: viewModel.users[index],
-                            markAsViewed: {
-                                viewModel.addToHistory(user: viewModel.users[index])
-                            }
-                        )
-                    }
-                    .task {
-                        await loadMoreIfNeeded(at: index)
-                    }
-                    .onTapGesture {
-                        viewModel.addToHistory(user: viewModel.users[index])
-                    }
-                }
-
-                if viewModel.paginationState == .paginating {
-                    ProgressView()
-                        .padding()
+        LazyVStack {
+            ForEach(viewModel.users.indices, id: \.self) { index in
+                UserRowView(
+                    user: viewModel.users[index],
+                    markAsViewed: { viewModel.markAsViewed(at: index) }
+                )
+                .task {
+                    await loadMoreIfNeeded(at: index)
                 }
             }
-            .padding(.bottom, 20)
-            .refreshable {
-                Task {
-                    await viewModel.search()
-                }
+
+            if viewModel.paginationState == .paginating {
+                ProgressView()
+                    .padding()
             }
         }
+        .padding(.bottom, 20)
     }
 
     private func loadMoreIfNeeded(at index: Int) async {
-        guard index == viewModel.users.count - 1 else {
+        guard index == viewModel.users.endIndex - 1 else {
             return
         }
 
-        await viewModel.loadMoreUsers()
+        await viewModel.loadMore()
     }
 }

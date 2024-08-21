@@ -14,7 +14,7 @@ struct RepositoriesView: View {
                     emptyStateView
                 case .loading:
                     ProgressView("Loading...")
-                        .progressViewStyle(CircularProgressViewStyle())
+                        .progressViewStyle(.circular)
                         .padding()
                 case .noResults:
                     noResultsView
@@ -117,7 +117,7 @@ struct RepositoriesView: View {
                 RepositoryRowView(
                     repository: viewModel.repositories[index],
                     openURL: { url in openURL(url) },
-                    markAsViewed: { viewModel.markRepositoryAsViewed(at: index) }
+                    markAsViewed: { viewModel.markAsViewed(at: index) }
                 )
                 .task {
                     await loadMoreIfNeeded(at: index)
@@ -133,10 +133,10 @@ struct RepositoriesView: View {
     }
 
     private func loadMoreIfNeeded(at index: Int) async {
-        guard index == viewModel.repositories.count - 1 else {
+        guard index == viewModel.repositories.endIndex - 1 else {
             return
         }
 
-        await viewModel.loadMoreRepositories()
+        await viewModel.loadMore()
     }
 }
