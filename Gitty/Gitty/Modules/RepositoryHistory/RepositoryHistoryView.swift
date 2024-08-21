@@ -74,7 +74,7 @@ struct RepositoryHistoryView: View {
 
     private var repositoryListView: some View {
         ScrollView {
-            LazyVStack {
+            LazyVStack(spacing: 0) {
                 ForEach(repositories) { repository in
                     RepositoryRowView(
                         repository: repository,

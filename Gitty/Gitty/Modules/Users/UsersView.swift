@@ -107,7 +107,7 @@ struct UsersView: View {
     }
 
     private var usersListView: some View {
-        LazyVStack {
+        LazyVStack(spacing: 0) {
             ForEach(viewModel.users.indices, id: \.self) { index in
                 UserRowView(
                     user: viewModel.users[index],

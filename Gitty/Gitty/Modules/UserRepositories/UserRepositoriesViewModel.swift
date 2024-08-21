@@ -19,15 +19,12 @@ final class UserRepositoriesViewModel: ObservableObject {
     }
 
     func fetchRepositories() async {
-        defer {
-            isLoading = false
-        }
-
+        isLoading = true
         do {
-            isLoading = true
-            repositories = try await repositoriesProvider.get(userLogin: user.login, page: 1, perPage: 30)
+            repositories = try await repositoriesProvider.get(userLogin: user.login, page: 1, limit: 30)
         } catch {
             errorMessage = error.localizedDescription
         }
+        isLoading = false
     }
 }

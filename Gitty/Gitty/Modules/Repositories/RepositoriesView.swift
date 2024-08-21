@@ -122,7 +122,7 @@ struct RepositoriesView: View {
     }
 
     private var repositoryListView: some View {
-        LazyVStack {
+        LazyVStack(spacing: 0) {
             ForEach(viewModel.repositories.indices, id: \.self) { index in
                 RepositoryRowView(
                     repository: viewModel.repositories[index],

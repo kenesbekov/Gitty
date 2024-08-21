@@ -5,12 +5,12 @@ protocol RepositoriesProvider: AnyObject, Sendable {
         matching query: String,
         sort: RepositorySortKind,
         page: Int,
-        perPage: Int
+        limit: Int
     ) async throws -> [Repository]
 
     func get(
         userLogin: String,
         page: Int,
-        perPage: Int
+        limit: Int
     ) async throws -> [Repository]
 }

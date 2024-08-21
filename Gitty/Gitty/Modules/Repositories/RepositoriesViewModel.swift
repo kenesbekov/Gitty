@@ -1,9 +1,21 @@
 import SwiftUI
 
+// MARK: - Constants
+
+private enum Constants {
+    static let debounceInterval = UInt64(0.5 * 1_000_000_000)
+}
+
+// MARK: - RepositoriesViewModel
+
 @MainActor
 final class RepositoriesViewModel: ObservableObject {
     @Published var searchQuery: String = "" {
         didSet {
+            guard searchQuery != oldValue else {
+                return
+            }
+            
             debounceSearch()
         }
     }
@@ -18,8 +30,7 @@ final class RepositoriesViewModel: ObservableObject {
     private var debounceTask: Task<Void, Never>?
     private var paginationManager = PaginationManager()
 
-    private let debounceInterval: TimeInterval = 0.5
-
+    /// Initializes the view model with custom providers for testing purposes.
     init(
         repositoriesProvider: RepositoriesProvider,
         historyProvider: RepositoryHistoryProvider
@@ -70,7 +81,7 @@ final class RepositoriesViewModel: ObservableObject {
         debounceTask?.cancel()
 
         debounceTask = Task {
-            try? await Task.sleep(nanoseconds: UInt64(debounceInterval * 1_000_000_000))
+            try? await Task.sleep(nanoseconds: Constants.debounceInterval)
             await search()
         }
     }
@@ -103,7 +114,7 @@ final class RepositoriesViewModel: ObservableObject {
                 matching: searchQuery,
                 sort: selectedSortKind,
                 page: page,
-                perPage: 30
+                limit: 30
             )
 
             let viewedRepositories = historyProvider.repositories

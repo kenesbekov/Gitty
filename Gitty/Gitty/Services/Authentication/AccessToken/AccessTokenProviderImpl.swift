@@ -13,7 +13,7 @@ final class AccessTokenProviderImpl: AccessTokenProvider {
             "redirect_uri": APIConstants.redirectURI
         ]
 
-        guard let body = createBody(from: bodyComponents) else {
+        guard let body = makeBody(from: bodyComponents) else {
             throw URLError(.cannotParseResponse)
         }
 
@@ -33,7 +33,7 @@ final class AccessTokenProviderImpl: AccessTokenProvider {
         }
     }
 
-    private func createBody(from components: [String: String]) -> Data? {
+    private func makeBody(from components: [String: String]) -> Data? {
         let bodyString = components
             .map { "\($0.key)=\($0.value)" }
             .joined(separator: "&")

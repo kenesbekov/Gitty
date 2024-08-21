@@ -73,7 +73,7 @@ struct UserHistoryView: View {
 
     private var usersListView: some View {
         ScrollView {
-            LazyVStack {
+            LazyVStack(spacing: 0) {
                 ForEach(users) { user in
                     NavigationLink(
                         destination: UserRepositoriesView(user: user)
