@@ -79,7 +79,10 @@ struct RepositoryHistoryView: View {
                     RepositoryRowView(
                         repository: repository,
                         openURL: { url in openURL(url) },
-                        markAsViewed: { provider.add(repository) },
+                        markAsViewed: {
+                            provider.add(repository)
+                            repositories = provider.repositories
+                        },
                         showViewedIndicator: false
                     )
                 }

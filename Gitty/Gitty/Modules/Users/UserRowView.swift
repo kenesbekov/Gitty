@@ -37,6 +37,9 @@ struct UserRowView: View {
                                 .opacity(0.5)
                                 .transition(.opacity)
                         }
+
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
                     }
 
                     if let followers = user.followers {

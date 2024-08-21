@@ -82,6 +82,7 @@ struct UserHistoryView: View {
                             user: user,
                             markAsViewed: {
                                 provider.add(user)
+                                users = provider.users
                             },
                             showViewedIndicator: false
                         )
