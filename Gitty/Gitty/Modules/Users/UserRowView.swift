@@ -20,7 +20,7 @@ struct UserRowView: View {
 
     var body: some View {
         NavigationLink(
-            destination: UserRepositoriesView(user: user),
+            destination: UserRepositoriesView(with: user),
             label: {
                 ZStack {
                     if showViewedIndicator && isViewed {

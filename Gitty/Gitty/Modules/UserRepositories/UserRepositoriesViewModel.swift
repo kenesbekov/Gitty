@@ -7,10 +7,11 @@ final class UserRepositoriesViewModel: ObservableObject {
     @Published var errorMessage: String?
 
     @Injected private var repositoriesProvider: RepositoriesProvider
+    @Injected private var historyProvider: RepositoryHistoryProvider
 
     let user: User
 
-    init(user: User) {
+    init(with user: User) {
         self.user = user
 
         Task {
@@ -26,5 +27,14 @@ final class UserRepositoriesViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
         isLoading = false
+    }
+
+    func markAsViewed(at index: Int) {
+        guard repositories.indices.contains(index) else {
+            return
+        }
+
+        repositories[index].isViewed = true
+        historyProvider.add(repositories[index])
     }
 }

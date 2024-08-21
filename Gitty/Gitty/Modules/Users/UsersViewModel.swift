@@ -22,29 +22,12 @@ final class UsersViewModel: ObservableObject {
     @Published var users: [User] = []
     @Published var paginationState: PaginationState = .default
 
-    private let usersProvider: UsersProvider
-    private let historyProvider: UserHistoryProvider
+    @Injected private var usersProvider: UsersProvider
+    @Injected private var historyProvider: UserHistoryProvider
 
     private var currentSearchTask: Task<Void, Never>?
     private var debounceTask: Task<Void, Never>?
     private var paginationManager = PaginationManager()
-
-    /// Initializes the view model with custom providers for testing purposes.
-    init(
-        usersProvider: UsersProvider,
-        historyProvider: UserHistoryProvider
-    ) {
-        self.usersProvider = usersProvider
-        self.historyProvider = historyProvider
-    }
-
-    init() {
-        @Injected var usersProvider: UsersProvider
-        self.usersProvider = usersProvider
-
-        @Injected var historyProvider: UserHistoryProvider
-        self.historyProvider = historyProvider
-    }
 
     func refreshed() {
         Task {

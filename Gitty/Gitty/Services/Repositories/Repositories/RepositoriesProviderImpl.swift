@@ -16,8 +16,7 @@ final class RepositoriesProviderImpl: RepositoriesProvider {
 
     func get(userLogin: String, page: Int, limit: Int) async throws -> [Repository] {
         let endpoint = makeUserRepositoriesEndpoint(userLogin: userLogin, page: page, limit: limit)
-        let response: GetRepositoriesResponse = try await networkClient.request(endpoint)
-        return response.items
+        return try await networkClient.request(endpoint)
     }
 
     private func makeSearchRepositoriesEndpoint(

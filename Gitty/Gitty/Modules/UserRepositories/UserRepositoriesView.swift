@@ -1,14 +1,15 @@
 import SwiftUI
 
 struct UserRepositoriesView: View {
+    @Environment(\.openURL) private var openURL
     @StateObject private var viewModel: UserRepositoriesViewModel
 
-    init(user: User) {
-        _viewModel = StateObject(wrappedValue: UserRepositoriesViewModel(user: user))
+    init(with user: User) {
+        _viewModel = StateObject(wrappedValue: UserRepositoriesViewModel(with: user))
     }
 
     var body: some View {
-        ZStack {
+        ScrollView {
             if viewModel.isLoading {
                 ProgressView("Loading...")
                     .padding()
@@ -17,24 +18,22 @@ struct UserRepositoriesView: View {
                     .foregroundColor(.red)
                     .padding()
             } else {
-                List(viewModel.repositories) { repository in
-                    VStack(alignment: .leading) {
-                        Text(repository.name)
-                            .font(.headline)
-                        Text(repository.description ?? "No description")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        HStack {
-                            Text("Stars: \(repository.stargazersCount)")
-                            Text("Forks: \(repository.forksCount)")
-                        }
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                    }
-                }
+                repositoryListView
             }
         }
         .navigationTitle("\(viewModel.user.login)'s Repos")
-        .padding()
+    }
+
+    private var repositoryListView: some View {
+        LazyVStack(spacing: 0) {
+            ForEach(viewModel.repositories.indices, id: \.self) { index in
+                RepositoryRowView(
+                    repository: viewModel.repositories[index],
+                    openURL: { url in openURL(url) },
+                    markAsViewed: { viewModel.markAsViewed(at: index) }
+                )
+            }
+        }
+        .padding(.bottom, 20)
     }
 }

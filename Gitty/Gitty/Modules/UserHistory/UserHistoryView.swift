@@ -76,7 +76,7 @@ struct UserHistoryView: View {
             LazyVStack(spacing: 0) {
                 ForEach(users) { user in
                     NavigationLink(
-                        destination: UserRepositoriesView(user: user)
+                        destination: UserRepositoriesView(with: user)
                     ) {
                         UserRowView(
                             user: user,

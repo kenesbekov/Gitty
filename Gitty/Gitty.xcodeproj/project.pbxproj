@@ -61,14 +61,12 @@
 		66EA78BE2C721AAE007DCFCA /* AccessTokenProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78BD2C721AAE007DCFCA /* AccessTokenProviderImpl.swift */; };
 		66EA78C02C721AB6007DCFCA /* UserProfileProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78BF2C721AB6007DCFCA /* UserProfileProviderImpl.swift */; };
 		66EA78C22C721ABA007DCFCA /* UsersProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C12C721ABA007DCFCA /* UsersProviderImpl.swift */; };
-		66EA78C42C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C32C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift */; };
 		66EA78C62C721AC7007DCFCA /* RepositoriesProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C52C721AC7007DCFCA /* RepositoriesProviderImpl.swift */; };
 		66EA78C82C721B98007DCFCA /* RepositorySortKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78C72C721B98007DCFCA /* RepositorySortKind.swift */; };
 		66EA78CC2C721BA6007DCFCA /* TokenValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */; };
 		66EA78CE2C721BAA007DCFCA /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */; };
 		66EA78D02C721BAD007DCFCA /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78CF2C721BAD007DCFCA /* UserProfileProvider.swift */; };
 		66EA78D22C721BB0007DCFCA /* UsersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78D12C721BB0007DCFCA /* UsersProvider.swift */; };
-		66EA78D42C721BB3007DCFCA /* UserRepositoriesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */; };
 		66EA78D62C721BB6007DCFCA /* RepositoriesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78D52C721BB6007DCFCA /* RepositoriesProvider.swift */; };
 		66EA78D82C72211A007DCFCA /* UserHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78D72C72211A007DCFCA /* UserHistoryManager.swift */; };
 		66EA78DF2C722275007DCFCA /* KeychainManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78DE2C722275007DCFCA /* KeychainManagerImpl.swift */; };
@@ -166,14 +164,12 @@
 		66EA78BD2C721AAE007DCFCA /* AccessTokenProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProviderImpl.swift; sourceTree = "<group>"; };
 		66EA78BF2C721AB6007DCFCA /* UserProfileProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileProviderImpl.swift; sourceTree = "<group>"; };
 		66EA78C12C721ABA007DCFCA /* UsersProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersProviderImpl.swift; sourceTree = "<group>"; };
-		66EA78C32C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoriesProviderImpl.swift; sourceTree = "<group>"; };
 		66EA78C52C721AC7007DCFCA /* RepositoriesProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesProviderImpl.swift; sourceTree = "<group>"; };
 		66EA78C72C721B98007DCFCA /* RepositorySortKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySortKind.swift; sourceTree = "<group>"; };
 		66EA78CB2C721BA6007DCFCA /* TokenValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenValidator.swift; sourceTree = "<group>"; };
 		66EA78CD2C721BAA007DCFCA /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
 		66EA78CF2C721BAD007DCFCA /* UserProfileProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileProvider.swift; sourceTree = "<group>"; };
 		66EA78D12C721BB0007DCFCA /* UsersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersProvider.swift; sourceTree = "<group>"; };
-		66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoriesProvider.swift; sourceTree = "<group>"; };
 		66EA78D52C721BB6007DCFCA /* RepositoriesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesProvider.swift; sourceTree = "<group>"; };
 		66EA78D72C72211A007DCFCA /* UserHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistoryManager.swift; sourceTree = "<group>"; };
 		66EA78DE2C722275007DCFCA /* KeychainManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerImpl.swift; sourceTree = "<group>"; };
@@ -303,15 +299,6 @@
 				66EA78BD2C721AAE007DCFCA /* AccessTokenProviderImpl.swift */,
 			);
 			path = AccessToken;
-			sourceTree = "<group>";
-		};
-		66C7FA332C726A6800CEF262 /* UserRepositories */ = {
-			isa = PBXGroup;
-			children = (
-				66EA78D32C721BB3007DCFCA /* UserRepositoriesProvider.swift */,
-				66EA78C32C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift */,
-			);
-			path = UserRepositories;
 			sourceTree = "<group>";
 		};
 		66C7FA342C726A8300CEF262 /* User */ = {
@@ -534,7 +521,6 @@
 			children = (
 				66EA78EC2C722754007DCFCA /* User+Injection.swift */,
 				66C7FA342C726A8300CEF262 /* User */,
-				66C7FA332C726A6800CEF262 /* UserRepositories */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -818,13 +804,11 @@
 				660C49BF2C734D4B008ACB28 /* Atomic.swift in Sources */,
 				66EA78AE2C70CDCA007DCFCA /* AppState.swift in Sources */,
 				66EA790F2C724040007DCFCA /* NetworkError.swift in Sources */,
-				66EA78C42C721AC0007DCFCA /* UserRepositoriesProviderImpl.swift in Sources */,
 				66EA78942C708C88007DCFCA /* RepositoryHistoryView.swift in Sources */,
 				66EA79052C7231B8007DCFCA /* ServiceRegistry.swift in Sources */,
 				66EA782D2C6F9326007DCFCA /* ContentView.swift in Sources */,
 				66EA78CC2C721BA6007DCFCA /* TokenValidator.swift in Sources */,
 				668FBB112C75C7260079D967 /* UserHistoryCleaner.swift in Sources */,
-				66EA78D42C721BB3007DCFCA /* UserRepositoriesProvider.swift in Sources */,
 				668FBB192C75FD7D0079D967 /* DependencyError.swift in Sources */,
 				66EA78D62C721BB6007DCFCA /* RepositoriesProvider.swift in Sources */,
 				66EA78C62C721AC7007DCFCA /* RepositoriesProviderImpl.swift in Sources */,

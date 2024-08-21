@@ -23,29 +23,12 @@ final class RepositoriesViewModel: ObservableObject {
     @Published var paginationState: PaginationState = .default
     @Published var selectedSortKind: RepositorySortKind = .forks
 
-    private let repositoriesProvider: RepositoriesProvider
-    private let historyProvider: RepositoryHistoryProvider
+    @Injected private var repositoriesProvider: RepositoriesProvider
+    @Injected private var historyProvider: RepositoryHistoryProvider
 
     private var currentSearchTask: Task<Void, Never>?
     private var debounceTask: Task<Void, Never>?
     private var paginationManager = PaginationManager()
-
-    /// Initializes the view model with custom providers for testing purposes.
-    init(
-        repositoriesProvider: RepositoriesProvider,
-        historyProvider: RepositoryHistoryProvider
-    ) {
-        self.repositoriesProvider = repositoriesProvider
-        self.historyProvider = historyProvider
-    }
-
-    init() {
-        @Injected var repositoriesProvider: RepositoriesProvider
-        self.repositoriesProvider = repositoriesProvider
-
-        @Injected var historyProvider: RepositoryHistoryProvider
-        self.historyProvider = historyProvider
-    }
 
     func refreshed() {
         Task {
