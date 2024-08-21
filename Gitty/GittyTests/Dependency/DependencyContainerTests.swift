@@ -13,8 +13,8 @@ struct DependencyContainerTests {
         dependencyContainer = DependencyContainer.shared
     }
 
-    @Test("Ensure that a service can be registered and resolved correctly")
-    func testServiceRegistrationAndResolution() {
+    @Test("Service can be registered and resolved correctly")
+    func serviceRegistrationAndResolution() {
         let mockService = MockService()
         dependencyContainer.register(mockService, forType: MockService.self)
 
@@ -23,8 +23,8 @@ struct DependencyContainerTests {
         #expect(resolvedService.id == mockService.id)
     }
 
-    @Test("Ensure that resolving an unregistered service throws an error")
-    func testUnregisteredServiceResolution() {
+    @Test("Resolving an unregistered service throws an error")
+    func unregisteredServiceResolution() {
         do {
             let _: MockService = try dependencyContainer.resolveWithThrowing()
         } catch DependencyError.serviceNotFound(let type) {
@@ -32,8 +32,8 @@ struct DependencyContainerTests {
         } catch {} // seems like swift 6.0 bug, can't write without catch {}
     }
 
-    @Test("Ensure that a previously registered service can be replaced")
-    func testServiceReplacement() {
+    @Test("Previously registered service can be replaced")
+    func serviceReplacement() {
         let firstMockService = MockService()
         let secondMockService = MockService()
 
