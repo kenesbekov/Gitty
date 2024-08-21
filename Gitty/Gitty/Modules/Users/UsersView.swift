@@ -25,7 +25,7 @@ struct UsersView: View {
                 }
             }
             .refreshable(action: viewModel.refreshed)
-            .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Users")
+            .searchable(text: $viewModel.searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
             .navigationTitle("Users")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

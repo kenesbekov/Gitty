@@ -22,35 +22,43 @@ struct UserRowView: View {
         NavigationLink(
             destination: UserRepositoriesView(user: user),
             label: {
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack {
-                        Text(user.login)
-                            .font(.headline)
-                            .foregroundColor(.accentColor)
-                            .lineLimit(1)
+                ZStack {
+                    if showViewedIndicator && isViewed {
+                        Color.blue.opacity(0.1)
+                    }
 
-                        Spacer()
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack {
+                            Text(user.login)
+                                .font(.headline)
+                                .foregroundColor(.accentColor)
+                                .lineLimit(1)
 
-                        if showViewedIndicator && isViewed {
-                            Image(systemName: "eye")
+                            Spacer()
+
+                            if showViewedIndicator && isViewed {
+                                Image(systemName: "eye")
+                                    .foregroundColor(.secondary)
+                                    .opacity(0.5)
+                                    .transition(.opacity)
+                            }
+
+                            Image(systemName: "chevron.right")
                                 .foregroundColor(.secondary)
-                                .opacity(0.5)
-                                .transition(.opacity)
                         }
 
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.secondary)
-                    }
+                        if let followers = user.followers {
+                            Label("\(followers)", systemImage: "person.2.fill")
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                        }
 
-                    if let followers = user.followers {
-                        Label("\(followers)", systemImage: "person.2.fill")
-                            .font(.footnote)
-                            .foregroundColor(.secondary)
+                        Divider()
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.top)
+                    .padding(.horizontal)
                 }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(showViewedIndicator && isViewed ? Color.blue.opacity(0.1) : Color.clear)
                 .animation(.easeInOut, value: isViewed)
             }
         )

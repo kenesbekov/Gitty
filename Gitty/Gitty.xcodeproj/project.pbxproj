@@ -19,6 +19,8 @@
 		668FBB072C74C8AA0079D967 /* PaginationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668FBB062C74C8AA0079D967 /* PaginationTests.swift */; };
 		668FBB0B2C74CA120079D967 /* Keychain+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668FBB0A2C74CA120079D967 /* Keychain+Injection.swift */; };
 		668FBB0D2C74CAC00079D967 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668FBB0C2C74CAC00079D967 /* KeychainManager.swift */; };
+		668FBB0F2C75C7080079D967 /* RepositoryHistoryCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668FBB0E2C75C7080079D967 /* RepositoryHistoryCleaner.swift */; };
+		668FBB112C75C7260079D967 /* UserHistoryCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668FBB102C75C7260079D967 /* UserHistoryCleaner.swift */; };
 		66C7FA1E2C724D8100CEF262 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C7FA1D2C724D7E00CEF262 /* APIConstants.swift */; };
 		66EA782B2C6F9326007DCFCA /* GittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA782A2C6F9326007DCFCA /* GittyApp.swift */; };
 		66EA782D2C6F9326007DCFCA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA782C2C6F9326007DCFCA /* ContentView.swift */; };
@@ -115,6 +117,8 @@
 		668FBB062C74C8AA0079D967 /* PaginationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationTests.swift; sourceTree = "<group>"; };
 		668FBB0A2C74CA120079D967 /* Keychain+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Injection.swift"; sourceTree = "<group>"; };
 		668FBB0C2C74CAC00079D967 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		668FBB0E2C75C7080079D967 /* RepositoryHistoryCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHistoryCleaner.swift; sourceTree = "<group>"; };
+		668FBB102C75C7260079D967 /* UserHistoryCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistoryCleaner.swift; sourceTree = "<group>"; };
 		66C7FA1D2C724D7E00CEF262 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		66EA78272C6F9326007DCFCA /* Gitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EA782A2C6F9326007DCFCA /* GittyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GittyApp.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 		66C7FA362C726B1A00CEF262 /* RepositoryHistory */ = {
 			isa = PBXGroup;
 			children = (
+				668FBB0E2C75C7080079D967 /* RepositoryHistoryCleaner.swift */,
 				66EA78632C6FA185007DCFCA /* RepositoryHistoryManager.swift */,
 				66EA78672C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift */,
 			);
@@ -314,6 +319,7 @@
 		66C7FA372C726B2500CEF262 /* UserHistory */ = {
 			isa = PBXGroup;
 			children = (
+				668FBB102C75C7260079D967 /* UserHistoryCleaner.swift */,
 				66EA78D72C72211A007DCFCA /* UserHistoryManager.swift */,
 				66EA78952C708F4F007DCFCA /* UserHistoryProvider.swift */,
 			);
@@ -787,6 +793,7 @@
 				66EA782D2C6F9326007DCFCA /* ContentView.swift in Sources */,
 				66EA78CC2C721BA6007DCFCA /* TokenValidator.swift in Sources */,
 				66EA78CA2C721B9C007DCFCA /* OrderKind.swift in Sources */,
+				668FBB112C75C7260079D967 /* UserHistoryCleaner.swift in Sources */,
 				66EA78D42C721BB3007DCFCA /* UserRepositoriesProvider.swift in Sources */,
 				66EA78D62C721BB6007DCFCA /* RepositoriesProvider.swift in Sources */,
 				66EA78C62C721AC7007DCFCA /* RepositoriesProviderImpl.swift in Sources */,
@@ -805,6 +812,7 @@
 				66EA786C2C6FA23E007DCFCA /* RepositoriesView.swift in Sources */,
 				66EA782B2C6F9326007DCFCA /* GittyApp.swift in Sources */,
 				66EA78682C6FA1F6007DCFCA /* RepositoryHistoryProvider.swift in Sources */,
+				668FBB0F2C75C7080079D967 /* RepositoryHistoryCleaner.swift in Sources */,
 				66EA78BE2C721AAE007DCFCA /* AccessTokenProviderImpl.swift in Sources */,
 				66EA78C22C721ABA007DCFCA /* UsersProviderImpl.swift in Sources */,
 				66EA78A62C70AFA3007DCFCA /* User.swift in Sources */,

@@ -65,9 +65,9 @@ extension RepositoryHistoryManager: RepositoryHistoryProvider {
     }
 }
 
-// MARK: - RepositoryHistoryManager.HistoryCleaner
+// MARK: - RepositoryHistoryManager.RepositoryHistoryCleaner
 
-extension RepositoryHistoryManager: HistoryCleaner {
+extension RepositoryHistoryManager: RepositoryHistoryCleaner {
     func clear() {
         cachedRepositories.update(with: [])
         saveHistory([])

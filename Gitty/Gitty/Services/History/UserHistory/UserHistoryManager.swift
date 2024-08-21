@@ -64,9 +64,9 @@ extension UserHistoryManager: UserHistoryProvider {
     }
 }
 
-// MARK: - UserHistoryManager.HistoryCleaner
+// MARK: - UserHistoryManager.UserHistoryCleaner
 
-extension UserHistoryManager: HistoryCleaner {
+extension UserHistoryManager: UserHistoryCleaner {
     func clear() {
         cachedUsers.update(with: [])
         saveHistory([])

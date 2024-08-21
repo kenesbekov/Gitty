@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RepositoryHistoryView: View {
-    @Injected private var cleaner: HistoryCleaner
+    @Injected private var cleaner: RepositoryHistoryCleaner
     @Injected private var provider: RepositoryHistoryProvider
 
     @Environment(\.openURL) private var openURL
