@@ -38,6 +38,7 @@ struct RepositoryHistoryTests {
 
     @Test("Add repository")
     func add() {
+        cleaner.clear()
         provider.add(repository)
 
         #expect(provider.repositories.count == 1)

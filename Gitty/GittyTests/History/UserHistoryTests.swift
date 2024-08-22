@@ -26,6 +26,7 @@ struct UserHistoryTests {
 
     @Test("Add user")
     func addUser() {
+        cleaner.clear()
         provider.add(user)
 
         #expect(provider.users.count == 1)
