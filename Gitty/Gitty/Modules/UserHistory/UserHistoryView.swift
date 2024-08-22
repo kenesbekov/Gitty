@@ -78,7 +78,7 @@ struct UserHistoryView: View {
                     NavigationLink(
                         destination: UserRepositoriesView(with: user)
                     ) {
-                        UserRowView(
+                        UsersRowView(
                             user: user,
                             markAsViewed: {
                                 provider.add(user)

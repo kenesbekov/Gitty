@@ -99,34 +99,56 @@ final class RepositoriesViewModel: ObservableObject {
                 page: page,
                 limit: 30
             )
-
             let viewedRepositories = historyProvider.repositories
 
-            let updatedRepositories = newRepositories.map { repo in
-                var updatedRepo = repo
-                if viewedRepositories.contains(where: { $0.id == repo.id }) {
-                    updatedRepo.isViewed = true
-                }
-                return updatedRepo
-            }
+            let updatedRepositories = updateViewedStatus(for: newRepositories, with: viewedRepositories)
+            updateRepositoriesList(with: updatedRepositories, page: page)
 
-            if newRepositories.isEmpty {
-                paginationManager.setHasMorePages(to: false)
-                paginationState = repositories.isEmpty ? .noResults : .success
-            } else {
-                if page == 1 {
-                    repositories = updatedRepositories
-                } else {
-                    repositories.append(contentsOf: updatedRepositories)
-                }
-                paginationState = .success
-            }
+            handlePaginationState(for: newRepositories)
+
         } catch {
-            guard currentSearchTask?.isCancelled == true else {
-                return
-            }
-
-            paginationState = .error("An error occurred: \(error.localizedDescription)")
+            handleError(error)
         }
+    }
+
+    private func updateViewedStatus(for repositories: [Repository], with viewedRepositories: [Repository]) -> [Repository] {
+        repositories.map { repo in
+            var updatedRepo = repo
+            if viewedRepositories.contains(where: { $0.id == repo.id }) {
+                updatedRepo.isViewed = true
+            }
+            return updatedRepo
+        }
+    }
+
+    private func updateRepositoriesList(with newRepositories: [Repository], page: Int) {
+        if newRepositories.isEmpty {
+            paginationManager.setHasMorePages(to: false)
+            paginationState = repositories.isEmpty ? .noResults : .success
+        } else {
+            if page == 1 {
+                repositories = newRepositories
+            } else {
+                repositories.append(contentsOf: newRepositories)
+            }
+            paginationState = .success
+        }
+    }
+
+    private func handlePaginationState(for newRepositories: [Repository]) {
+        if newRepositories.isEmpty {
+            paginationManager.setHasMorePages(to: false)
+            paginationState = repositories.isEmpty ? .noResults : .success
+        } else {
+            paginationState = .success
+        }
+    }
+
+    private func handleError(_ error: Error) {
+        guard currentSearchTask?.isCancelled == true else {
+            return
+        }
+
+        paginationState = .error("An error occurred: \(error.localizedDescription)")
     }
 }

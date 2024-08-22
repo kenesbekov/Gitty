@@ -1,5 +1,5 @@
 import Foundation
 
 protocol UserProfileProvider: AnyObject, Sendable {
-    func get(for user: User) async throws -> UserProfile
+    func get(for username: String) async throws -> UserProfile
 }

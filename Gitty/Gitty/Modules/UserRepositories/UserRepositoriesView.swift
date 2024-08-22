@@ -22,12 +22,13 @@ struct UserRepositoriesView: View {
             }
         }
         .navigationTitle("\(viewModel.user.login)'s Repos")
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     private var repositoryListView: some View {
         LazyVStack(spacing: 0) {
             ForEach(viewModel.repositories.indices, id: \.self) { index in
-                RepositoryRowView(
+                RepositoriesRowView(
                     repository: viewModel.repositories[index],
                     openURL: { url in openURL(url) },
                     markAsViewed: { viewModel.markAsViewed(at: index) },

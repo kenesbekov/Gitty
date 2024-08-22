@@ -77,7 +77,7 @@ struct RepositoryHistoryView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(repositories) { repository in
-                    RepositoryRowView(
+                    RepositoriesRowView(
                         repository: repository,
                         openURL: { url in openURL(url) },
                         markAsViewed: {

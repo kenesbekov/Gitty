@@ -10,6 +10,9 @@ private enum Constants {
 
 @MainActor
 final class UsersViewModel: ObservableObject {
+    typealias UserProfileDict = [String: Int]
+    typealias UserProfileResult = (String, Int)
+
     @Published var searchQuery: String = "" {
         didSet {
             guard searchQuery != oldValue else {
@@ -23,6 +26,7 @@ final class UsersViewModel: ObservableObject {
     @Published var paginationState: PaginationState = .default
 
     @Injected private var usersProvider: UsersProvider
+    @Injected private var profileProvider: UserProfileProvider
     @Injected private var historyProvider: UserHistoryProvider
 
     private var currentSearchTask: Task<Void, Never>?
@@ -46,8 +50,8 @@ final class UsersViewModel: ObservableObject {
         await get(searchQuery: searchQuery, page: paginationManager.currentPage)
     }
 
-    func markAsViewed(at index: Int) {
-        guard users.indices.contains(index) else {
+    func markAsViewed(for user: User) {
+        guard let index = users.firstIndex(where: { $0.id == user.id }) else {
             return
         }
 
@@ -92,119 +96,80 @@ final class UsersViewModel: ObservableObject {
         do {
             paginationState = page == 1 ? .loading : .paginating
 
-            let newUsers = try await usersProvider.get(
-                matching: searchQuery,
-                page: page,
-                perPage: 30
-            )
+            let newUsers = try await usersProvider.get(matching: searchQuery, page: page, perPage: 30)
+            let usernames = newUsers.map { $0.login }
+            let userProfiles = try await getUserProfiles(for: usernames)
 
-            let viewedUsers = historyProvider.users
+            let updatedUsers = updateUsers(newUsers, withProfiles: userProfiles)
+            users = updateUserList(users, with: updatedUsers, forPage: page)
 
-            let updatedUsers = newUsers.map { user in
-                var updatedUser = user
-                if viewedUsers.contains(where: { $0.id == user.id }) {
-                    updatedUser.isViewed = true
-                }
-                return updatedUser
-            }
-
-            if newUsers.isEmpty {
-                paginationManager.setHasMorePages(to: false)
-                paginationState = users.isEmpty ? .noResults : .success
-            } else {
-                if page == 1 {
-                    users = updatedUsers
-                } else {
-                    users.append(contentsOf: updatedUsers)
-                }
-                paginationState = .success
-            }
+            users.sort { ($0.followers ?? 0) > ($1.followers ?? 0) }
+            handlePaginationState(newUsers: newUsers)
         } catch {
-            guard currentSearchTask?.isCancelled == true else {
-                return
-            }
-
-            paginationState = .error("An error occurred: \(error.localizedDescription)")
+            handleError(error)
         }
     }
+
+    nonisolated private func getUserProfiles(for usernames: [String]) async throws -> UserProfileDict {
+        var profiles = UserProfileDict()
+
+        try await withThrowingTaskGroup(of: UserProfileResult.self) { [profileProvider] group in
+            for username in usernames {
+                group.addTask {
+                    let userProfile = try await profileProvider.get(for: username)
+                    return (username, userProfile.followers)
+                }
+            }
+
+            for try await (username, followers) in group {
+                profiles[username] = followers
+            }
+        }
+
+        return profiles
+    }
+
+    private func updateUsers(_ newUsers: [User], withProfiles profiles: UserProfileDict) -> [User] {
+        let viewedUsers = historyProvider.users
+
+        return newUsers.map { user -> User in
+            var updatedUser = user
+            if viewedUsers.contains(where: { $0.id == user.id }) {
+                updatedUser.isViewed = true
+            }
+            updatedUser.followers = profiles[user.login] ?? 0
+            return updatedUser
+        }
+    }
+
+    private func updateUserList(_ existingUsers: [User], with newUsers: [User], forPage page: Int) -> [User] {
+        guard page != 1 else {
+            return newUsers
+        }
+
+        var existingUserDict = Dictionary(uniqueKeysWithValues: existingUsers.map { ($0.login, $0) })
+
+        for updatedUser in newUsers {
+            existingUserDict[updatedUser.login] = updatedUser
+        }
+
+        return Array(existingUserDict.values)
+    }
+
+    private func handlePaginationState(newUsers: [User]) {
+        if newUsers.isEmpty {
+            paginationManager.setHasMorePages(to: false)
+            paginationState = users.isEmpty ? .noResults : .success
+        } else {
+            paginationState = .success
+        }
+    }
+
+    private func handleError(_ error: Error) {
+        guard currentSearchTask?.isCancelled == true else {
+            return
+        }
+
+        paginationState = .error("An error occurred: \(error.localizedDescription)")
+    }
 }
-
-
-//@MainActor
-//final class UsersViewModel: ObservableObject {
-//    @Published var searchQuery = ""
-//    @Published var users: [User] = []
-//    @Published var paginationState: PaginationState = .default
-//
-//    @Injected private var profileProvider: UserProfileProvider
-//    @Injected private var usersProvider: UsersProvider
-//    @Injected private var historyProvider: UserHistoryProvider
-//
-//    private var paginationManager = PaginationManager()
-//
-//    func search() async {
-//        guard paginationManager.shouldLoadMore(isLoading: paginationState == .loading) else { return }
-//
-//        paginationManager.reset()
-//        await performSearch(page: 1)
-//    }
-//
-//    func loadMoreUsers() async {
-//        guard paginationManager.shouldLoadMore(isLoading: paginationState == .loading || paginationState == .paginating) else {
-//            return
-//        }
-//
-//        paginationManager.loadNextPage()
-//        await performSearch(page: paginationManager.currentPage)
-//    }
-//
-//    func addToHistory(user: User) {
-//        historyProvider.add(user)
-//    }
-//
-//    func deleteToken(appStateManager: AppStateManagerImpl) {
-//        appStateManager.logout()
-//    }
-//
-//    private func performSearch(page: Int) async {
-//        guard !searchQuery.isEmpty else {
-//            paginationState = .default
-//            return
-//        }
-//
-//        do {
-//            paginationState = page == 1 ? .loading : .paginating
-//            let searchResponse = try await usersProvider.get(matching: searchQuery, page: page, perPage: 30)
-//            var fetchedUsers = searchResponse.items
-//
-//            for (index, user) in fetchedUsers.enumerated() {
-//                do {
-//                    let userProfile = try await profileProvider.get(for: user)
-//                    fetchedUsers[index].followers = userProfile.followers
-//                } catch {
-//                    print("Failed to fetch profile for \(user.login): \(error.localizedDescription)")
-//                    fetchedUsers[index].followers = 0
-//                }
-//            }
-//
-//            if searchResponse.items.isEmpty {
-//                paginationManager.setHasMorePages(to: false)
-//            } else {
-//                if page == 1 {
-//                    users = fetchedUsers.sorted { ($0.followers ?? 0) > ($1.followers ?? 0) }
-//                } else {
-//                    users.append(contentsOf: fetchedUsers.sorted { ($0.followers ?? 0) > ($1.followers ?? 0) })
-//                }
-//            }
-//
-//            paginationState = users.isEmpty
-//                ? .noResults
-//                : .success
-//        } catch {
-//            paginationState = .error(error.localizedDescription)
-//            if page == 1 {
-//                users = []
-//            }
-//        }
-//    }
-//}

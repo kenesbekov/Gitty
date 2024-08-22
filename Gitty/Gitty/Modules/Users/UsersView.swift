@@ -108,13 +108,13 @@ struct UsersView: View {
 
     private var usersListView: some View {
         LazyVStack(spacing: 0) {
-            ForEach(viewModel.users.indices, id: \.self) { index in
-                UserRowView(
-                    user: viewModel.users[index],
-                    markAsViewed: { viewModel.markAsViewed(at: index) }
+            ForEach(viewModel.users, id: \.id) { user in
+                UsersRowView(
+                    user: user,
+                    markAsViewed: { viewModel.markAsViewed(for: user) }
                 )
                 .task {
-                    await loadMoreIfNeeded(at: index)
+                    await loadMoreIfNeeded(for: user)
                 }
             }
 
@@ -126,11 +126,12 @@ struct UsersView: View {
         .padding(.bottom, 20)
     }
 
-    private func loadMoreIfNeeded(at index: Int) async {
-        guard index == viewModel.users.endIndex - 1 else {
+    private func loadMoreIfNeeded(for user: User) async {
+        guard let lastUser = viewModel.users.last, lastUser.id == user.id else {
             return
         }
 
         await viewModel.loadMore()
     }
+
 }
