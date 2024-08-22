@@ -21,7 +21,7 @@ struct UserRepositoriesView: View {
                 repositoryListView
             }
         }
-        .navigationTitle("\(viewModel.user.login)'s Repos")
+        .navigationTitle(viewModel.navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
     }
 

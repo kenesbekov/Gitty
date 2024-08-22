@@ -2,8 +2,8 @@ import Testing
 @testable import Gitty
 
 struct KeychainManagerTests {
-    let token = "sampleToken"
-    let keychainManager = KeychainManagerImpl()
+    private let token = "sampleToken"
+    private let keychainManager = KeychainManagerImpl()
 
     @Test("Save and retrieve token")
     func saveAndRetrieveToken() {

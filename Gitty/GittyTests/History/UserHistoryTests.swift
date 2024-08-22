@@ -2,16 +2,20 @@ import Testing
 import Foundation
 @testable import Gitty
 
+// MARK: - Constants
+
 private enum Constants {
     static let historyKey = "ViewedUsers"
 }
 
+// MARK: - UserHistoryTests
+
 @Suite(.tags(.history))
 struct UserHistoryTests {
-    let provider: UserHistoryProvider
-    let cleaner: UserHistoryCleaner
+    private let provider: UserHistoryProvider
+    private let cleaner: UserHistoryCleaner
 
-    let user = User(
+    private let user = User(
         id: 1,
         login: "testuser",
         avatarURL: URL(string: "https://example.com/avatar.png")!,

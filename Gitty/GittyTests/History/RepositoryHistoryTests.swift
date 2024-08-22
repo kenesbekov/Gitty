@@ -2,16 +2,20 @@ import Testing
 import Foundation
 @testable import Gitty
 
+// MARK: - Constants
+
 private enum Constants {
     static let historyKey = "ViewedRepositories"
 }
 
+// MARK: - RepositoryHistoryTests
+
 @Suite(.tags(.history))
 struct RepositoryHistoryTests {
-    let provider: RepositoryHistoryProvider
-    let cleaner: RepositoryHistoryCleaner
+    private let provider: RepositoryHistoryProvider
+    private let cleaner: RepositoryHistoryCleaner
 
-    let repository = Repository(
+    private let repository = Repository(
         id: 1,
         name: "testrepo",
         description: "A test repository",

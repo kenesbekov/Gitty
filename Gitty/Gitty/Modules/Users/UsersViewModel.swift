@@ -96,7 +96,7 @@ final class UsersViewModel: ObservableObject {
         do {
             paginationState = page == 1 ? .loading : .paginating
 
-            let newUsers = try await usersProvider.get(matching: searchQuery, page: page, perPage: 30)
+            let newUsers = try await usersProvider.get(matching: searchQuery, page: page, limit: 30)
             let usernames = newUsers.map { $0.login }
             let userProfiles = try await getUserProfiles(for: usernames)
 

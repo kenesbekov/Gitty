@@ -6,10 +6,14 @@ final class UserRepositoriesViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
 
+    var navigationTitle: String {
+        "\(user.login)'s Repos"
+    }
+
     @Injected private var repositoriesProvider: RepositoriesProvider
     @Injected private var historyProvider: RepositoryHistoryProvider
 
-    let user: User
+    private let user: User
 
     init(with user: User) {
         self.user = user
