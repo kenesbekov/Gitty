@@ -1,7 +1,7 @@
 import Foundation
 
 extension DependencyContainer {
-    func registerAuthenticationServices() {
+    func registerAuthorizationServices() {
         register(AccessTokenProviderImpl(), forType: AccessTokenProvider.self)
         register(AuthorizationURLProviderImpl(), forType: AuthorizationURLProvider.self)
         register(OAuthHandlerImpl(), forType: OAuthHandler.self)

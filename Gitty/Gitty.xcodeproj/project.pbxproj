@@ -76,7 +76,7 @@
 		66EA78E82C72250A007DCFCA /* OAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78E72C72250A007DCFCA /* OAuthHandler.swift */; };
 		66EA78ED2C722757007DCFCA /* User+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78EC2C722754007DCFCA /* User+Injection.swift */; };
 		66EA78EF2C722803007DCFCA /* Repository+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78EE2C7227FE007DCFCA /* Repository+Injection.swift */; };
-		66EA78F12C722817007DCFCA /* Authentication+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78F02C722814007DCFCA /* Authentication+Injection.swift */; };
+		66EA78F12C722817007DCFCA /* Authorization+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78F02C722814007DCFCA /* Authorization+Injection.swift */; };
 		66EA78F42C7228FA007DCFCA /* History+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA78F32C7228F4007DCFCA /* History+Injection.swift */; };
 		66EA79052C7231B8007DCFCA /* ServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA79042C7231B0007DCFCA /* ServiceRegistry.swift */; };
 		66EA79072C723C1E007DCFCA /* Network+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EA79062C723C19007DCFCA /* Network+Injection.swift */; };
@@ -181,7 +181,7 @@
 		66EA78E72C72250A007DCFCA /* OAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandler.swift; sourceTree = "<group>"; };
 		66EA78EC2C722754007DCFCA /* User+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Injection.swift"; sourceTree = "<group>"; };
 		66EA78EE2C7227FE007DCFCA /* Repository+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repository+Injection.swift"; sourceTree = "<group>"; };
-		66EA78F02C722814007DCFCA /* Authentication+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Authentication+Injection.swift"; sourceTree = "<group>"; };
+		66EA78F02C722814007DCFCA /* Authorization+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Authorization+Injection.swift"; sourceTree = "<group>"; };
 		66EA78F32C7228F4007DCFCA /* History+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+Injection.swift"; sourceTree = "<group>"; };
 		66EA79042C7231B0007DCFCA /* ServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRegistry.swift; sourceTree = "<group>"; };
 		66EA79062C723C19007DCFCA /* Network+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Injection.swift"; sourceTree = "<group>"; };
@@ -455,7 +455,7 @@
 		66EA785A2C6FA03C007DCFCA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				66EA79032C722D15007DCFCA /* Authentication */,
+				66EA79032C722D15007DCFCA /* Authorization */,
 				66EA78F72C72297F007DCFCA /* Main */,
 				66EA79002C722C05007DCFCA /* Repositories */,
 				664B34152C775596003133E4 /* Repository */,
@@ -480,7 +480,7 @@
 		66EA78D92C7221C4007DCFCA /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				66EA78EB2C72273D007DCFCA /* Authentication */,
+				66EA78EB2C72273D007DCFCA /* Authorization */,
 				66EA78F22C7228D3007DCFCA /* History */,
 				66EA78EA2C722728007DCFCA /* Repositories */,
 				66EA78E92C7226E2007DCFCA /* User */,
@@ -548,16 +548,16 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		66EA78EB2C72273D007DCFCA /* Authentication */ = {
+		66EA78EB2C72273D007DCFCA /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				66EA78F02C722814007DCFCA /* Authentication+Injection.swift */,
+				66EA78F02C722814007DCFCA /* Authorization+Injection.swift */,
 				66C7FA322C726A3A00CEF262 /* AccessToken */,
 				660C49C42C736F2F008ACB28 /* AuthorizationURL */,
 				66C7FA302C726A1A00CEF262 /* OAuthHandler */,
 				66C7FA312C726A2C00CEF262 /* TokenValidator */,
 			);
-			path = Authentication;
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		66EA78F22C7228D3007DCFCA /* History */ = {
@@ -636,13 +636,13 @@
 			path = RepositoryHistory;
 			sourceTree = "<group>";
 		};
-		66EA79032C722D15007DCFCA /* Authentication */ = {
+		66EA79032C722D15007DCFCA /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
 				66EA78A92C70CD38007DCFCA /* LoadingView.swift */,
 				66EA788D2C6FAF6B007DCFCA /* LoginView.swift */,
 			);
-			path = Authentication;
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		66EF09972C74AB9A00D2D23D /* History */ = {
@@ -848,7 +848,7 @@
 				66EA78A62C70AFA3007DCFCA /* User.swift in Sources */,
 				66EA78AA2C70CD38007DCFCA /* LoadingView.swift in Sources */,
 				668FBB0B2C74CA120079D967 /* Keychain+Injection.swift in Sources */,
-				66EA78F12C722817007DCFCA /* Authentication+Injection.swift in Sources */,
+				66EA78F12C722817007DCFCA /* Authorization+Injection.swift in Sources */,
 				66EA78802C6FA4CB007DCFCA /* OAuthHandlerImpl.swift in Sources */,
 				66EA78C02C721AB6007DCFCA /* UserProfileProviderImpl.swift in Sources */,
 				66EA78B02C7203F9007DCFCA /* RepositoriesViewModel.swift in Sources */,
