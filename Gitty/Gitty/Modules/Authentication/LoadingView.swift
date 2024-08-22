@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LoadingView: View {
-    let gradientColors = [Color.accentColor.opacity(0.3), Color.clear]
+    private let gradientColors = [Color.accentColor.opacity(0.3), Color.clear]
 
     var body: some View {
         ZStack {

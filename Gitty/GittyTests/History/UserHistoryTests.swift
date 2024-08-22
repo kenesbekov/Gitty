@@ -11,7 +11,12 @@ struct UserHistoryTests {
     let provider: UserHistoryProvider
     let cleaner: UserHistoryCleaner
 
-    let user = User(id: 1, login: "testuser", avatarURL: URL(string: "https://example.com/avatar.png")!)
+    let user = User(
+        id: 1,
+        login: "testuser",
+        avatarURL: URL(string: "https://example.com/avatar.png")!,
+        htmlURL: URL(string: "https://example.com/html")!
+    )
 
     init() {
         let manager = UserHistoryManager()

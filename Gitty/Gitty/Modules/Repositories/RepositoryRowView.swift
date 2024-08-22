@@ -8,13 +8,6 @@ struct RepositoryRowView: View {
 
     @State private var isViewed: Bool
 
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter
-    }()
-
     init(
         repository: Repository,
         openURL: @escaping (URL) -> Void,
@@ -29,71 +22,96 @@ struct RepositoryRowView: View {
     }
 
     var body: some View {
-        Button {
-            openURL(repository.htmlURL)
-            markAsViewed()
-            isViewed = true
-        } label: {
-            ZStack {
-                if showViewedIndicator && isViewed {
-                    Color.blue.opacity(0.1)
-                }
+        NavigationLink(
+            destination: RepositoryView(repository: repository),
+            label: {
+                ZStack {
+                    if showViewedIndicator && isViewed {
+                        Color.blue.opacity(0.1)
+                    }
 
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack {
-                        Text(repository.name)
-                            .font(.headline)
-                            .foregroundColor(.accentColor)
-                            .lineLimit(1)
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text(repository.name)
+                                .font(.headline)
+                                .foregroundColor(.accentColor)
+                                .lineLimit(1)
 
-                        Spacer()
+                            Spacer()
 
-                        if showViewedIndicator && isViewed {
-                            Image(systemName: "eye")
-                                .foregroundColor(.secondary)
-                                .opacity(0.5)
-                                .transition(.opacity)
+                            if showViewedIndicator && isViewed {
+                                Image(systemName: "eye")
+                                    .foregroundColor(.secondary)
+                                    .opacity(0.5)
+                                    .transition(.opacity)
+                            }
                         }
-                    }
 
-                    if let description = repository.description, !description.isEmpty {
-                        Text(description)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .lineLimit(2)
-                            .multilineTextAlignment(.leading)
-                    } else {
-                        Text("No description available")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .italic()
-                    }
+                        if let description = repository.description, !description.isEmpty {
+                            Text(description)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .lineLimit(2)
+                                .multilineTextAlignment(.leading)
+                        } else {
+                            Text("No description available")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .italic()
+                        }
 
-                    Label("\(repository.owner.login)", systemImage: "person.fill")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-
-                    HStack {
-                        Label("\(repository.stargazersCount)", systemImage: "star.fill")
+                        Label("\(repository.owner.login)", systemImage: "person.fill")
                             .font(.footnote)
-                            .foregroundColor(.yellow)
+                            .foregroundColor(.secondary)
 
-                        Label("\(repository.forksCount)", systemImage: "tuningfork")
+                        HStack {
+                            Label("\(repository.stargazersCount)", systemImage: "star.fill")
+                                .font(.footnote)
+                                .foregroundColor(.yellow)
+
+                            Label("\(repository.forksCount)", systemImage: "tuningfork")
+                                .font(.footnote)
+                                .foregroundColor(.blue)
+                        }
+
+                        Text("Updated: \(formattedDate(repository.updatedAt))")
                             .font(.footnote)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.secondary)
+
+                        Divider()
                     }
-
-                    Text("Updated: \(dateFormatter.string(from: repository.updatedAt))")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-
-                    Divider()
+                    .frame(maxWidth: .infinity)
+                    .padding(.top)
+                    .padding(.horizontal)
+                    .animation(.easeInOut, value: isViewed)
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.top)
-                .padding(.horizontal)
-                .animation(.easeInOut, value: isViewed)
+            }
+        )
+        .simultaneousGesture(
+            TapGesture().onEnded {
+                markAsViewed()
+                isViewed = true
+            }
+        )
+        .contextMenu {
+            Button {
+                openURL(repository.owner.htmlURL)
+            } label: {
+                Label("Go to Owner", systemImage: "person")
+            }
+
+            Button {
+                openURL(repository.htmlURL)
+            } label: {
+                Label("Go to GitHub", systemImage: "link")
             }
         }
+    }
+
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
     }
 }

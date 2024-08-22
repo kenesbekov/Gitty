@@ -30,7 +30,8 @@ struct UserRepositoriesView: View {
                 RepositoryRowView(
                     repository: viewModel.repositories[index],
                     openURL: { url in openURL(url) },
-                    markAsViewed: { viewModel.markAsViewed(at: index) }
+                    markAsViewed: { viewModel.markAsViewed(at: index) },
+                    showViewedIndicator: false
                 )
             }
         }

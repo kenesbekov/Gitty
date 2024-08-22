@@ -42,6 +42,7 @@ struct RepositoryHistoryView: View {
                 secondaryButton: .cancel()
             )
         }
+        .animation(.easeInOut, value: repositories)
     }
 
     private func clearHistory() {
