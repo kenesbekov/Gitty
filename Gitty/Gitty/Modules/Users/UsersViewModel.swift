@@ -110,7 +110,7 @@ final class UsersViewModel: ObservableObject {
         }
     }
 
-    nonisolated private func getUserProfiles(for usernames: [String]) async throws -> UserProfileDict {
+    private func getUserProfiles(for usernames: [String]) async throws -> UserProfileDict {
         var profiles = UserProfileDict()
 
         try await withThrowingTaskGroup(of: UserProfileResult.self) { [profileProvider] group in

@@ -1,6 +1,6 @@
 import Foundation
 
 @MainActor
-protocol AppStateManager: ObservableObject, Sendable {
+protocol AppStateManager: ObservableObject {
     func logout()
 }
